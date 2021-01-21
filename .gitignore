@@ -1,3 +1,6 @@
+# user files
+*.root
+
 # Prerequisites
 *.d
 
