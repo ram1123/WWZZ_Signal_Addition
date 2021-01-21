@@ -21,7 +21,8 @@ TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG=0);
 
 void ReRunFHJetSelection_TTreeReader() 
 {
-    TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Data_Trees/Data_2017.root";
+    // TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Data_Trees/Data_2017.root";
+    TString inputFile1 = "outNameFile.root";
 
     TFile *OldRootFile = new TFile(inputFile1);
     if (OldRootFile->IsZombie()) {
@@ -31,7 +32,7 @@ void ReRunFHJetSelection_TTreeReader()
     std::cout << "Reading file ==> " << inputFile1 << std::endl;
 
     TString RootFileDirStructure[3];
-    TString OldTreeName = GetTreeName(OldRootFile, RootFileDirStructure);
+    TString OldTreeName = GetTreeName(OldRootFile, RootFileDirStructure, 1);
     std::cout << "Tree name: " << OldTreeName << std::endl;
 
     TTree *OldTree = (TTree*)OldRootFile->Get(OldTreeName);
@@ -155,27 +156,32 @@ void ReRunFHJetSelection_TTreeReader()
    TTreeReaderValue<Float_t> goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_problepb = {newreader, "goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_problepb"};
 
     // Create a new file
-    TFile *newfile = new TFile("outNameFile.root","recreate");
+    TFile *newfile = new TFile("outNameFile_New.root","recreate");
     newfile->mkdir(RootFileDirStructure[0]+"/"+RootFileDirStructure[1]);
     newfile->cd(RootFileDirStructure[0]+"/"+RootFileDirStructure[1]);
+    TTree *NewTree = new TTree(RootFileDirStructure[2], "A tree");
+    TObjArray* blist = OldTree->GetListOfBranches();
 
-    // Clone old Tree
-    auto newtree = OldTree->CloneTree();
-    // auto newtree = OldTree->CloneTree(0);
-    // newtree->SetName(RootFileDirStructure[2]);
+    int nentries = OldTree->GetEntries();
+    std::cout << "Entries of NewTree = " <<  nentries << std::endl;
 
-    // newtree->SetBranchStatus('*',1);
-    // TTreeReaderValue<Float_t> ramkrishna = {newreader, "ramkrishna"};
-    double ramkrishna;
-    newtree->Branch("ramkrishna", &ramkrishna, "ramkrishna/F");
+    // for (auto &x: *blist) {
+    //   std::cout << x << std::endl;
+    // }
 
-    while(newreader.Next()) {
-        // std::cout << "N_goodJets = " << *N_goodJets << std::endl;
-        ramkrishna = *N_goodJets;
-        newtree->Fill();
+    TIter iObj(blist);
+    while (TObject* obj = iObj()) {
+      std::cout << obj->GetName() << std::endl;
     }
 
-    newfile->Write();
+    for (Long64_t i=0;i<nentries; i++) {
+      newreader.Next();
+      std::cout << "N_goodJets = " << *N_goodJets << "\tramkrishna: " << std::endl;
+      NewTree->Fill();
+    }
+
+    // newfile->Print();
+    // newfile->Write();
 }
 
 
@@ -228,6 +234,7 @@ TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG) {
                             RootFileDirStructure[2] = key3->GetName();
                             treeName += "/";
                             treeName += key3->GetName();
+                            break;
                         }
                     }
                 }
