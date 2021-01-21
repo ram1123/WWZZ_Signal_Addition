@@ -154,8 +154,6 @@ void ReRunFHJetSelection_TTreeReader()
    TTreeReaderValue<Float_t> goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_problepb = {newreader, "goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_problepb"};
    TTreeReaderValue<Float_t> goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_problepb = {newreader, "goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_problepb"};
 
-
-
     // Create a new file
     TFile *newfile = new TFile("outNameFile.root","recreate");
     newfile->mkdir(RootFileDirStructure[0]+"/"+RootFileDirStructure[1]);
@@ -163,6 +161,10 @@ void ReRunFHJetSelection_TTreeReader()
 
     // Clone old Tree
     auto newtree = OldTree->CloneTree();
+    // auto newtree = OldTree->CloneTree(0);
+    // newtree->SetName(RootFileDirStructure[2]);
+
+    // newtree->SetBranchStatus('*',1);
     // TTreeReaderValue<Float_t> ramkrishna = {newreader, "ramkrishna"};
     double ramkrishna;
     newtree->Branch("ramkrishna", &ramkrishna, "ramkrishna/F");
