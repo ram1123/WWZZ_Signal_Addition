@@ -3,7 +3,7 @@
  *
  *       Filename:  ReRunFHJetSelection.C
  *
- *    Description:  
+ *    Description:
  *
  *        Version:  1.0
  *        Created:  01/21/21 13:11:26
@@ -16,101 +16,179 @@
  * =====================================================================================
  */
 
+#include "ReRunFHJetSelection.h"
+#include "flashgg.h"
+#include "output.h"
 
-TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG=0);
 
-void ReRunFHJetSelection() 
+void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Data_Trees/Data_2017.root" )
 {
-    auto c1 = new TCanvas("c1");
-
-    TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Data_Trees/Data_2017.root";
-
     TFile *OldRootFile = new TFile(inputFile1);
-
+    
     if (OldRootFile->IsZombie()) {
         std::cout << "File " << inputFile1 << " does not exists" << std::endl;
         return;
     }
-
+    
     std::cout << "Reading file ==> " << inputFile1 << std::endl;
-
+    
     TString RootFileDirStructure[3];
-
     TString OldTreeName = GetTreeName(OldRootFile, RootFileDirStructure);
-
     std::cout << "Tree name: " << OldTreeName << std::endl;
+    
+    TTree *OldTree = (TTree*)OldRootFile->Get(OldTreeName);
+    flashgg flashggReader = flashgg(OldTree);
+    
+    // Create a new file
+    TFile *newfile = new TFile("new_new.root", "recreate");
+    // newfile->mkdir(RootFileDirStructure[0]+"/"+RootFileDirStructure[1]);
+    // newfile->cd(RootFileDirStructure[0]+"/"+RootFileDirStructure[1]);
+    // Clone the old tree
+    auto newtree = OldTree->CloneTree(0);
+    output outputVars = output(newtree);
+    
+    Long64_t nentries = OldTree->GetEntries();
+    std::cout << "nentries = " << nentries << std::endl;
+    std::vector<TLorentzVector> Jets;
 
-    TTree *OldTree;
-    OldRootFile->GetObject(OldTreeName, OldTree);
+    int temp_percentage_done = 0;
+    
+    for (Long64_t jentry=0; jentry<nentries;jentry++) {
+        flashggReader.GetEntry(jentry);  
+        // if(jentry>10) break;  // For debug purpose
 
-    // Deactivate all branches
-    OldTree->SetBranchStatus("*", 1);
-
-    // Create a new file + a clone of old tree in new file
-    TFile newfile("small.root", "recreate");
-    newfile.mkdir(RootFileDirStructure[0]+"/"+RootFileDirStructure[1]);
-    newfile.cd(RootFileDirStructure[0]+"/"+RootFileDirStructure[1]);
-    auto newtree = OldTree->CloneTree();
-
-    newtree->Print();
-    newfile.Write();
-}
-
-
-//===========================================================================
-
-/**
- * @brief      This function takes a input root file and returns the directory
- *             structure along with its tree name.
- *
- * @param      f                     Input root file
- * @param      RootFileDirStructure  This has a size of three where the first
- *                                   two elements contains the two directory
- *                                   name and the third element contains the 
- *                                   tree name.
- * @param[in]  DEBUG                 it can take values 0 or 1. If its 1 then
- *                                   it prints several couts which helps us in
- *                                   debug the code.
- *
- * @return     It returns the full directory structure along with the tree name.
- */
-TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG) {
-    TString treeName = "";
-
-    TIter next(f->GetListOfKeys());
-    TKey *key;
-    while ( (key = (TKey*)next())) {
-        if (DEBUG) std::cout << "key name: " << key->GetName() << std::endl;
-        if (key->IsFolder()) {
-            f->cd(key->GetName());
-            treeName += key->GetName();
-            RootFileDirStructure[0] = TString(key->GetName());
-            TDirectory *subdir = gDirectory;
-            TIter next(subdir->GetListOfKeys());
-            TKey *key2;
-            while ( (key2 = (TKey*)next())) {
-                if (DEBUG) std::cout << "key2 name: " << key2->GetName() << std::endl;
-                if (key->IsFolder()){
-                    treeName += "/";
-                    treeName += key2->GetName();
-                    RootFileDirStructure[1] = key2->GetName();
-                    subdir->cd(key2->GetName());
-                    TDirectory *subdir = gDirectory;
-                    TIter next(subdir->GetListOfKeys());
-                    TKey *key3;
-                    while ( (key3 = (TKey*)next())) {
-                        if (DEBUG) std::cout << "key3 name: " << key3->GetName() << std::endl;
-                        if (string(key3->GetName()).find("Tag_1") != std::string::npos)
-                        {
-                            if (DEBUG) std::cout << "Found key3 name: " << key3->GetName() << std::endl;
-                            RootFileDirStructure[2] = key3->GetName();
-                            treeName += "/";
-                            treeName += key3->GetName();
-                        }
-                    }
-                }
-            }            
+        Jets.clear();
+        
+        int percentage_done = (int)(((float)jentry/(float)nentries)*100);
+        if (percentage_done % 10 == 0) {
+          if (percentage_done != temp_percentage_done) {
+            std::cout << percentage_done  << "%"<< std::endl;
+            temp_percentage_done = percentage_done;
+          }
         }
+        
+        // outputVars.New_Leading_Jet_E = flashggReader.goodJets_0_E;
+        // std::cout << outputVars.New_Leading_Jet_E <<"\t" << flashggReader.goodJets_0_E << std::endl;
+
+        Jets.push_back(TLorentzVector(0,0,0,0));
+        Jets.back().SetPxPyPzE(
+                                  flashggReader.goodJets_0_px,
+                                  flashggReader.goodJets_0_py,
+                                  flashggReader.goodJets_0_pz,
+                                  flashggReader.goodJets_0_E
+                                );
+        Jets.push_back(TLorentzVector(0,0,0,0));
+        Jets.back().SetPxPyPzE(
+                                  flashggReader.goodJets_1_px,
+                                  flashggReader.goodJets_1_py,
+                                  flashggReader.goodJets_1_pz,
+                                  flashggReader.goodJets_1_E
+                                );
+        Jets.push_back(TLorentzVector(0,0,0,0));
+        Jets.back().SetPxPyPzE(
+                                  flashggReader.goodJets_2_px,
+                                  flashggReader.goodJets_2_py,
+                                  flashggReader.goodJets_2_pz,
+                                  flashggReader.goodJets_2_E
+                                );
+        Jets.push_back(TLorentzVector(0,0,0,0));
+        Jets.back().SetPxPyPzE(
+                                  flashggReader.goodJets_3_px,
+                                  flashggReader.goodJets_3_py,
+                                  flashggReader.goodJets_3_pz,
+                                  flashggReader.goodJets_3_E
+                                );
+        if (flashggReader.N_goodJets==5){        
+          Jets.push_back(TLorentzVector(0,0,0,0));
+          Jets.back().SetPxPyPzE(
+                                  flashggReader.goodJets_4_px,
+                                  flashggReader.goodJets_4_py,
+                                  flashggReader.goodJets_4_pz,
+                                  flashggReader.goodJets_4_E
+                                );
+        }
+        // if (flashggReader.N_goodJets==6){        
+        //   Jets.push_back(TLorentzVector(0,0,0,0));
+        //   Jets.back().SetPxPyPzE(
+        //                           flashggReader.goodJets_5_px,
+        //                           flashggReader.goodJets_5_py,
+        //                           flashggReader.goodJets_5_pz,
+        //                           flashggReader.goodJets_5_E
+        //                         );
+        // }
+        // if (flashggReader.N_goodJets==7){
+        //   Jets.push_back(TLorentzVector(0,0,0,0));
+        //   Jets.back().SetPxPyPzE(
+        //                           flashggReader.goodJets_6_px,
+        //                           flashggReader.goodJets_6_py,
+        //                           flashggReader.goodJets_6_pz,
+        //                           flashggReader.goodJets_6_E
+        //                         );
+        // }
+        // if (flashggReader.N_goodJets==8){
+        //   Jets.push_back(TLorentzVector(0,0,0,0));
+        //   Jets.back().SetPxPyPzE(
+        //                           flashggReader.goodJets_7_px,
+        //                           flashggReader.goodJets_7_py,
+        //                           flashggReader.goodJets_7_pz,
+        //                           flashggReader.goodJets_7_E
+        //                         );
+        // }
+        // if (flashggReader.N_goodJets==9) {        
+        //   Jets.push_back(TLorentzVector(0,0,0,0));
+        //   Jets.back().SetPxPyPzE(
+        //                           flashggReader.goodJets_8_px,
+        //                           flashggReader.goodJets_8_py,
+        //                           flashggReader.goodJets_8_pz,
+        //                           flashggReader.goodJets_8_E
+        //                         );
+        // }
+        // if (flashggReader.N_goodJets==10){        
+        //   Jets.push_back(TLorentzVector(0,0,0,0));
+        //   Jets.back().SetPxPyPzE(
+        //                           flashggReader.goodJets_9_px,
+        //                           flashggReader.goodJets_9_py,
+        //                           flashggReader.goodJets_9_pz,
+        //                           flashggReader.goodJets_9_E
+        //                         );
+        // }
+        std::vector<TLorentzVector> SelectedGoodJets;
+        GetFHminWHJets(Jets, SelectedGoodJets, 0);
+
+        // std::cout << "Jets size = " << Jets.size() << std::endl;
+
+        outputVars.New_Leading_Jet_E  = SelectedGoodJets[0].E();
+        outputVars.New_Leading_Jet_pt = SelectedGoodJets[0].Pt();
+        outputVars.New_Leading_Jet_px = SelectedGoodJets[0].Px();
+        outputVars.New_Leading_Jet_py = SelectedGoodJets[0].Py();
+        outputVars.New_Leading_Jet_pz = SelectedGoodJets[0].Pz();
+        outputVars.New_Leading_Jet_eta  = SelectedGoodJets[0].Eta();
+        outputVars.New_Leading_Jet_phi  = SelectedGoodJets[0].Phi();
+        outputVars.New_Subleading_Jet_E = SelectedGoodJets[1].E();
+        outputVars.New_Subleading_Jet_pt  = SelectedGoodJets[1].Pt();
+        outputVars.New_Subleading_Jet_px  = SelectedGoodJets[1].Px();
+        outputVars.New_Subleading_Jet_py  = SelectedGoodJets[1].Py();
+        outputVars.New_Subleading_Jet_pz  = SelectedGoodJets[1].Pz();
+        outputVars.New_Subleading_Jet_eta = SelectedGoodJets[1].Eta();
+        outputVars.New_Subleading_Jet_phi = SelectedGoodJets[1].Phi();
+        outputVars.New_Sub2leading_Jet_E  = SelectedGoodJets[2].E();
+        outputVars.New_Sub2leading_Jet_pt = SelectedGoodJets[2].Pt();
+        outputVars.New_Sub2leading_Jet_px = SelectedGoodJets[2].Px();
+        outputVars.New_Sub2leading_Jet_py = SelectedGoodJets[2].Py();
+        outputVars.New_Sub2leading_Jet_pz = SelectedGoodJets[2].Pz();
+        outputVars.New_Sub2leading_Jet_eta  = SelectedGoodJets[2].Eta();
+        outputVars.New_Sub2leading_Jet_phi  = SelectedGoodJets[2].Phi();
+        outputVars.New_Sub3leading_Jet_E  = SelectedGoodJets[3].E();
+        outputVars.New_Sub3leading_Jet_pt = SelectedGoodJets[3].Pt();
+        outputVars.New_Sub3leading_Jet_px = SelectedGoodJets[3].Px();
+        outputVars.New_Sub3leading_Jet_py = SelectedGoodJets[3].Py();
+        outputVars.New_Sub3leading_Jet_pz = SelectedGoodJets[3].Pz();
+        outputVars.New_Sub3leading_Jet_eta  = SelectedGoodJets[3].Eta();
+        outputVars.New_Sub3leading_Jet_phi  = SelectedGoodJets[3].Phi();
+
+        newtree->Fill();
     }
-    return treeName;    
+    
+    newtree->Write();
+    newfile->Write();
 }
