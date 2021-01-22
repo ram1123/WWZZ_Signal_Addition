@@ -74,11 +74,11 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         
         // outputVars.New_Leading_Jet_E = flashggReader.goodJets_0_E;
         // std::cout << outputVars.New_Leading_Jet_E <<"\t" << flashggReader.goodJets_0_E << std::endl;
-        b_dis.push_back(goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-        b_dis.push_back(goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-        b_dis.push_back(goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-        b_dis.push_back(goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-        b_dis.push_back(goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+        b_dis.push_back(flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+        b_dis.push_back(flashggReader.goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+        b_dis.push_back(flashggReader.goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+        b_dis.push_back(flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+        b_dis.push_back(flashggReader.goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
         //b_dis.push_back(goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
         //b_dis.push_back(goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
         //b_dis.push_back(goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
