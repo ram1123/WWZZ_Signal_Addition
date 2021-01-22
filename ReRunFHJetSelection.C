@@ -50,7 +50,9 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
     
     Long64_t nentries = OldTree->GetEntries();
     std::cout << "nentries = " << nentries << std::endl;
+    
     std::vector<TLorentzVector> Jets;
+    std::vector<Float_t> b_dis;
 
     int temp_percentage_done = 0;
     
