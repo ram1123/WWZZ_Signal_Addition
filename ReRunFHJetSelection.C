@@ -59,6 +59,8 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         // if(jentry>10) break;  // For debug purpose
 
         Jets.clear();
+        b_dis.clear();
+        
         
         int percentage_done = (int)(((float)jentry/(float)nentries)*100);
         if (percentage_done % 10 == 0) {
@@ -70,7 +72,17 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         
         // outputVars.New_Leading_Jet_E = flashggReader.goodJets_0_E;
         // std::cout << outputVars.New_Leading_Jet_E <<"\t" << flashggReader.goodJets_0_E << std::endl;
-
+        b_dis.push_back(goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+        b_dis.push_back(goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+        b_dis.push_back(goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+        b_dis.push_back(goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+        b_dis.push_back(goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+        //b_dis.push_back(goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+        //b_dis.push_back(goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+        //b_dis.push_back(goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+        //b_dis.push_back(goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+        //b_dis.push_back(goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+        
         Jets.push_back(TLorentzVector(0,0,0,0));
         Jets.back().SetPxPyPzE(
                                   flashggReader.goodJets_0_px,
@@ -186,6 +198,10 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         outputVars.New_Sub3leading_Jet_pz = SelectedGoodJets[3].Pz();
         outputVars.New_Sub3leading_Jet_eta  = SelectedGoodJets[3].Eta();
         outputVars.New_Sub3leading_Jet_phi  = SelectedGoodJets[3].Phi();
+        outputVars.New_OnShellW_LeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb  = Selectedb_dis[0];
+        outputVars.New_OnShellW_SubLeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb  = Selectedb_dis[1];
+        outputVars.New_OffShellW_LeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb  = Selectedb_dis[2];
+        outputVars.New_OffShellW_SubLeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb  = Selectedb_dis[3];
 
         newtree->Fill();
     }
