@@ -182,6 +182,7 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         //                         );
         // }
         std::vector<TLorentzVector> SelectedGoodJets;
+        std::vector<Float_t> Selectedb_dis;
         GetFHminWHJets(Jets, b_dis, SelectedGoodJets, Selectedb_dis, 0);
 
         // std::cout << "Jets size = " << Jets.size() << std::endl;
