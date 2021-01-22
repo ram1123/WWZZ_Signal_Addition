@@ -83,7 +83,7 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_
 {
     // get 4 jets for FH final state with minWH vals
     SelectedJets.clear();
-    Selectedb-dis.clear();
+    Selectedb_dis.clear();
     double TempMinWMass = 999999.0;
     double TempMinHMass = 999999.0;
     
