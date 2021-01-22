@@ -18,7 +18,7 @@
 
 
 TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG=0);
-void GetFHminWHJets(bool DEBUG, std::vector<TLorentzVector> &AllGoodJets, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb-dis);
+void GetFHminWHJets(bool DEBUG, std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb_dis);
 
 
 /**
@@ -79,7 +79,7 @@ TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG) {
 
 
 // vector<Ptr<flashgg::Jet> > HHWWggTagProducer::GetFHminWHJets(bool doHHWWggDebug, std::vector<edm::Ptr<Jet> > AllGoodJets)
-void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb-dis, bool DEBUG = 0)
+void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb-dis, bool DEBUG = 0)
 {
     // get 4 jets for FH final state with minWH vals
     SelectedJets.clear();
