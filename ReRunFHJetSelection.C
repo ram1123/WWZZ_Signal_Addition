@@ -41,8 +41,9 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
     
     // Create a new file
     TFile *newfile = new TFile("new_new.root", "recreate");
-    // newfile->mkdir(RootFileDirStructure[0]+"/"+RootFileDirStructure[1]);
-    // newfile->cd(RootFileDirStructure[0]+"/"+RootFileDirStructure[1]);
+    newfile->mkdir(RootFileDirStructure[0]+"/"+RootFileDirStructure[1]);
+    newfile->cd(RootFileDirStructure[0]+"/"+RootFileDirStructure[1]);
+    
     // Clone the old tree
     auto newtree = OldTree->CloneTree(0);
     output outputVars = output(newtree);
