@@ -1,8 +1,8 @@
 //////////////////////////////////////////////////////////
 // This class has been automatically generated on
-// Fri Jan 22 00:08:57 2021 by ROOT version 6.14/09
+// Tue Jan 26 22:23:23 2021 by ROOT version 6.14/09
 // from TTree Data_13TeV_HHWWggTag_1/Data_13TeV_HHWWggTag_1
-// found on file: small.root
+// found on file: /eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016//Data_Trees_2016_Hadded_Combined/allData.root
 //////////////////////////////////////////////////////////
 
 #ifndef flashgg_Data_h
@@ -51,9 +51,6 @@ public :
    Float_t         GenVtx_z;
    Float_t         HggVtx_z;
    Float_t         ZeroVtx_z;
-   Float_t         genMhh;
-   Float_t         genCosThetaStar_CS;
-   Float_t         genAbsCosThetaStar_CS;
    Float_t         Leading_Photon_MVA;
    Float_t         Subleading_Photon_MVA;
    Float_t         Leading_Photon_SC_eta;
@@ -239,36 +236,71 @@ public :
    Float_t         allJets_2_E;
    Float_t         allJets_3_E;
    Float_t         allJets_4_E;
+   Float_t         allJets_5_E;
+   Float_t         allJets_6_E;
+   Float_t         allJets_7_E;
+   Float_t         allJets_8_E;
+   Float_t         allJets_9_E;
    Float_t         allJets_0_pt;
    Float_t         allJets_1_pt;
    Float_t         allJets_2_pt;
    Float_t         allJets_3_pt;
    Float_t         allJets_4_pt;
+   Float_t         allJets_5_pt;
+   Float_t         allJets_6_pt;
+   Float_t         allJets_7_pt;
+   Float_t         allJets_8_pt;
+   Float_t         allJets_9_pt;
    Float_t         allJets_0_px;
    Float_t         allJets_1_px;
    Float_t         allJets_2_px;
    Float_t         allJets_3_px;
    Float_t         allJets_4_px;
+   Float_t         allJets_5_px;
+   Float_t         allJets_6_px;
+   Float_t         allJets_7_px;
+   Float_t         allJets_8_px;
+   Float_t         allJets_9_px;
    Float_t         allJets_0_py;
    Float_t         allJets_1_py;
    Float_t         allJets_2_py;
    Float_t         allJets_3_py;
    Float_t         allJets_4_py;
+   Float_t         allJets_5_py;
+   Float_t         allJets_6_py;
+   Float_t         allJets_7_py;
+   Float_t         allJets_8_py;
+   Float_t         allJets_9_py;
    Float_t         allJets_0_pz;
    Float_t         allJets_1_pz;
    Float_t         allJets_2_pz;
    Float_t         allJets_3_pz;
    Float_t         allJets_4_pz;
+   Float_t         allJets_5_pz;
+   Float_t         allJets_6_pz;
+   Float_t         allJets_7_pz;
+   Float_t         allJets_8_pz;
+   Float_t         allJets_9_pz;
    Float_t         allJets_0_eta;
    Float_t         allJets_1_eta;
    Float_t         allJets_2_eta;
    Float_t         allJets_3_eta;
    Float_t         allJets_4_eta;
+   Float_t         allJets_5_eta;
+   Float_t         allJets_6_eta;
+   Float_t         allJets_7_eta;
+   Float_t         allJets_8_eta;
+   Float_t         allJets_9_eta;
    Float_t         allJets_0_phi;
    Float_t         allJets_1_phi;
    Float_t         allJets_2_phi;
    Float_t         allJets_3_phi;
    Float_t         allJets_4_phi;
+   Float_t         allJets_5_phi;
+   Float_t         allJets_6_phi;
+   Float_t         allJets_7_phi;
+   Float_t         allJets_8_phi;
+   Float_t         allJets_9_phi;
    Float_t         allJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb;
    Float_t         allJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb;
    Float_t         allJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb;
@@ -325,138 +357,273 @@ public :
    Float_t         goodElectrons_2_E;
    Float_t         goodElectrons_3_E;
    Float_t         goodElectrons_4_E;
+   Float_t         goodElectrons_5_E;
+   Float_t         goodElectrons_6_E;
+   Float_t         goodElectrons_7_E;
+   Float_t         goodElectrons_8_E;
+   Float_t         goodElectrons_9_E;
    Float_t         goodElectrons_0_pt;
    Float_t         goodElectrons_1_pt;
    Float_t         goodElectrons_2_pt;
    Float_t         goodElectrons_3_pt;
    Float_t         goodElectrons_4_pt;
+   Float_t         goodElectrons_5_pt;
+   Float_t         goodElectrons_6_pt;
+   Float_t         goodElectrons_7_pt;
+   Float_t         goodElectrons_8_pt;
+   Float_t         goodElectrons_9_pt;
    Float_t         goodElectrons_0_px;
    Float_t         goodElectrons_1_px;
    Float_t         goodElectrons_2_px;
    Float_t         goodElectrons_3_px;
    Float_t         goodElectrons_4_px;
+   Float_t         goodElectrons_5_px;
+   Float_t         goodElectrons_6_px;
+   Float_t         goodElectrons_7_px;
+   Float_t         goodElectrons_8_px;
+   Float_t         goodElectrons_9_px;
    Float_t         goodElectrons_0_py;
    Float_t         goodElectrons_1_py;
    Float_t         goodElectrons_2_py;
    Float_t         goodElectrons_3_py;
    Float_t         goodElectrons_4_py;
+   Float_t         goodElectrons_5_py;
+   Float_t         goodElectrons_6_py;
+   Float_t         goodElectrons_7_py;
+   Float_t         goodElectrons_8_py;
+   Float_t         goodElectrons_9_py;
    Float_t         goodElectrons_0_pz;
    Float_t         goodElectrons_1_pz;
    Float_t         goodElectrons_2_pz;
    Float_t         goodElectrons_3_pz;
    Float_t         goodElectrons_4_pz;
+   Float_t         goodElectrons_5_pz;
+   Float_t         goodElectrons_6_pz;
+   Float_t         goodElectrons_7_pz;
+   Float_t         goodElectrons_8_pz;
+   Float_t         goodElectrons_9_pz;
    Float_t         goodElectrons_0_eta;
    Float_t         goodElectrons_1_eta;
    Float_t         goodElectrons_2_eta;
    Float_t         goodElectrons_3_eta;
    Float_t         goodElectrons_4_eta;
+   Float_t         goodElectrons_5_eta;
+   Float_t         goodElectrons_6_eta;
+   Float_t         goodElectrons_7_eta;
+   Float_t         goodElectrons_8_eta;
+   Float_t         goodElectrons_9_eta;
    Float_t         goodElectrons_0_phi;
    Float_t         goodElectrons_1_phi;
    Float_t         goodElectrons_2_phi;
    Float_t         goodElectrons_3_phi;
    Float_t         goodElectrons_4_phi;
+   Float_t         goodElectrons_5_phi;
+   Float_t         goodElectrons_6_phi;
+   Float_t         goodElectrons_7_phi;
+   Float_t         goodElectrons_8_phi;
+   Float_t         goodElectrons_9_phi;
    Float_t         goodElectrons_0_passLooseId;
    Float_t         goodElectrons_1_passLooseId;
    Float_t         goodElectrons_2_passLooseId;
    Float_t         goodElectrons_3_passLooseId;
    Float_t         goodElectrons_4_passLooseId;
+   Float_t         goodElectrons_5_passLooseId;
+   Float_t         goodElectrons_6_passLooseId;
+   Float_t         goodElectrons_7_passLooseId;
+   Float_t         goodElectrons_8_passLooseId;
+   Float_t         goodElectrons_9_passLooseId;
    Float_t         goodElectrons_0_passMediumId;
    Float_t         goodElectrons_1_passMediumId;
    Float_t         goodElectrons_2_passMediumId;
    Float_t         goodElectrons_3_passMediumId;
    Float_t         goodElectrons_4_passMediumId;
+   Float_t         goodElectrons_5_passMediumId;
+   Float_t         goodElectrons_6_passMediumId;
+   Float_t         goodElectrons_7_passMediumId;
+   Float_t         goodElectrons_8_passMediumId;
+   Float_t         goodElectrons_9_passMediumId;
    Float_t         goodElectrons_0_passTightId;
    Float_t         goodElectrons_1_passTightId;
    Float_t         goodElectrons_2_passTightId;
    Float_t         goodElectrons_3_passTightId;
    Float_t         goodElectrons_4_passTightId;
+   Float_t         goodElectrons_5_passTightId;
+   Float_t         goodElectrons_6_passTightId;
+   Float_t         goodElectrons_7_passTightId;
+   Float_t         goodElectrons_8_passTightId;
+   Float_t         goodElectrons_9_passTightId;
    Float_t         goodElectrons_0_passMVALooseId;
    Float_t         goodElectrons_1_passMVALooseId;
    Float_t         goodElectrons_2_passMVALooseId;
    Float_t         goodElectrons_3_passMVALooseId;
    Float_t         goodElectrons_4_passMVALooseId;
+   Float_t         goodElectrons_5_passMVALooseId;
+   Float_t         goodElectrons_6_passMVALooseId;
+   Float_t         goodElectrons_7_passMVALooseId;
+   Float_t         goodElectrons_8_passMVALooseId;
+   Float_t         goodElectrons_9_passMVALooseId;
    Float_t         goodElectrons_0_passMVAMediumId;
    Float_t         goodElectrons_1_passMVAMediumId;
    Float_t         goodElectrons_2_passMVAMediumId;
    Float_t         goodElectrons_3_passMVAMediumId;
    Float_t         goodElectrons_4_passMVAMediumId;
+   Float_t         goodElectrons_5_passMVAMediumId;
+   Float_t         goodElectrons_6_passMVAMediumId;
+   Float_t         goodElectrons_7_passMVAMediumId;
+   Float_t         goodElectrons_8_passMVAMediumId;
+   Float_t         goodElectrons_9_passMVAMediumId;
    Float_t         goodElectrons_0_passMVATightId;
    Float_t         goodElectrons_1_passMVATightId;
    Float_t         goodElectrons_2_passMVATightId;
    Float_t         goodElectrons_3_passMVATightId;
    Float_t         goodElectrons_4_passMVATightId;
+   Float_t         goodElectrons_5_passMVATightId;
+   Float_t         goodElectrons_6_passMVATightId;
+   Float_t         goodElectrons_7_passMVATightId;
+   Float_t         goodElectrons_8_passMVATightId;
+   Float_t         goodElectrons_9_passMVATightId;
    Float_t         N_goodMuons;
    Float_t         goodMuons_0_E;
    Float_t         goodMuons_1_E;
    Float_t         goodMuons_2_E;
    Float_t         goodMuons_3_E;
    Float_t         goodMuons_4_E;
+   Float_t         goodMuons_5_E;
+   Float_t         goodMuons_6_E;
+   Float_t         goodMuons_7_E;
+   Float_t         goodMuons_8_E;
+   Float_t         goodMuons_9_E;
    Float_t         goodMuons_0_pt;
    Float_t         goodMuons_1_pt;
    Float_t         goodMuons_2_pt;
    Float_t         goodMuons_3_pt;
    Float_t         goodMuons_4_pt;
+   Float_t         goodMuons_5_pt;
+   Float_t         goodMuons_6_pt;
+   Float_t         goodMuons_7_pt;
+   Float_t         goodMuons_8_pt;
+   Float_t         goodMuons_9_pt;
    Float_t         goodMuons_0_px;
    Float_t         goodMuons_1_px;
    Float_t         goodMuons_2_px;
    Float_t         goodMuons_3_px;
    Float_t         goodMuons_4_px;
+   Float_t         goodMuons_5_px;
+   Float_t         goodMuons_6_px;
+   Float_t         goodMuons_7_px;
+   Float_t         goodMuons_8_px;
+   Float_t         goodMuons_9_px;
    Float_t         goodMuons_0_py;
    Float_t         goodMuons_1_py;
    Float_t         goodMuons_2_py;
    Float_t         goodMuons_3_py;
    Float_t         goodMuons_4_py;
+   Float_t         goodMuons_5_py;
+   Float_t         goodMuons_6_py;
+   Float_t         goodMuons_7_py;
+   Float_t         goodMuons_8_py;
+   Float_t         goodMuons_9_py;
    Float_t         goodMuons_0_pz;
    Float_t         goodMuons_1_pz;
    Float_t         goodMuons_2_pz;
    Float_t         goodMuons_3_pz;
    Float_t         goodMuons_4_pz;
+   Float_t         goodMuons_5_pz;
+   Float_t         goodMuons_6_pz;
+   Float_t         goodMuons_7_pz;
+   Float_t         goodMuons_8_pz;
+   Float_t         goodMuons_9_pz;
    Float_t         goodMuons_0_eta;
    Float_t         goodMuons_1_eta;
    Float_t         goodMuons_2_eta;
    Float_t         goodMuons_3_eta;
    Float_t         goodMuons_4_eta;
+   Float_t         goodMuons_5_eta;
+   Float_t         goodMuons_6_eta;
+   Float_t         goodMuons_7_eta;
+   Float_t         goodMuons_8_eta;
+   Float_t         goodMuons_9_eta;
    Float_t         goodMuons_0_phi;
    Float_t         goodMuons_1_phi;
    Float_t         goodMuons_2_phi;
    Float_t         goodMuons_3_phi;
    Float_t         goodMuons_4_phi;
+   Float_t         goodMuons_5_phi;
+   Float_t         goodMuons_6_phi;
+   Float_t         goodMuons_7_phi;
+   Float_t         goodMuons_8_phi;
+   Float_t         goodMuons_9_phi;
    Float_t         N_goodJets;
    Float_t         goodJets_0_E;
    Float_t         goodJets_1_E;
    Float_t         goodJets_2_E;
    Float_t         goodJets_3_E;
    Float_t         goodJets_4_E;
+   Float_t         goodJets_5_E;
+   Float_t         goodJets_6_E;
+   Float_t         goodJets_7_E;
+   Float_t         goodJets_8_E;
+   Float_t         goodJets_9_E;
    Float_t         goodJets_0_pt;
    Float_t         goodJets_1_pt;
    Float_t         goodJets_2_pt;
    Float_t         goodJets_3_pt;
    Float_t         goodJets_4_pt;
+   Float_t         goodJets_5_pt;
+   Float_t         goodJets_6_pt;
+   Float_t         goodJets_7_pt;
+   Float_t         goodJets_8_pt;
+   Float_t         goodJets_9_pt;
    Float_t         goodJets_0_px;
    Float_t         goodJets_1_px;
    Float_t         goodJets_2_px;
    Float_t         goodJets_3_px;
    Float_t         goodJets_4_px;
+   Float_t         goodJets_5_px;
+   Float_t         goodJets_6_px;
+   Float_t         goodJets_7_px;
+   Float_t         goodJets_8_px;
+   Float_t         goodJets_9_px;
    Float_t         goodJets_0_py;
    Float_t         goodJets_1_py;
    Float_t         goodJets_2_py;
    Float_t         goodJets_3_py;
    Float_t         goodJets_4_py;
+   Float_t         goodJets_5_py;
+   Float_t         goodJets_6_py;
+   Float_t         goodJets_7_py;
+   Float_t         goodJets_8_py;
+   Float_t         goodJets_9_py;
    Float_t         goodJets_0_pz;
    Float_t         goodJets_1_pz;
    Float_t         goodJets_2_pz;
    Float_t         goodJets_3_pz;
    Float_t         goodJets_4_pz;
+   Float_t         goodJets_5_pz;
+   Float_t         goodJets_6_pz;
+   Float_t         goodJets_7_pz;
+   Float_t         goodJets_8_pz;
+   Float_t         goodJets_9_pz;
    Float_t         goodJets_0_eta;
    Float_t         goodJets_1_eta;
    Float_t         goodJets_2_eta;
    Float_t         goodJets_3_eta;
    Float_t         goodJets_4_eta;
+   Float_t         goodJets_5_eta;
+   Float_t         goodJets_6_eta;
+   Float_t         goodJets_7_eta;
+   Float_t         goodJets_8_eta;
+   Float_t         goodJets_9_eta;
    Float_t         goodJets_0_phi;
    Float_t         goodJets_1_phi;
    Float_t         goodJets_2_phi;
    Float_t         goodJets_3_phi;
    Float_t         goodJets_4_phi;
+   Float_t         goodJets_5_phi;
+   Float_t         goodJets_6_phi;
+   Float_t         goodJets_7_phi;
+   Float_t         goodJets_8_phi;
+   Float_t         goodJets_9_phi;
    Float_t         goodJets_0_PassLooseJetPUID;
    Float_t         goodJets_0_PassMediumJetPUID;
    Float_t         goodJets_0_PassTightJetPUID;
@@ -683,9 +850,6 @@ public :
    TBranch        *b_GenVtx_z;   //!
    TBranch        *b_HggVtx_z;   //!
    TBranch        *b_ZeroVtx_z;   //!
-   TBranch        *b_genMhh;   //!
-   TBranch        *b_genCosThetaStar_CS;   //!
-   TBranch        *b_genAbsCosThetaStar_CS;   //!
    TBranch        *b_Leading_Photon_MVA;   //!
    TBranch        *b_Subleading_Photon_MVA;   //!
    TBranch        *b_Leading_Photon_SC_eta;   //!
@@ -871,36 +1035,71 @@ public :
    TBranch        *b_allJets_2_E;   //!
    TBranch        *b_allJets_3_E;   //!
    TBranch        *b_allJets_4_E;   //!
+   TBranch        *b_allJets_5_E;   //!
+   TBranch        *b_allJets_6_E;   //!
+   TBranch        *b_allJets_7_E;   //!
+   TBranch        *b_allJets_8_E;   //!
+   TBranch        *b_allJets_9_E;   //!
    TBranch        *b_allJets_0_pt;   //!
    TBranch        *b_allJets_1_pt;   //!
    TBranch        *b_allJets_2_pt;   //!
    TBranch        *b_allJets_3_pt;   //!
    TBranch        *b_allJets_4_pt;   //!
+   TBranch        *b_allJets_5_pt;   //!
+   TBranch        *b_allJets_6_pt;   //!
+   TBranch        *b_allJets_7_pt;   //!
+   TBranch        *b_allJets_8_pt;   //!
+   TBranch        *b_allJets_9_pt;   //!
    TBranch        *b_allJets_0_px;   //!
    TBranch        *b_allJets_1_px;   //!
    TBranch        *b_allJets_2_px;   //!
    TBranch        *b_allJets_3_px;   //!
    TBranch        *b_allJets_4_px;   //!
+   TBranch        *b_allJets_5_px;   //!
+   TBranch        *b_allJets_6_px;   //!
+   TBranch        *b_allJets_7_px;   //!
+   TBranch        *b_allJets_8_px;   //!
+   TBranch        *b_allJets_9_px;   //!
    TBranch        *b_allJets_0_py;   //!
    TBranch        *b_allJets_1_py;   //!
    TBranch        *b_allJets_2_py;   //!
    TBranch        *b_allJets_3_py;   //!
    TBranch        *b_allJets_4_py;   //!
+   TBranch        *b_allJets_5_py;   //!
+   TBranch        *b_allJets_6_py;   //!
+   TBranch        *b_allJets_7_py;   //!
+   TBranch        *b_allJets_8_py;   //!
+   TBranch        *b_allJets_9_py;   //!
    TBranch        *b_allJets_0_pz;   //!
    TBranch        *b_allJets_1_pz;   //!
    TBranch        *b_allJets_2_pz;   //!
    TBranch        *b_allJets_3_pz;   //!
    TBranch        *b_allJets_4_pz;   //!
+   TBranch        *b_allJets_5_pz;   //!
+   TBranch        *b_allJets_6_pz;   //!
+   TBranch        *b_allJets_7_pz;   //!
+   TBranch        *b_allJets_8_pz;   //!
+   TBranch        *b_allJets_9_pz;   //!
    TBranch        *b_allJets_0_eta;   //!
    TBranch        *b_allJets_1_eta;   //!
    TBranch        *b_allJets_2_eta;   //!
    TBranch        *b_allJets_3_eta;   //!
    TBranch        *b_allJets_4_eta;   //!
+   TBranch        *b_allJets_5_eta;   //!
+   TBranch        *b_allJets_6_eta;   //!
+   TBranch        *b_allJets_7_eta;   //!
+   TBranch        *b_allJets_8_eta;   //!
+   TBranch        *b_allJets_9_eta;   //!
    TBranch        *b_allJets_0_phi;   //!
    TBranch        *b_allJets_1_phi;   //!
    TBranch        *b_allJets_2_phi;   //!
    TBranch        *b_allJets_3_phi;   //!
    TBranch        *b_allJets_4_phi;   //!
+   TBranch        *b_allJets_5_phi;   //!
+   TBranch        *b_allJets_6_phi;   //!
+   TBranch        *b_allJets_7_phi;   //!
+   TBranch        *b_allJets_8_phi;   //!
+   TBranch        *b_allJets_9_phi;   //!
    TBranch        *b_allJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb;   //!
    TBranch        *b_allJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb;   //!
    TBranch        *b_allJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb;   //!
@@ -957,138 +1156,273 @@ public :
    TBranch        *b_goodElectrons_2_E;   //!
    TBranch        *b_goodElectrons_3_E;   //!
    TBranch        *b_goodElectrons_4_E;   //!
+   TBranch        *b_goodElectrons_5_E;   //!
+   TBranch        *b_goodElectrons_6_E;   //!
+   TBranch        *b_goodElectrons_7_E;   //!
+   TBranch        *b_goodElectrons_8_E;   //!
+   TBranch        *b_goodElectrons_9_E;   //!
    TBranch        *b_goodElectrons_0_pt;   //!
    TBranch        *b_goodElectrons_1_pt;   //!
    TBranch        *b_goodElectrons_2_pt;   //!
    TBranch        *b_goodElectrons_3_pt;   //!
    TBranch        *b_goodElectrons_4_pt;   //!
+   TBranch        *b_goodElectrons_5_pt;   //!
+   TBranch        *b_goodElectrons_6_pt;   //!
+   TBranch        *b_goodElectrons_7_pt;   //!
+   TBranch        *b_goodElectrons_8_pt;   //!
+   TBranch        *b_goodElectrons_9_pt;   //!
    TBranch        *b_goodElectrons_0_px;   //!
    TBranch        *b_goodElectrons_1_px;   //!
    TBranch        *b_goodElectrons_2_px;   //!
    TBranch        *b_goodElectrons_3_px;   //!
    TBranch        *b_goodElectrons_4_px;   //!
+   TBranch        *b_goodElectrons_5_px;   //!
+   TBranch        *b_goodElectrons_6_px;   //!
+   TBranch        *b_goodElectrons_7_px;   //!
+   TBranch        *b_goodElectrons_8_px;   //!
+   TBranch        *b_goodElectrons_9_px;   //!
    TBranch        *b_goodElectrons_0_py;   //!
    TBranch        *b_goodElectrons_1_py;   //!
    TBranch        *b_goodElectrons_2_py;   //!
    TBranch        *b_goodElectrons_3_py;   //!
    TBranch        *b_goodElectrons_4_py;   //!
+   TBranch        *b_goodElectrons_5_py;   //!
+   TBranch        *b_goodElectrons_6_py;   //!
+   TBranch        *b_goodElectrons_7_py;   //!
+   TBranch        *b_goodElectrons_8_py;   //!
+   TBranch        *b_goodElectrons_9_py;   //!
    TBranch        *b_goodElectrons_0_pz;   //!
    TBranch        *b_goodElectrons_1_pz;   //!
    TBranch        *b_goodElectrons_2_pz;   //!
    TBranch        *b_goodElectrons_3_pz;   //!
    TBranch        *b_goodElectrons_4_pz;   //!
+   TBranch        *b_goodElectrons_5_pz;   //!
+   TBranch        *b_goodElectrons_6_pz;   //!
+   TBranch        *b_goodElectrons_7_pz;   //!
+   TBranch        *b_goodElectrons_8_pz;   //!
+   TBranch        *b_goodElectrons_9_pz;   //!
    TBranch        *b_goodElectrons_0_eta;   //!
    TBranch        *b_goodElectrons_1_eta;   //!
    TBranch        *b_goodElectrons_2_eta;   //!
    TBranch        *b_goodElectrons_3_eta;   //!
    TBranch        *b_goodElectrons_4_eta;   //!
+   TBranch        *b_goodElectrons_5_eta;   //!
+   TBranch        *b_goodElectrons_6_eta;   //!
+   TBranch        *b_goodElectrons_7_eta;   //!
+   TBranch        *b_goodElectrons_8_eta;   //!
+   TBranch        *b_goodElectrons_9_eta;   //!
    TBranch        *b_goodElectrons_0_phi;   //!
    TBranch        *b_goodElectrons_1_phi;   //!
    TBranch        *b_goodElectrons_2_phi;   //!
    TBranch        *b_goodElectrons_3_phi;   //!
    TBranch        *b_goodElectrons_4_phi;   //!
+   TBranch        *b_goodElectrons_5_phi;   //!
+   TBranch        *b_goodElectrons_6_phi;   //!
+   TBranch        *b_goodElectrons_7_phi;   //!
+   TBranch        *b_goodElectrons_8_phi;   //!
+   TBranch        *b_goodElectrons_9_phi;   //!
    TBranch        *b_goodElectrons_0_passLooseId;   //!
    TBranch        *b_goodElectrons_1_passLooseId;   //!
    TBranch        *b_goodElectrons_2_passLooseId;   //!
    TBranch        *b_goodElectrons_3_passLooseId;   //!
    TBranch        *b_goodElectrons_4_passLooseId;   //!
+   TBranch        *b_goodElectrons_5_passLooseId;   //!
+   TBranch        *b_goodElectrons_6_passLooseId;   //!
+   TBranch        *b_goodElectrons_7_passLooseId;   //!
+   TBranch        *b_goodElectrons_8_passLooseId;   //!
+   TBranch        *b_goodElectrons_9_passLooseId;   //!
    TBranch        *b_goodElectrons_0_passMediumId;   //!
    TBranch        *b_goodElectrons_1_passMediumId;   //!
    TBranch        *b_goodElectrons_2_passMediumId;   //!
    TBranch        *b_goodElectrons_3_passMediumId;   //!
    TBranch        *b_goodElectrons_4_passMediumId;   //!
+   TBranch        *b_goodElectrons_5_passMediumId;   //!
+   TBranch        *b_goodElectrons_6_passMediumId;   //!
+   TBranch        *b_goodElectrons_7_passMediumId;   //!
+   TBranch        *b_goodElectrons_8_passMediumId;   //!
+   TBranch        *b_goodElectrons_9_passMediumId;   //!
    TBranch        *b_goodElectrons_0_passTightId;   //!
    TBranch        *b_goodElectrons_1_passTightId;   //!
    TBranch        *b_goodElectrons_2_passTightId;   //!
    TBranch        *b_goodElectrons_3_passTightId;   //!
    TBranch        *b_goodElectrons_4_passTightId;   //!
+   TBranch        *b_goodElectrons_5_passTightId;   //!
+   TBranch        *b_goodElectrons_6_passTightId;   //!
+   TBranch        *b_goodElectrons_7_passTightId;   //!
+   TBranch        *b_goodElectrons_8_passTightId;   //!
+   TBranch        *b_goodElectrons_9_passTightId;   //!
    TBranch        *b_goodElectrons_0_passMVALooseId;   //!
    TBranch        *b_goodElectrons_1_passMVALooseId;   //!
    TBranch        *b_goodElectrons_2_passMVALooseId;   //!
    TBranch        *b_goodElectrons_3_passMVALooseId;   //!
    TBranch        *b_goodElectrons_4_passMVALooseId;   //!
+   TBranch        *b_goodElectrons_5_passMVALooseId;   //!
+   TBranch        *b_goodElectrons_6_passMVALooseId;   //!
+   TBranch        *b_goodElectrons_7_passMVALooseId;   //!
+   TBranch        *b_goodElectrons_8_passMVALooseId;   //!
+   TBranch        *b_goodElectrons_9_passMVALooseId;   //!
    TBranch        *b_goodElectrons_0_passMVAMediumId;   //!
    TBranch        *b_goodElectrons_1_passMVAMediumId;   //!
    TBranch        *b_goodElectrons_2_passMVAMediumId;   //!
    TBranch        *b_goodElectrons_3_passMVAMediumId;   //!
    TBranch        *b_goodElectrons_4_passMVAMediumId;   //!
+   TBranch        *b_goodElectrons_5_passMVAMediumId;   //!
+   TBranch        *b_goodElectrons_6_passMVAMediumId;   //!
+   TBranch        *b_goodElectrons_7_passMVAMediumId;   //!
+   TBranch        *b_goodElectrons_8_passMVAMediumId;   //!
+   TBranch        *b_goodElectrons_9_passMVAMediumId;   //!
    TBranch        *b_goodElectrons_0_passMVATightId;   //!
    TBranch        *b_goodElectrons_1_passMVATightId;   //!
    TBranch        *b_goodElectrons_2_passMVATightId;   //!
    TBranch        *b_goodElectrons_3_passMVATightId;   //!
    TBranch        *b_goodElectrons_4_passMVATightId;   //!
+   TBranch        *b_goodElectrons_5_passMVATightId;   //!
+   TBranch        *b_goodElectrons_6_passMVATightId;   //!
+   TBranch        *b_goodElectrons_7_passMVATightId;   //!
+   TBranch        *b_goodElectrons_8_passMVATightId;   //!
+   TBranch        *b_goodElectrons_9_passMVATightId;   //!
    TBranch        *b_N_goodMuons;   //!
    TBranch        *b_goodMuons_0_E;   //!
    TBranch        *b_goodMuons_1_E;   //!
    TBranch        *b_goodMuons_2_E;   //!
    TBranch        *b_goodMuons_3_E;   //!
    TBranch        *b_goodMuons_4_E;   //!
+   TBranch        *b_goodMuons_5_E;   //!
+   TBranch        *b_goodMuons_6_E;   //!
+   TBranch        *b_goodMuons_7_E;   //!
+   TBranch        *b_goodMuons_8_E;   //!
+   TBranch        *b_goodMuons_9_E;   //!
    TBranch        *b_goodMuons_0_pt;   //!
    TBranch        *b_goodMuons_1_pt;   //!
    TBranch        *b_goodMuons_2_pt;   //!
    TBranch        *b_goodMuons_3_pt;   //!
    TBranch        *b_goodMuons_4_pt;   //!
+   TBranch        *b_goodMuons_5_pt;   //!
+   TBranch        *b_goodMuons_6_pt;   //!
+   TBranch        *b_goodMuons_7_pt;   //!
+   TBranch        *b_goodMuons_8_pt;   //!
+   TBranch        *b_goodMuons_9_pt;   //!
    TBranch        *b_goodMuons_0_px;   //!
    TBranch        *b_goodMuons_1_px;   //!
    TBranch        *b_goodMuons_2_px;   //!
    TBranch        *b_goodMuons_3_px;   //!
    TBranch        *b_goodMuons_4_px;   //!
+   TBranch        *b_goodMuons_5_px;   //!
+   TBranch        *b_goodMuons_6_px;   //!
+   TBranch        *b_goodMuons_7_px;   //!
+   TBranch        *b_goodMuons_8_px;   //!
+   TBranch        *b_goodMuons_9_px;   //!
    TBranch        *b_goodMuons_0_py;   //!
    TBranch        *b_goodMuons_1_py;   //!
    TBranch        *b_goodMuons_2_py;   //!
    TBranch        *b_goodMuons_3_py;   //!
    TBranch        *b_goodMuons_4_py;   //!
+   TBranch        *b_goodMuons_5_py;   //!
+   TBranch        *b_goodMuons_6_py;   //!
+   TBranch        *b_goodMuons_7_py;   //!
+   TBranch        *b_goodMuons_8_py;   //!
+   TBranch        *b_goodMuons_9_py;   //!
    TBranch        *b_goodMuons_0_pz;   //!
    TBranch        *b_goodMuons_1_pz;   //!
    TBranch        *b_goodMuons_2_pz;   //!
    TBranch        *b_goodMuons_3_pz;   //!
    TBranch        *b_goodMuons_4_pz;   //!
+   TBranch        *b_goodMuons_5_pz;   //!
+   TBranch        *b_goodMuons_6_pz;   //!
+   TBranch        *b_goodMuons_7_pz;   //!
+   TBranch        *b_goodMuons_8_pz;   //!
+   TBranch        *b_goodMuons_9_pz;   //!
    TBranch        *b_goodMuons_0_eta;   //!
    TBranch        *b_goodMuons_1_eta;   //!
    TBranch        *b_goodMuons_2_eta;   //!
    TBranch        *b_goodMuons_3_eta;   //!
    TBranch        *b_goodMuons_4_eta;   //!
+   TBranch        *b_goodMuons_5_eta;   //!
+   TBranch        *b_goodMuons_6_eta;   //!
+   TBranch        *b_goodMuons_7_eta;   //!
+   TBranch        *b_goodMuons_8_eta;   //!
+   TBranch        *b_goodMuons_9_eta;   //!
    TBranch        *b_goodMuons_0_phi;   //!
    TBranch        *b_goodMuons_1_phi;   //!
    TBranch        *b_goodMuons_2_phi;   //!
    TBranch        *b_goodMuons_3_phi;   //!
    TBranch        *b_goodMuons_4_phi;   //!
+   TBranch        *b_goodMuons_5_phi;   //!
+   TBranch        *b_goodMuons_6_phi;   //!
+   TBranch        *b_goodMuons_7_phi;   //!
+   TBranch        *b_goodMuons_8_phi;   //!
+   TBranch        *b_goodMuons_9_phi;   //!
    TBranch        *b_N_goodJets;   //!
    TBranch        *b_goodJets_0_E;   //!
    TBranch        *b_goodJets_1_E;   //!
    TBranch        *b_goodJets_2_E;   //!
    TBranch        *b_goodJets_3_E;   //!
    TBranch        *b_goodJets_4_E;   //!
+   TBranch        *b_goodJets_5_E;   //!
+   TBranch        *b_goodJets_6_E;   //!
+   TBranch        *b_goodJets_7_E;   //!
+   TBranch        *b_goodJets_8_E;   //!
+   TBranch        *b_goodJets_9_E;   //!
    TBranch        *b_goodJets_0_pt;   //!
    TBranch        *b_goodJets_1_pt;   //!
    TBranch        *b_goodJets_2_pt;   //!
    TBranch        *b_goodJets_3_pt;   //!
    TBranch        *b_goodJets_4_pt;   //!
+   TBranch        *b_goodJets_5_pt;   //!
+   TBranch        *b_goodJets_6_pt;   //!
+   TBranch        *b_goodJets_7_pt;   //!
+   TBranch        *b_goodJets_8_pt;   //!
+   TBranch        *b_goodJets_9_pt;   //!
    TBranch        *b_goodJets_0_px;   //!
    TBranch        *b_goodJets_1_px;   //!
    TBranch        *b_goodJets_2_px;   //!
    TBranch        *b_goodJets_3_px;   //!
    TBranch        *b_goodJets_4_px;   //!
+   TBranch        *b_goodJets_5_px;   //!
+   TBranch        *b_goodJets_6_px;   //!
+   TBranch        *b_goodJets_7_px;   //!
+   TBranch        *b_goodJets_8_px;   //!
+   TBranch        *b_goodJets_9_px;   //!
    TBranch        *b_goodJets_0_py;   //!
    TBranch        *b_goodJets_1_py;   //!
    TBranch        *b_goodJets_2_py;   //!
    TBranch        *b_goodJets_3_py;   //!
    TBranch        *b_goodJets_4_py;   //!
+   TBranch        *b_goodJets_5_py;   //!
+   TBranch        *b_goodJets_6_py;   //!
+   TBranch        *b_goodJets_7_py;   //!
+   TBranch        *b_goodJets_8_py;   //!
+   TBranch        *b_goodJets_9_py;   //!
    TBranch        *b_goodJets_0_pz;   //!
    TBranch        *b_goodJets_1_pz;   //!
    TBranch        *b_goodJets_2_pz;   //!
    TBranch        *b_goodJets_3_pz;   //!
    TBranch        *b_goodJets_4_pz;   //!
+   TBranch        *b_goodJets_5_pz;   //!
+   TBranch        *b_goodJets_6_pz;   //!
+   TBranch        *b_goodJets_7_pz;   //!
+   TBranch        *b_goodJets_8_pz;   //!
+   TBranch        *b_goodJets_9_pz;   //!
    TBranch        *b_goodJets_0_eta;   //!
    TBranch        *b_goodJets_1_eta;   //!
    TBranch        *b_goodJets_2_eta;   //!
    TBranch        *b_goodJets_3_eta;   //!
    TBranch        *b_goodJets_4_eta;   //!
+   TBranch        *b_goodJets_5_eta;   //!
+   TBranch        *b_goodJets_6_eta;   //!
+   TBranch        *b_goodJets_7_eta;   //!
+   TBranch        *b_goodJets_8_eta;   //!
+   TBranch        *b_goodJets_9_eta;   //!
    TBranch        *b_goodJets_0_phi;   //!
    TBranch        *b_goodJets_1_phi;   //!
    TBranch        *b_goodJets_2_phi;   //!
    TBranch        *b_goodJets_3_phi;   //!
    TBranch        *b_goodJets_4_phi;   //!
+   TBranch        *b_goodJets_5_phi;   //!
+   TBranch        *b_goodJets_6_phi;   //!
+   TBranch        *b_goodJets_7_phi;   //!
+   TBranch        *b_goodJets_8_phi;   //!
+   TBranch        *b_goodJets_9_phi;   //!
    TBranch        *b_goodJets_0_PassLooseJetPUID;   //!
    TBranch        *b_goodJets_0_PassMediumJetPUID;   //!
    TBranch        *b_goodJets_0_PassTightJetPUID;   //!
@@ -1282,30 +1616,28 @@ public :
    TBranch        *b_lumi;   //!
    TBranch        *b_processIndex;   //!
    TBranch        *b_run;   //!
-   // TBranch        *b_nvtx;   //!
    TBranch        *b_npu;   //!
    TBranch        *b_puweight;   //!
 
-   flashgg_Data(TTree *tree=0) {
+   flashgg_Data(TTree *tree=0){
       if (tree == 0) {
-         TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("small.root");
+         TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016//Data_Trees_2016_Hadded_Combined/allData.root");
          if (!f || !f->IsOpen()) {
-            f = new TFile("small.root");
+            f = new TFile("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016//Data_Trees_2016_Hadded_Combined/allData.root");
          }
-         TDirectory * dir = (TDirectory*)f->Get("small.root:/tagsDumper/trees");
-         dir->GetObject("GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1",tree);  //1301L
+         TDirectory * dir = (TDirectory*)f->Get("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016//Data_Trees_2016_Hadded_Combined/allData.root:/tagsDumper/trees");
+         dir->GetObject("Data_13TeV_HHWWggTag_1",tree);
       }
       Init(tree);
    };
    flashgg_Data(){};
-   virtual ~flashgg_Data() {};
+   virtual ~flashgg_Data(){};
    virtual Int_t    GetEntry(Long64_t entry);
    virtual Long64_t LoadTree(Long64_t entry);
    virtual void     Init(TTree *tree);
 };
 
 #endif
-
 
 Int_t flashgg_Data::GetEntry(Long64_t entry)
 {
@@ -1370,9 +1702,6 @@ void flashgg_Data::Init(TTree *tree)
    fChain->SetBranchAddress("GenVtx_z", &GenVtx_z, &b_GenVtx_z);
    fChain->SetBranchAddress("HggVtx_z", &HggVtx_z, &b_HggVtx_z);
    fChain->SetBranchAddress("ZeroVtx_z", &ZeroVtx_z, &b_ZeroVtx_z);
-   fChain->SetBranchAddress("genMhh", &genMhh, &b_genMhh);
-   fChain->SetBranchAddress("genCosThetaStar_CS", &genCosThetaStar_CS, &b_genCosThetaStar_CS);
-   fChain->SetBranchAddress("genAbsCosThetaStar_CS", &genAbsCosThetaStar_CS, &b_genAbsCosThetaStar_CS);
    fChain->SetBranchAddress("Leading_Photon_MVA", &Leading_Photon_MVA, &b_Leading_Photon_MVA);
    fChain->SetBranchAddress("Subleading_Photon_MVA", &Subleading_Photon_MVA, &b_Subleading_Photon_MVA);
    fChain->SetBranchAddress("Leading_Photon_SC_eta", &Leading_Photon_SC_eta, &b_Leading_Photon_SC_eta);
@@ -1558,36 +1887,71 @@ void flashgg_Data::Init(TTree *tree)
    fChain->SetBranchAddress("allJets_2_E", &allJets_2_E, &b_allJets_2_E);
    fChain->SetBranchAddress("allJets_3_E", &allJets_3_E, &b_allJets_3_E);
    fChain->SetBranchAddress("allJets_4_E", &allJets_4_E, &b_allJets_4_E);
+   fChain->SetBranchAddress("allJets_5_E", &allJets_5_E, &b_allJets_5_E);
+   fChain->SetBranchAddress("allJets_6_E", &allJets_6_E, &b_allJets_6_E);
+   fChain->SetBranchAddress("allJets_7_E", &allJets_7_E, &b_allJets_7_E);
+   fChain->SetBranchAddress("allJets_8_E", &allJets_8_E, &b_allJets_8_E);
+   fChain->SetBranchAddress("allJets_9_E", &allJets_9_E, &b_allJets_9_E);
    fChain->SetBranchAddress("allJets_0_pt", &allJets_0_pt, &b_allJets_0_pt);
    fChain->SetBranchAddress("allJets_1_pt", &allJets_1_pt, &b_allJets_1_pt);
    fChain->SetBranchAddress("allJets_2_pt", &allJets_2_pt, &b_allJets_2_pt);
    fChain->SetBranchAddress("allJets_3_pt", &allJets_3_pt, &b_allJets_3_pt);
    fChain->SetBranchAddress("allJets_4_pt", &allJets_4_pt, &b_allJets_4_pt);
+   fChain->SetBranchAddress("allJets_5_pt", &allJets_5_pt, &b_allJets_5_pt);
+   fChain->SetBranchAddress("allJets_6_pt", &allJets_6_pt, &b_allJets_6_pt);
+   fChain->SetBranchAddress("allJets_7_pt", &allJets_7_pt, &b_allJets_7_pt);
+   fChain->SetBranchAddress("allJets_8_pt", &allJets_8_pt, &b_allJets_8_pt);
+   fChain->SetBranchAddress("allJets_9_pt", &allJets_9_pt, &b_allJets_9_pt);
    fChain->SetBranchAddress("allJets_0_px", &allJets_0_px, &b_allJets_0_px);
    fChain->SetBranchAddress("allJets_1_px", &allJets_1_px, &b_allJets_1_px);
    fChain->SetBranchAddress("allJets_2_px", &allJets_2_px, &b_allJets_2_px);
    fChain->SetBranchAddress("allJets_3_px", &allJets_3_px, &b_allJets_3_px);
    fChain->SetBranchAddress("allJets_4_px", &allJets_4_px, &b_allJets_4_px);
+   fChain->SetBranchAddress("allJets_5_px", &allJets_5_px, &b_allJets_5_px);
+   fChain->SetBranchAddress("allJets_6_px", &allJets_6_px, &b_allJets_6_px);
+   fChain->SetBranchAddress("allJets_7_px", &allJets_7_px, &b_allJets_7_px);
+   fChain->SetBranchAddress("allJets_8_px", &allJets_8_px, &b_allJets_8_px);
+   fChain->SetBranchAddress("allJets_9_px", &allJets_9_px, &b_allJets_9_px);
    fChain->SetBranchAddress("allJets_0_py", &allJets_0_py, &b_allJets_0_py);
    fChain->SetBranchAddress("allJets_1_py", &allJets_1_py, &b_allJets_1_py);
    fChain->SetBranchAddress("allJets_2_py", &allJets_2_py, &b_allJets_2_py);
    fChain->SetBranchAddress("allJets_3_py", &allJets_3_py, &b_allJets_3_py);
    fChain->SetBranchAddress("allJets_4_py", &allJets_4_py, &b_allJets_4_py);
+   fChain->SetBranchAddress("allJets_5_py", &allJets_5_py, &b_allJets_5_py);
+   fChain->SetBranchAddress("allJets_6_py", &allJets_6_py, &b_allJets_6_py);
+   fChain->SetBranchAddress("allJets_7_py", &allJets_7_py, &b_allJets_7_py);
+   fChain->SetBranchAddress("allJets_8_py", &allJets_8_py, &b_allJets_8_py);
+   fChain->SetBranchAddress("allJets_9_py", &allJets_9_py, &b_allJets_9_py);
    fChain->SetBranchAddress("allJets_0_pz", &allJets_0_pz, &b_allJets_0_pz);
    fChain->SetBranchAddress("allJets_1_pz", &allJets_1_pz, &b_allJets_1_pz);
    fChain->SetBranchAddress("allJets_2_pz", &allJets_2_pz, &b_allJets_2_pz);
    fChain->SetBranchAddress("allJets_3_pz", &allJets_3_pz, &b_allJets_3_pz);
    fChain->SetBranchAddress("allJets_4_pz", &allJets_4_pz, &b_allJets_4_pz);
+   fChain->SetBranchAddress("allJets_5_pz", &allJets_5_pz, &b_allJets_5_pz);
+   fChain->SetBranchAddress("allJets_6_pz", &allJets_6_pz, &b_allJets_6_pz);
+   fChain->SetBranchAddress("allJets_7_pz", &allJets_7_pz, &b_allJets_7_pz);
+   fChain->SetBranchAddress("allJets_8_pz", &allJets_8_pz, &b_allJets_8_pz);
+   fChain->SetBranchAddress("allJets_9_pz", &allJets_9_pz, &b_allJets_9_pz);
    fChain->SetBranchAddress("allJets_0_eta", &allJets_0_eta, &b_allJets_0_eta);
    fChain->SetBranchAddress("allJets_1_eta", &allJets_1_eta, &b_allJets_1_eta);
    fChain->SetBranchAddress("allJets_2_eta", &allJets_2_eta, &b_allJets_2_eta);
    fChain->SetBranchAddress("allJets_3_eta", &allJets_3_eta, &b_allJets_3_eta);
    fChain->SetBranchAddress("allJets_4_eta", &allJets_4_eta, &b_allJets_4_eta);
+   fChain->SetBranchAddress("allJets_5_eta", &allJets_5_eta, &b_allJets_5_eta);
+   fChain->SetBranchAddress("allJets_6_eta", &allJets_6_eta, &b_allJets_6_eta);
+   fChain->SetBranchAddress("allJets_7_eta", &allJets_7_eta, &b_allJets_7_eta);
+   fChain->SetBranchAddress("allJets_8_eta", &allJets_8_eta, &b_allJets_8_eta);
+   fChain->SetBranchAddress("allJets_9_eta", &allJets_9_eta, &b_allJets_9_eta);
    fChain->SetBranchAddress("allJets_0_phi", &allJets_0_phi, &b_allJets_0_phi);
    fChain->SetBranchAddress("allJets_1_phi", &allJets_1_phi, &b_allJets_1_phi);
    fChain->SetBranchAddress("allJets_2_phi", &allJets_2_phi, &b_allJets_2_phi);
    fChain->SetBranchAddress("allJets_3_phi", &allJets_3_phi, &b_allJets_3_phi);
    fChain->SetBranchAddress("allJets_4_phi", &allJets_4_phi, &b_allJets_4_phi);
+   fChain->SetBranchAddress("allJets_5_phi", &allJets_5_phi, &b_allJets_5_phi);
+   fChain->SetBranchAddress("allJets_6_phi", &allJets_6_phi, &b_allJets_6_phi);
+   fChain->SetBranchAddress("allJets_7_phi", &allJets_7_phi, &b_allJets_7_phi);
+   fChain->SetBranchAddress("allJets_8_phi", &allJets_8_phi, &b_allJets_8_phi);
+   fChain->SetBranchAddress("allJets_9_phi", &allJets_9_phi, &b_allJets_9_phi);
    fChain->SetBranchAddress("allJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb", &allJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb, &b_allJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
    fChain->SetBranchAddress("allJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb", &allJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb, &b_allJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
    fChain->SetBranchAddress("allJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb", &allJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb, &b_allJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
@@ -1644,138 +2008,273 @@ void flashgg_Data::Init(TTree *tree)
    fChain->SetBranchAddress("goodElectrons_2_E", &goodElectrons_2_E, &b_goodElectrons_2_E);
    fChain->SetBranchAddress("goodElectrons_3_E", &goodElectrons_3_E, &b_goodElectrons_3_E);
    fChain->SetBranchAddress("goodElectrons_4_E", &goodElectrons_4_E, &b_goodElectrons_4_E);
+   fChain->SetBranchAddress("goodElectrons_5_E", &goodElectrons_5_E, &b_goodElectrons_5_E);
+   fChain->SetBranchAddress("goodElectrons_6_E", &goodElectrons_6_E, &b_goodElectrons_6_E);
+   fChain->SetBranchAddress("goodElectrons_7_E", &goodElectrons_7_E, &b_goodElectrons_7_E);
+   fChain->SetBranchAddress("goodElectrons_8_E", &goodElectrons_8_E, &b_goodElectrons_8_E);
+   fChain->SetBranchAddress("goodElectrons_9_E", &goodElectrons_9_E, &b_goodElectrons_9_E);
    fChain->SetBranchAddress("goodElectrons_0_pt", &goodElectrons_0_pt, &b_goodElectrons_0_pt);
    fChain->SetBranchAddress("goodElectrons_1_pt", &goodElectrons_1_pt, &b_goodElectrons_1_pt);
    fChain->SetBranchAddress("goodElectrons_2_pt", &goodElectrons_2_pt, &b_goodElectrons_2_pt);
    fChain->SetBranchAddress("goodElectrons_3_pt", &goodElectrons_3_pt, &b_goodElectrons_3_pt);
    fChain->SetBranchAddress("goodElectrons_4_pt", &goodElectrons_4_pt, &b_goodElectrons_4_pt);
+   fChain->SetBranchAddress("goodElectrons_5_pt", &goodElectrons_5_pt, &b_goodElectrons_5_pt);
+   fChain->SetBranchAddress("goodElectrons_6_pt", &goodElectrons_6_pt, &b_goodElectrons_6_pt);
+   fChain->SetBranchAddress("goodElectrons_7_pt", &goodElectrons_7_pt, &b_goodElectrons_7_pt);
+   fChain->SetBranchAddress("goodElectrons_8_pt", &goodElectrons_8_pt, &b_goodElectrons_8_pt);
+   fChain->SetBranchAddress("goodElectrons_9_pt", &goodElectrons_9_pt, &b_goodElectrons_9_pt);
    fChain->SetBranchAddress("goodElectrons_0_px", &goodElectrons_0_px, &b_goodElectrons_0_px);
    fChain->SetBranchAddress("goodElectrons_1_px", &goodElectrons_1_px, &b_goodElectrons_1_px);
    fChain->SetBranchAddress("goodElectrons_2_px", &goodElectrons_2_px, &b_goodElectrons_2_px);
    fChain->SetBranchAddress("goodElectrons_3_px", &goodElectrons_3_px, &b_goodElectrons_3_px);
    fChain->SetBranchAddress("goodElectrons_4_px", &goodElectrons_4_px, &b_goodElectrons_4_px);
+   fChain->SetBranchAddress("goodElectrons_5_px", &goodElectrons_5_px, &b_goodElectrons_5_px);
+   fChain->SetBranchAddress("goodElectrons_6_px", &goodElectrons_6_px, &b_goodElectrons_6_px);
+   fChain->SetBranchAddress("goodElectrons_7_px", &goodElectrons_7_px, &b_goodElectrons_7_px);
+   fChain->SetBranchAddress("goodElectrons_8_px", &goodElectrons_8_px, &b_goodElectrons_8_px);
+   fChain->SetBranchAddress("goodElectrons_9_px", &goodElectrons_9_px, &b_goodElectrons_9_px);
    fChain->SetBranchAddress("goodElectrons_0_py", &goodElectrons_0_py, &b_goodElectrons_0_py);
    fChain->SetBranchAddress("goodElectrons_1_py", &goodElectrons_1_py, &b_goodElectrons_1_py);
    fChain->SetBranchAddress("goodElectrons_2_py", &goodElectrons_2_py, &b_goodElectrons_2_py);
    fChain->SetBranchAddress("goodElectrons_3_py", &goodElectrons_3_py, &b_goodElectrons_3_py);
    fChain->SetBranchAddress("goodElectrons_4_py", &goodElectrons_4_py, &b_goodElectrons_4_py);
+   fChain->SetBranchAddress("goodElectrons_5_py", &goodElectrons_5_py, &b_goodElectrons_5_py);
+   fChain->SetBranchAddress("goodElectrons_6_py", &goodElectrons_6_py, &b_goodElectrons_6_py);
+   fChain->SetBranchAddress("goodElectrons_7_py", &goodElectrons_7_py, &b_goodElectrons_7_py);
+   fChain->SetBranchAddress("goodElectrons_8_py", &goodElectrons_8_py, &b_goodElectrons_8_py);
+   fChain->SetBranchAddress("goodElectrons_9_py", &goodElectrons_9_py, &b_goodElectrons_9_py);
    fChain->SetBranchAddress("goodElectrons_0_pz", &goodElectrons_0_pz, &b_goodElectrons_0_pz);
    fChain->SetBranchAddress("goodElectrons_1_pz", &goodElectrons_1_pz, &b_goodElectrons_1_pz);
    fChain->SetBranchAddress("goodElectrons_2_pz", &goodElectrons_2_pz, &b_goodElectrons_2_pz);
    fChain->SetBranchAddress("goodElectrons_3_pz", &goodElectrons_3_pz, &b_goodElectrons_3_pz);
    fChain->SetBranchAddress("goodElectrons_4_pz", &goodElectrons_4_pz, &b_goodElectrons_4_pz);
+   fChain->SetBranchAddress("goodElectrons_5_pz", &goodElectrons_5_pz, &b_goodElectrons_5_pz);
+   fChain->SetBranchAddress("goodElectrons_6_pz", &goodElectrons_6_pz, &b_goodElectrons_6_pz);
+   fChain->SetBranchAddress("goodElectrons_7_pz", &goodElectrons_7_pz, &b_goodElectrons_7_pz);
+   fChain->SetBranchAddress("goodElectrons_8_pz", &goodElectrons_8_pz, &b_goodElectrons_8_pz);
+   fChain->SetBranchAddress("goodElectrons_9_pz", &goodElectrons_9_pz, &b_goodElectrons_9_pz);
    fChain->SetBranchAddress("goodElectrons_0_eta", &goodElectrons_0_eta, &b_goodElectrons_0_eta);
    fChain->SetBranchAddress("goodElectrons_1_eta", &goodElectrons_1_eta, &b_goodElectrons_1_eta);
    fChain->SetBranchAddress("goodElectrons_2_eta", &goodElectrons_2_eta, &b_goodElectrons_2_eta);
    fChain->SetBranchAddress("goodElectrons_3_eta", &goodElectrons_3_eta, &b_goodElectrons_3_eta);
    fChain->SetBranchAddress("goodElectrons_4_eta", &goodElectrons_4_eta, &b_goodElectrons_4_eta);
+   fChain->SetBranchAddress("goodElectrons_5_eta", &goodElectrons_5_eta, &b_goodElectrons_5_eta);
+   fChain->SetBranchAddress("goodElectrons_6_eta", &goodElectrons_6_eta, &b_goodElectrons_6_eta);
+   fChain->SetBranchAddress("goodElectrons_7_eta", &goodElectrons_7_eta, &b_goodElectrons_7_eta);
+   fChain->SetBranchAddress("goodElectrons_8_eta", &goodElectrons_8_eta, &b_goodElectrons_8_eta);
+   fChain->SetBranchAddress("goodElectrons_9_eta", &goodElectrons_9_eta, &b_goodElectrons_9_eta);
    fChain->SetBranchAddress("goodElectrons_0_phi", &goodElectrons_0_phi, &b_goodElectrons_0_phi);
    fChain->SetBranchAddress("goodElectrons_1_phi", &goodElectrons_1_phi, &b_goodElectrons_1_phi);
    fChain->SetBranchAddress("goodElectrons_2_phi", &goodElectrons_2_phi, &b_goodElectrons_2_phi);
    fChain->SetBranchAddress("goodElectrons_3_phi", &goodElectrons_3_phi, &b_goodElectrons_3_phi);
    fChain->SetBranchAddress("goodElectrons_4_phi", &goodElectrons_4_phi, &b_goodElectrons_4_phi);
+   fChain->SetBranchAddress("goodElectrons_5_phi", &goodElectrons_5_phi, &b_goodElectrons_5_phi);
+   fChain->SetBranchAddress("goodElectrons_6_phi", &goodElectrons_6_phi, &b_goodElectrons_6_phi);
+   fChain->SetBranchAddress("goodElectrons_7_phi", &goodElectrons_7_phi, &b_goodElectrons_7_phi);
+   fChain->SetBranchAddress("goodElectrons_8_phi", &goodElectrons_8_phi, &b_goodElectrons_8_phi);
+   fChain->SetBranchAddress("goodElectrons_9_phi", &goodElectrons_9_phi, &b_goodElectrons_9_phi);
    fChain->SetBranchAddress("goodElectrons_0_passLooseId", &goodElectrons_0_passLooseId, &b_goodElectrons_0_passLooseId);
    fChain->SetBranchAddress("goodElectrons_1_passLooseId", &goodElectrons_1_passLooseId, &b_goodElectrons_1_passLooseId);
    fChain->SetBranchAddress("goodElectrons_2_passLooseId", &goodElectrons_2_passLooseId, &b_goodElectrons_2_passLooseId);
    fChain->SetBranchAddress("goodElectrons_3_passLooseId", &goodElectrons_3_passLooseId, &b_goodElectrons_3_passLooseId);
    fChain->SetBranchAddress("goodElectrons_4_passLooseId", &goodElectrons_4_passLooseId, &b_goodElectrons_4_passLooseId);
+   fChain->SetBranchAddress("goodElectrons_5_passLooseId", &goodElectrons_5_passLooseId, &b_goodElectrons_5_passLooseId);
+   fChain->SetBranchAddress("goodElectrons_6_passLooseId", &goodElectrons_6_passLooseId, &b_goodElectrons_6_passLooseId);
+   fChain->SetBranchAddress("goodElectrons_7_passLooseId", &goodElectrons_7_passLooseId, &b_goodElectrons_7_passLooseId);
+   fChain->SetBranchAddress("goodElectrons_8_passLooseId", &goodElectrons_8_passLooseId, &b_goodElectrons_8_passLooseId);
+   fChain->SetBranchAddress("goodElectrons_9_passLooseId", &goodElectrons_9_passLooseId, &b_goodElectrons_9_passLooseId);
    fChain->SetBranchAddress("goodElectrons_0_passMediumId", &goodElectrons_0_passMediumId, &b_goodElectrons_0_passMediumId);
    fChain->SetBranchAddress("goodElectrons_1_passMediumId", &goodElectrons_1_passMediumId, &b_goodElectrons_1_passMediumId);
    fChain->SetBranchAddress("goodElectrons_2_passMediumId", &goodElectrons_2_passMediumId, &b_goodElectrons_2_passMediumId);
    fChain->SetBranchAddress("goodElectrons_3_passMediumId", &goodElectrons_3_passMediumId, &b_goodElectrons_3_passMediumId);
    fChain->SetBranchAddress("goodElectrons_4_passMediumId", &goodElectrons_4_passMediumId, &b_goodElectrons_4_passMediumId);
+   fChain->SetBranchAddress("goodElectrons_5_passMediumId", &goodElectrons_5_passMediumId, &b_goodElectrons_5_passMediumId);
+   fChain->SetBranchAddress("goodElectrons_6_passMediumId", &goodElectrons_6_passMediumId, &b_goodElectrons_6_passMediumId);
+   fChain->SetBranchAddress("goodElectrons_7_passMediumId", &goodElectrons_7_passMediumId, &b_goodElectrons_7_passMediumId);
+   fChain->SetBranchAddress("goodElectrons_8_passMediumId", &goodElectrons_8_passMediumId, &b_goodElectrons_8_passMediumId);
+   fChain->SetBranchAddress("goodElectrons_9_passMediumId", &goodElectrons_9_passMediumId, &b_goodElectrons_9_passMediumId);
    fChain->SetBranchAddress("goodElectrons_0_passTightId", &goodElectrons_0_passTightId, &b_goodElectrons_0_passTightId);
    fChain->SetBranchAddress("goodElectrons_1_passTightId", &goodElectrons_1_passTightId, &b_goodElectrons_1_passTightId);
    fChain->SetBranchAddress("goodElectrons_2_passTightId", &goodElectrons_2_passTightId, &b_goodElectrons_2_passTightId);
    fChain->SetBranchAddress("goodElectrons_3_passTightId", &goodElectrons_3_passTightId, &b_goodElectrons_3_passTightId);
    fChain->SetBranchAddress("goodElectrons_4_passTightId", &goodElectrons_4_passTightId, &b_goodElectrons_4_passTightId);
+   fChain->SetBranchAddress("goodElectrons_5_passTightId", &goodElectrons_5_passTightId, &b_goodElectrons_5_passTightId);
+   fChain->SetBranchAddress("goodElectrons_6_passTightId", &goodElectrons_6_passTightId, &b_goodElectrons_6_passTightId);
+   fChain->SetBranchAddress("goodElectrons_7_passTightId", &goodElectrons_7_passTightId, &b_goodElectrons_7_passTightId);
+   fChain->SetBranchAddress("goodElectrons_8_passTightId", &goodElectrons_8_passTightId, &b_goodElectrons_8_passTightId);
+   fChain->SetBranchAddress("goodElectrons_9_passTightId", &goodElectrons_9_passTightId, &b_goodElectrons_9_passTightId);
    fChain->SetBranchAddress("goodElectrons_0_passMVALooseId", &goodElectrons_0_passMVALooseId, &b_goodElectrons_0_passMVALooseId);
    fChain->SetBranchAddress("goodElectrons_1_passMVALooseId", &goodElectrons_1_passMVALooseId, &b_goodElectrons_1_passMVALooseId);
    fChain->SetBranchAddress("goodElectrons_2_passMVALooseId", &goodElectrons_2_passMVALooseId, &b_goodElectrons_2_passMVALooseId);
    fChain->SetBranchAddress("goodElectrons_3_passMVALooseId", &goodElectrons_3_passMVALooseId, &b_goodElectrons_3_passMVALooseId);
    fChain->SetBranchAddress("goodElectrons_4_passMVALooseId", &goodElectrons_4_passMVALooseId, &b_goodElectrons_4_passMVALooseId);
+   fChain->SetBranchAddress("goodElectrons_5_passMVALooseId", &goodElectrons_5_passMVALooseId, &b_goodElectrons_5_passMVALooseId);
+   fChain->SetBranchAddress("goodElectrons_6_passMVALooseId", &goodElectrons_6_passMVALooseId, &b_goodElectrons_6_passMVALooseId);
+   fChain->SetBranchAddress("goodElectrons_7_passMVALooseId", &goodElectrons_7_passMVALooseId, &b_goodElectrons_7_passMVALooseId);
+   fChain->SetBranchAddress("goodElectrons_8_passMVALooseId", &goodElectrons_8_passMVALooseId, &b_goodElectrons_8_passMVALooseId);
+   fChain->SetBranchAddress("goodElectrons_9_passMVALooseId", &goodElectrons_9_passMVALooseId, &b_goodElectrons_9_passMVALooseId);
    fChain->SetBranchAddress("goodElectrons_0_passMVAMediumId", &goodElectrons_0_passMVAMediumId, &b_goodElectrons_0_passMVAMediumId);
    fChain->SetBranchAddress("goodElectrons_1_passMVAMediumId", &goodElectrons_1_passMVAMediumId, &b_goodElectrons_1_passMVAMediumId);
    fChain->SetBranchAddress("goodElectrons_2_passMVAMediumId", &goodElectrons_2_passMVAMediumId, &b_goodElectrons_2_passMVAMediumId);
    fChain->SetBranchAddress("goodElectrons_3_passMVAMediumId", &goodElectrons_3_passMVAMediumId, &b_goodElectrons_3_passMVAMediumId);
    fChain->SetBranchAddress("goodElectrons_4_passMVAMediumId", &goodElectrons_4_passMVAMediumId, &b_goodElectrons_4_passMVAMediumId);
+   fChain->SetBranchAddress("goodElectrons_5_passMVAMediumId", &goodElectrons_5_passMVAMediumId, &b_goodElectrons_5_passMVAMediumId);
+   fChain->SetBranchAddress("goodElectrons_6_passMVAMediumId", &goodElectrons_6_passMVAMediumId, &b_goodElectrons_6_passMVAMediumId);
+   fChain->SetBranchAddress("goodElectrons_7_passMVAMediumId", &goodElectrons_7_passMVAMediumId, &b_goodElectrons_7_passMVAMediumId);
+   fChain->SetBranchAddress("goodElectrons_8_passMVAMediumId", &goodElectrons_8_passMVAMediumId, &b_goodElectrons_8_passMVAMediumId);
+   fChain->SetBranchAddress("goodElectrons_9_passMVAMediumId", &goodElectrons_9_passMVAMediumId, &b_goodElectrons_9_passMVAMediumId);
    fChain->SetBranchAddress("goodElectrons_0_passMVATightId", &goodElectrons_0_passMVATightId, &b_goodElectrons_0_passMVATightId);
    fChain->SetBranchAddress("goodElectrons_1_passMVATightId", &goodElectrons_1_passMVATightId, &b_goodElectrons_1_passMVATightId);
    fChain->SetBranchAddress("goodElectrons_2_passMVATightId", &goodElectrons_2_passMVATightId, &b_goodElectrons_2_passMVATightId);
    fChain->SetBranchAddress("goodElectrons_3_passMVATightId", &goodElectrons_3_passMVATightId, &b_goodElectrons_3_passMVATightId);
    fChain->SetBranchAddress("goodElectrons_4_passMVATightId", &goodElectrons_4_passMVATightId, &b_goodElectrons_4_passMVATightId);
+   fChain->SetBranchAddress("goodElectrons_5_passMVATightId", &goodElectrons_5_passMVATightId, &b_goodElectrons_5_passMVATightId);
+   fChain->SetBranchAddress("goodElectrons_6_passMVATightId", &goodElectrons_6_passMVATightId, &b_goodElectrons_6_passMVATightId);
+   fChain->SetBranchAddress("goodElectrons_7_passMVATightId", &goodElectrons_7_passMVATightId, &b_goodElectrons_7_passMVATightId);
+   fChain->SetBranchAddress("goodElectrons_8_passMVATightId", &goodElectrons_8_passMVATightId, &b_goodElectrons_8_passMVATightId);
+   fChain->SetBranchAddress("goodElectrons_9_passMVATightId", &goodElectrons_9_passMVATightId, &b_goodElectrons_9_passMVATightId);
    fChain->SetBranchAddress("N_goodMuons", &N_goodMuons, &b_N_goodMuons);
    fChain->SetBranchAddress("goodMuons_0_E", &goodMuons_0_E, &b_goodMuons_0_E);
    fChain->SetBranchAddress("goodMuons_1_E", &goodMuons_1_E, &b_goodMuons_1_E);
    fChain->SetBranchAddress("goodMuons_2_E", &goodMuons_2_E, &b_goodMuons_2_E);
    fChain->SetBranchAddress("goodMuons_3_E", &goodMuons_3_E, &b_goodMuons_3_E);
    fChain->SetBranchAddress("goodMuons_4_E", &goodMuons_4_E, &b_goodMuons_4_E);
+   fChain->SetBranchAddress("goodMuons_5_E", &goodMuons_5_E, &b_goodMuons_5_E);
+   fChain->SetBranchAddress("goodMuons_6_E", &goodMuons_6_E, &b_goodMuons_6_E);
+   fChain->SetBranchAddress("goodMuons_7_E", &goodMuons_7_E, &b_goodMuons_7_E);
+   fChain->SetBranchAddress("goodMuons_8_E", &goodMuons_8_E, &b_goodMuons_8_E);
+   fChain->SetBranchAddress("goodMuons_9_E", &goodMuons_9_E, &b_goodMuons_9_E);
    fChain->SetBranchAddress("goodMuons_0_pt", &goodMuons_0_pt, &b_goodMuons_0_pt);
    fChain->SetBranchAddress("goodMuons_1_pt", &goodMuons_1_pt, &b_goodMuons_1_pt);
    fChain->SetBranchAddress("goodMuons_2_pt", &goodMuons_2_pt, &b_goodMuons_2_pt);
    fChain->SetBranchAddress("goodMuons_3_pt", &goodMuons_3_pt, &b_goodMuons_3_pt);
    fChain->SetBranchAddress("goodMuons_4_pt", &goodMuons_4_pt, &b_goodMuons_4_pt);
+   fChain->SetBranchAddress("goodMuons_5_pt", &goodMuons_5_pt, &b_goodMuons_5_pt);
+   fChain->SetBranchAddress("goodMuons_6_pt", &goodMuons_6_pt, &b_goodMuons_6_pt);
+   fChain->SetBranchAddress("goodMuons_7_pt", &goodMuons_7_pt, &b_goodMuons_7_pt);
+   fChain->SetBranchAddress("goodMuons_8_pt", &goodMuons_8_pt, &b_goodMuons_8_pt);
+   fChain->SetBranchAddress("goodMuons_9_pt", &goodMuons_9_pt, &b_goodMuons_9_pt);
    fChain->SetBranchAddress("goodMuons_0_px", &goodMuons_0_px, &b_goodMuons_0_px);
    fChain->SetBranchAddress("goodMuons_1_px", &goodMuons_1_px, &b_goodMuons_1_px);
    fChain->SetBranchAddress("goodMuons_2_px", &goodMuons_2_px, &b_goodMuons_2_px);
    fChain->SetBranchAddress("goodMuons_3_px", &goodMuons_3_px, &b_goodMuons_3_px);
    fChain->SetBranchAddress("goodMuons_4_px", &goodMuons_4_px, &b_goodMuons_4_px);
+   fChain->SetBranchAddress("goodMuons_5_px", &goodMuons_5_px, &b_goodMuons_5_px);
+   fChain->SetBranchAddress("goodMuons_6_px", &goodMuons_6_px, &b_goodMuons_6_px);
+   fChain->SetBranchAddress("goodMuons_7_px", &goodMuons_7_px, &b_goodMuons_7_px);
+   fChain->SetBranchAddress("goodMuons_8_px", &goodMuons_8_px, &b_goodMuons_8_px);
+   fChain->SetBranchAddress("goodMuons_9_px", &goodMuons_9_px, &b_goodMuons_9_px);
    fChain->SetBranchAddress("goodMuons_0_py", &goodMuons_0_py, &b_goodMuons_0_py);
    fChain->SetBranchAddress("goodMuons_1_py", &goodMuons_1_py, &b_goodMuons_1_py);
    fChain->SetBranchAddress("goodMuons_2_py", &goodMuons_2_py, &b_goodMuons_2_py);
    fChain->SetBranchAddress("goodMuons_3_py", &goodMuons_3_py, &b_goodMuons_3_py);
    fChain->SetBranchAddress("goodMuons_4_py", &goodMuons_4_py, &b_goodMuons_4_py);
+   fChain->SetBranchAddress("goodMuons_5_py", &goodMuons_5_py, &b_goodMuons_5_py);
+   fChain->SetBranchAddress("goodMuons_6_py", &goodMuons_6_py, &b_goodMuons_6_py);
+   fChain->SetBranchAddress("goodMuons_7_py", &goodMuons_7_py, &b_goodMuons_7_py);
+   fChain->SetBranchAddress("goodMuons_8_py", &goodMuons_8_py, &b_goodMuons_8_py);
+   fChain->SetBranchAddress("goodMuons_9_py", &goodMuons_9_py, &b_goodMuons_9_py);
    fChain->SetBranchAddress("goodMuons_0_pz", &goodMuons_0_pz, &b_goodMuons_0_pz);
    fChain->SetBranchAddress("goodMuons_1_pz", &goodMuons_1_pz, &b_goodMuons_1_pz);
    fChain->SetBranchAddress("goodMuons_2_pz", &goodMuons_2_pz, &b_goodMuons_2_pz);
    fChain->SetBranchAddress("goodMuons_3_pz", &goodMuons_3_pz, &b_goodMuons_3_pz);
    fChain->SetBranchAddress("goodMuons_4_pz", &goodMuons_4_pz, &b_goodMuons_4_pz);
+   fChain->SetBranchAddress("goodMuons_5_pz", &goodMuons_5_pz, &b_goodMuons_5_pz);
+   fChain->SetBranchAddress("goodMuons_6_pz", &goodMuons_6_pz, &b_goodMuons_6_pz);
+   fChain->SetBranchAddress("goodMuons_7_pz", &goodMuons_7_pz, &b_goodMuons_7_pz);
+   fChain->SetBranchAddress("goodMuons_8_pz", &goodMuons_8_pz, &b_goodMuons_8_pz);
+   fChain->SetBranchAddress("goodMuons_9_pz", &goodMuons_9_pz, &b_goodMuons_9_pz);
    fChain->SetBranchAddress("goodMuons_0_eta", &goodMuons_0_eta, &b_goodMuons_0_eta);
    fChain->SetBranchAddress("goodMuons_1_eta", &goodMuons_1_eta, &b_goodMuons_1_eta);
    fChain->SetBranchAddress("goodMuons_2_eta", &goodMuons_2_eta, &b_goodMuons_2_eta);
    fChain->SetBranchAddress("goodMuons_3_eta", &goodMuons_3_eta, &b_goodMuons_3_eta);
    fChain->SetBranchAddress("goodMuons_4_eta", &goodMuons_4_eta, &b_goodMuons_4_eta);
+   fChain->SetBranchAddress("goodMuons_5_eta", &goodMuons_5_eta, &b_goodMuons_5_eta);
+   fChain->SetBranchAddress("goodMuons_6_eta", &goodMuons_6_eta, &b_goodMuons_6_eta);
+   fChain->SetBranchAddress("goodMuons_7_eta", &goodMuons_7_eta, &b_goodMuons_7_eta);
+   fChain->SetBranchAddress("goodMuons_8_eta", &goodMuons_8_eta, &b_goodMuons_8_eta);
+   fChain->SetBranchAddress("goodMuons_9_eta", &goodMuons_9_eta, &b_goodMuons_9_eta);
    fChain->SetBranchAddress("goodMuons_0_phi", &goodMuons_0_phi, &b_goodMuons_0_phi);
    fChain->SetBranchAddress("goodMuons_1_phi", &goodMuons_1_phi, &b_goodMuons_1_phi);
    fChain->SetBranchAddress("goodMuons_2_phi", &goodMuons_2_phi, &b_goodMuons_2_phi);
    fChain->SetBranchAddress("goodMuons_3_phi", &goodMuons_3_phi, &b_goodMuons_3_phi);
    fChain->SetBranchAddress("goodMuons_4_phi", &goodMuons_4_phi, &b_goodMuons_4_phi);
+   fChain->SetBranchAddress("goodMuons_5_phi", &goodMuons_5_phi, &b_goodMuons_5_phi);
+   fChain->SetBranchAddress("goodMuons_6_phi", &goodMuons_6_phi, &b_goodMuons_6_phi);
+   fChain->SetBranchAddress("goodMuons_7_phi", &goodMuons_7_phi, &b_goodMuons_7_phi);
+   fChain->SetBranchAddress("goodMuons_8_phi", &goodMuons_8_phi, &b_goodMuons_8_phi);
+   fChain->SetBranchAddress("goodMuons_9_phi", &goodMuons_9_phi, &b_goodMuons_9_phi);
    fChain->SetBranchAddress("N_goodJets", &N_goodJets, &b_N_goodJets);
    fChain->SetBranchAddress("goodJets_0_E", &goodJets_0_E, &b_goodJets_0_E);
    fChain->SetBranchAddress("goodJets_1_E", &goodJets_1_E, &b_goodJets_1_E);
    fChain->SetBranchAddress("goodJets_2_E", &goodJets_2_E, &b_goodJets_2_E);
    fChain->SetBranchAddress("goodJets_3_E", &goodJets_3_E, &b_goodJets_3_E);
    fChain->SetBranchAddress("goodJets_4_E", &goodJets_4_E, &b_goodJets_4_E);
+   fChain->SetBranchAddress("goodJets_5_E", &goodJets_5_E, &b_goodJets_5_E);
+   fChain->SetBranchAddress("goodJets_6_E", &goodJets_6_E, &b_goodJets_6_E);
+   fChain->SetBranchAddress("goodJets_7_E", &goodJets_7_E, &b_goodJets_7_E);
+   fChain->SetBranchAddress("goodJets_8_E", &goodJets_8_E, &b_goodJets_8_E);
+   fChain->SetBranchAddress("goodJets_9_E", &goodJets_9_E, &b_goodJets_9_E);
    fChain->SetBranchAddress("goodJets_0_pt", &goodJets_0_pt, &b_goodJets_0_pt);
    fChain->SetBranchAddress("goodJets_1_pt", &goodJets_1_pt, &b_goodJets_1_pt);
    fChain->SetBranchAddress("goodJets_2_pt", &goodJets_2_pt, &b_goodJets_2_pt);
    fChain->SetBranchAddress("goodJets_3_pt", &goodJets_3_pt, &b_goodJets_3_pt);
    fChain->SetBranchAddress("goodJets_4_pt", &goodJets_4_pt, &b_goodJets_4_pt);
+   fChain->SetBranchAddress("goodJets_5_pt", &goodJets_5_pt, &b_goodJets_5_pt);
+   fChain->SetBranchAddress("goodJets_6_pt", &goodJets_6_pt, &b_goodJets_6_pt);
+   fChain->SetBranchAddress("goodJets_7_pt", &goodJets_7_pt, &b_goodJets_7_pt);
+   fChain->SetBranchAddress("goodJets_8_pt", &goodJets_8_pt, &b_goodJets_8_pt);
+   fChain->SetBranchAddress("goodJets_9_pt", &goodJets_9_pt, &b_goodJets_9_pt);
    fChain->SetBranchAddress("goodJets_0_px", &goodJets_0_px, &b_goodJets_0_px);
    fChain->SetBranchAddress("goodJets_1_px", &goodJets_1_px, &b_goodJets_1_px);
    fChain->SetBranchAddress("goodJets_2_px", &goodJets_2_px, &b_goodJets_2_px);
    fChain->SetBranchAddress("goodJets_3_px", &goodJets_3_px, &b_goodJets_3_px);
    fChain->SetBranchAddress("goodJets_4_px", &goodJets_4_px, &b_goodJets_4_px);
+   fChain->SetBranchAddress("goodJets_5_px", &goodJets_5_px, &b_goodJets_5_px);
+   fChain->SetBranchAddress("goodJets_6_px", &goodJets_6_px, &b_goodJets_6_px);
+   fChain->SetBranchAddress("goodJets_7_px", &goodJets_7_px, &b_goodJets_7_px);
+   fChain->SetBranchAddress("goodJets_8_px", &goodJets_8_px, &b_goodJets_8_px);
+   fChain->SetBranchAddress("goodJets_9_px", &goodJets_9_px, &b_goodJets_9_px);
    fChain->SetBranchAddress("goodJets_0_py", &goodJets_0_py, &b_goodJets_0_py);
    fChain->SetBranchAddress("goodJets_1_py", &goodJets_1_py, &b_goodJets_1_py);
    fChain->SetBranchAddress("goodJets_2_py", &goodJets_2_py, &b_goodJets_2_py);
    fChain->SetBranchAddress("goodJets_3_py", &goodJets_3_py, &b_goodJets_3_py);
    fChain->SetBranchAddress("goodJets_4_py", &goodJets_4_py, &b_goodJets_4_py);
+   fChain->SetBranchAddress("goodJets_5_py", &goodJets_5_py, &b_goodJets_5_py);
+   fChain->SetBranchAddress("goodJets_6_py", &goodJets_6_py, &b_goodJets_6_py);
+   fChain->SetBranchAddress("goodJets_7_py", &goodJets_7_py, &b_goodJets_7_py);
+   fChain->SetBranchAddress("goodJets_8_py", &goodJets_8_py, &b_goodJets_8_py);
+   fChain->SetBranchAddress("goodJets_9_py", &goodJets_9_py, &b_goodJets_9_py);
    fChain->SetBranchAddress("goodJets_0_pz", &goodJets_0_pz, &b_goodJets_0_pz);
    fChain->SetBranchAddress("goodJets_1_pz", &goodJets_1_pz, &b_goodJets_1_pz);
    fChain->SetBranchAddress("goodJets_2_pz", &goodJets_2_pz, &b_goodJets_2_pz);
    fChain->SetBranchAddress("goodJets_3_pz", &goodJets_3_pz, &b_goodJets_3_pz);
    fChain->SetBranchAddress("goodJets_4_pz", &goodJets_4_pz, &b_goodJets_4_pz);
+   fChain->SetBranchAddress("goodJets_5_pz", &goodJets_5_pz, &b_goodJets_5_pz);
+   fChain->SetBranchAddress("goodJets_6_pz", &goodJets_6_pz, &b_goodJets_6_pz);
+   fChain->SetBranchAddress("goodJets_7_pz", &goodJets_7_pz, &b_goodJets_7_pz);
+   fChain->SetBranchAddress("goodJets_8_pz", &goodJets_8_pz, &b_goodJets_8_pz);
+   fChain->SetBranchAddress("goodJets_9_pz", &goodJets_9_pz, &b_goodJets_9_pz);
    fChain->SetBranchAddress("goodJets_0_eta", &goodJets_0_eta, &b_goodJets_0_eta);
    fChain->SetBranchAddress("goodJets_1_eta", &goodJets_1_eta, &b_goodJets_1_eta);
    fChain->SetBranchAddress("goodJets_2_eta", &goodJets_2_eta, &b_goodJets_2_eta);
    fChain->SetBranchAddress("goodJets_3_eta", &goodJets_3_eta, &b_goodJets_3_eta);
    fChain->SetBranchAddress("goodJets_4_eta", &goodJets_4_eta, &b_goodJets_4_eta);
+   fChain->SetBranchAddress("goodJets_5_eta", &goodJets_5_eta, &b_goodJets_5_eta);
+   fChain->SetBranchAddress("goodJets_6_eta", &goodJets_6_eta, &b_goodJets_6_eta);
+   fChain->SetBranchAddress("goodJets_7_eta", &goodJets_7_eta, &b_goodJets_7_eta);
+   fChain->SetBranchAddress("goodJets_8_eta", &goodJets_8_eta, &b_goodJets_8_eta);
+   fChain->SetBranchAddress("goodJets_9_eta", &goodJets_9_eta, &b_goodJets_9_eta);
    fChain->SetBranchAddress("goodJets_0_phi", &goodJets_0_phi, &b_goodJets_0_phi);
    fChain->SetBranchAddress("goodJets_1_phi", &goodJets_1_phi, &b_goodJets_1_phi);
    fChain->SetBranchAddress("goodJets_2_phi", &goodJets_2_phi, &b_goodJets_2_phi);
    fChain->SetBranchAddress("goodJets_3_phi", &goodJets_3_phi, &b_goodJets_3_phi);
    fChain->SetBranchAddress("goodJets_4_phi", &goodJets_4_phi, &b_goodJets_4_phi);
+   fChain->SetBranchAddress("goodJets_5_phi", &goodJets_5_phi, &b_goodJets_5_phi);
+   fChain->SetBranchAddress("goodJets_6_phi", &goodJets_6_phi, &b_goodJets_6_phi);
+   fChain->SetBranchAddress("goodJets_7_phi", &goodJets_7_phi, &b_goodJets_7_phi);
+   fChain->SetBranchAddress("goodJets_8_phi", &goodJets_8_phi, &b_goodJets_8_phi);
+   fChain->SetBranchAddress("goodJets_9_phi", &goodJets_9_phi, &b_goodJets_9_phi);
    fChain->SetBranchAddress("goodJets_0_PassLooseJetPUID", &goodJets_0_PassLooseJetPUID, &b_goodJets_0_PassLooseJetPUID);
    fChain->SetBranchAddress("goodJets_0_PassMediumJetPUID", &goodJets_0_PassMediumJetPUID, &b_goodJets_0_PassMediumJetPUID);
    fChain->SetBranchAddress("goodJets_0_PassTightJetPUID", &goodJets_0_PassTightJetPUID, &b_goodJets_0_PassTightJetPUID);
@@ -1972,3 +2471,4 @@ void flashgg_Data::Init(TTree *tree)
    fChain->SetBranchAddress("npu", &npu, &b_npu);
    fChain->SetBranchAddress("puweight", &puweight, &b_puweight);
 }
+

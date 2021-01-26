@@ -24,7 +24,7 @@
 
 
 // void ReRunFHJetSelection(bool isMC = true, TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Data_Trees/Data_2017.root")
-void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Data_Trees/Data_2017.root", int isMC=0)
+void ReRunFHJetSelection(TString inputFile1 = "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016//Data_Trees_2016_Hadded_Combined/allData.root", int isMC=0)
 {
     TFile *OldRootFile = new TFile(inputFile1);
 

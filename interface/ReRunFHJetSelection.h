@@ -44,6 +44,13 @@ TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG) {
     TKey *key;
     while ( (key = (TKey*)next())) {
         if (DEBUG) std::cout << "key name: " << key->GetName() << std::endl;
+        if (string(key->GetName()).find("Tag_1") != std::string::npos)
+        {
+            if (DEBUG) std::cout << "Found key name: " << key->GetName() << std::endl;
+            RootFileDirStructure[0] = key->GetName();
+            treeName += key->GetName();
+            break;
+        }
         if (key->IsFolder()) {
             f->cd(key->GetName());
             treeName += key->GetName();
@@ -53,6 +60,14 @@ TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG) {
             TKey *key2;
             while ( (key2 = (TKey*)next())) {
                 if (DEBUG) std::cout << "key2 name: " << key2->GetName() << std::endl;
+                if (string(key2->GetName()).find("Tag_1") != std::string::npos)
+                {
+                    if (DEBUG) std::cout << "Found key2 name: " << key2->GetName() << std::endl;
+                    RootFileDirStructure[1] = key2->GetName();
+                    treeName += "/";
+                    treeName += key2->GetName();
+                    break;
+                }
                 if (key->IsFolder()){
                     treeName += "/";
                     treeName += key2->GetName();
