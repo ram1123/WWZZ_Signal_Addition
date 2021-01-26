@@ -5,8 +5,8 @@
 // found on file: small.root
 //////////////////////////////////////////////////////////
 
-#ifndef flashgg_h
-#define flashgg_h
+#ifndef flashgg_Data_h
+#define flashgg_Data_h
 
 #include <TROOT.h>
 #include <TChain.h>
@@ -14,7 +14,7 @@
 
 // Header file for the classes stored in the TTree if any.
 
-class flashgg {
+class flashgg_Data {
 public :
    TTree          *fChain;   //!pointer to the analyzed TTree or TChain
    Int_t           fCurrent; //!current Tree number in a TChain
@@ -27,8 +27,6 @@ public :
    Float_t         CMS_hgg_mass;
    Float_t         sigmaRV;
    Float_t         sigmaMoM_decorr;
-   // Float_t         CMS_hgg_mass;
-   // Float_t         sigmaMoM_decorr;
    Float_t         centralObjectWeight;
    Float_t         passPS;
    Float_t         passPhotonSels;
@@ -652,7 +650,6 @@ public :
    UInt_t          lumi;
    Int_t           processIndex;
    UInt_t          run;
-   // Int_t           nvtx;
    Float_t         npu;
    Float_t         puweight;
 
@@ -662,8 +659,6 @@ public :
    TBranch        *b_CMS_hgg_mass;   //!
    TBranch        *b_sigmaRV;   //!
    TBranch        *b_sigmaMoM_decorr;   //!
-   // TBranch        *b_CMS_hgg_mass;   //!
-   // TBranch        *b_sigmaMoM_decorr;   //!
    TBranch        *b_centralObjectWeight;   //!
    TBranch        *b_passPS;   //!
    TBranch        *b_passPhotonSels;   //!
@@ -1291,7 +1286,7 @@ public :
    TBranch        *b_npu;   //!
    TBranch        *b_puweight;   //!
 
-   flashgg(TTree *tree=0) {
+   flashgg_Data(TTree *tree=0) {
       if (tree == 0) {
          TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("small.root");
          if (!f || !f->IsOpen()) {
@@ -1302,7 +1297,8 @@ public :
       }  
       Init(tree);
    };
-   virtual ~flashgg() {};
+   flashgg_Data(){};
+   virtual ~flashgg_Data() {};
    virtual Int_t    GetEntry(Long64_t entry);
    virtual Long64_t LoadTree(Long64_t entry);
    virtual void     Init(TTree *tree);
@@ -1311,13 +1307,13 @@ public :
 #endif
 
 
-Int_t flashgg::GetEntry(Long64_t entry)
+Int_t flashgg_Data::GetEntry(Long64_t entry)
 {
 // Read contents of entry.
    if (!fChain) return 0;
    return fChain->GetEntry(entry);
 }
-Long64_t flashgg::LoadTree(Long64_t entry)
+Long64_t flashgg_Data::LoadTree(Long64_t entry)
 {
 // Set the environment to read one entry
    if (!fChain) return -5;
@@ -1329,7 +1325,7 @@ Long64_t flashgg::LoadTree(Long64_t entry)
    return centry;
 }
 
-void flashgg::Init(TTree *tree)
+void flashgg_Data::Init(TTree *tree)
 {
    // The Init() function is called when the selector needs to initialize
    // a new tree or chain. Typically here the branch addresses and branch
@@ -1350,8 +1346,6 @@ void flashgg::Init(TTree *tree)
    fChain->SetBranchAddress("CMS_hgg_mass", &CMS_hgg_mass, &b_CMS_hgg_mass);
    fChain->SetBranchAddress("sigmaRV", &sigmaRV, &b_sigmaRV);
    fChain->SetBranchAddress("sigmaMoM_decorr", &sigmaMoM_decorr, &b_sigmaMoM_decorr);
-//    fChain->SetBranchAddress("CMS_hgg_mass", &CMS_hgg_mass, &b_CMS_hgg_mass);
-//    fChain->SetBranchAddress("sigmaMoM_decorr", &sigmaMoM_decorr, &b_sigmaMoM_decorr);
    fChain->SetBranchAddress("centralObjectWeight", &centralObjectWeight, &b_centralObjectWeight);
    fChain->SetBranchAddress("passPS", &passPS, &b_passPS);
    fChain->SetBranchAddress("passPhotonSels", &passPhotonSels, &b_passPhotonSels);
@@ -1975,7 +1969,6 @@ void flashgg::Init(TTree *tree)
    fChain->SetBranchAddress("lumi", &lumi, &b_lumi);
    fChain->SetBranchAddress("processIndex", &processIndex, &b_processIndex);
    fChain->SetBranchAddress("run", &run, &b_run);
-//    fChain->SetBranchAddress("nvtx", &nvtx, &b_nvtx);
    fChain->SetBranchAddress("npu", &npu, &b_npu);
    fChain->SetBranchAddress("puweight", &puweight, &b_puweight);
 }

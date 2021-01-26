@@ -20,6 +20,9 @@
 TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG=0);
 void GetFHminWHJets(bool DEBUG, std::vector<TLorentzVector> &AllGoodJets, std::vector<TLorentzVector> &SelectedJets);
 
+TString GetLastString(string s, string delimiter, bool DEBUG=0);
+
+
 
 /**
  * @brief      This function takes a input root file and returns the directory
@@ -68,6 +71,7 @@ TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG) {
                             RootFileDirStructure[2] = key3->GetName();
                             treeName += "/";
                             treeName += key3->GetName();
+                            break;
                         }
                     }
                 }
@@ -166,3 +170,21 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<TLoren
     SelectedJets.push_back(jet4);
     
 }
+
+
+TString GetLastString(string s, string delimiter, bool DEBUG)
+{
+    // std::string s = string(inputFile1);
+    // std::string delimiter = "/";
+    size_t pos = 0;
+    std::string token;
+    while ((pos = s.find(delimiter)) != std::string::npos) {
+        token = s.substr(0, pos);
+        if (DEBUG) std::cout << token << std::endl;
+        s.erase(0, pos + delimiter.length());
+    }
+    std::cout << "[INFO] ReRunFHJetSelection.h#186: Last string: " << s << std::endl;
+
+    return TString(s);
+}
+

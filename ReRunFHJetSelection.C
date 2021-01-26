@@ -16,31 +16,45 @@
  * =====================================================================================
  */
 
-#include "ReRunFHJetSelection.h"
-#include "flashgg.h"
-#include "output.h"
+#include "interface/ReRunFHJetSelection.h"
+#include "interface/flashgg_Data.h"
+#include "interface/flashgg_MC.h"
+#include "interface/output.h"
+#include <chrono> 
 
 
-void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Data_Trees/Data_2017.root" )
+// void ReRunFHJetSelection(bool isMC = true, TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Data_Trees/Data_2017.root")
+void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Data_Trees/Data_2017.root", int isMC=0)
 {
     TFile *OldRootFile = new TFile(inputFile1);
     
     if (OldRootFile->IsZombie()) {
+
         std::cout << "File " << inputFile1 << " does not exists" << std::endl;
         return;
     }
     
     std::cout << "Reading file ==> " << inputFile1 << std::endl;
-    
+
+    TString RootFileName = GetLastString(string(inputFile1), "/");
+
     TString RootFileDirStructure[3];
     TString OldTreeName = GetTreeName(OldRootFile, RootFileDirStructure);
     std::cout << "Tree name: " << OldTreeName << std::endl;
     
     TTree *OldTree = (TTree*)OldRootFile->Get(OldTreeName);
-    flashgg flashggReader = flashgg(OldTree);
-    
+
+    // flashgg_MC flashggReader = flashgg_MC(OldTree); 
+    // flashgg_Data flashggReader = flashgg_Data(OldTree);
+
+    // if (isMC) {
+        flashgg_MC flashggReader(OldTree);
+    // } else {
+        // flashgg_Data flashggReader(OldTree);
+    // }
+
     // Create a new file
-    TFile *newfile = new TFile("new_new.root", "recreate");
+    TFile *newfile = new TFile(RootFileName, "recreate");
     newfile->mkdir(RootFileDirStructure[0]+"/"+RootFileDirStructure[1]);
     newfile->cd(RootFileDirStructure[0]+"/"+RootFileDirStructure[1]);
     
