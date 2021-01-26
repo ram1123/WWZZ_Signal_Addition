@@ -20,20 +20,20 @@
 #include "interface/flashgg_Data.h"
 #include "interface/flashgg_MC.h"
 #include "interface/output.h"
-#include <chrono> 
+#include <chrono>
 
 
 // void ReRunFHJetSelection(bool isMC = true, TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Data_Trees/Data_2017.root")
 void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Data_Trees/Data_2017.root", int isMC=0)
 {
     TFile *OldRootFile = new TFile(inputFile1);
-    
+
     if (OldRootFile->IsZombie()) {
 
         std::cout << "File " << inputFile1 << " does not exists" << std::endl;
         return;
     }
-    
+
     std::cout << "Reading file ==> " << inputFile1 << std::endl;
 
     TString RootFileName = GetLastString(string(inputFile1), "/");
@@ -41,10 +41,10 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
     TString RootFileDirStructure[3];
     TString OldTreeName = GetTreeName(OldRootFile, RootFileDirStructure);
     std::cout << "Tree name: " << OldTreeName << std::endl;
-    
+
     TTree *OldTree = (TTree*)OldRootFile->Get(OldTreeName);
 
-    // flashgg_MC flashggReader = flashgg_MC(OldTree); 
+    // flashgg_MC flashggReader = flashgg_MC(OldTree);
     // flashgg_Data flashggReader = flashgg_Data(OldTree);
 
     // if (isMC) {
@@ -57,27 +57,27 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
     TFile *newfile = new TFile(RootFileName, "recreate");
     newfile->mkdir(RootFileDirStructure[0]+"/"+RootFileDirStructure[1]);
     newfile->cd(RootFileDirStructure[0]+"/"+RootFileDirStructure[1]);
-    
+
     // Clone the old tree
     auto newtree = OldTree->CloneTree(0);
     output outputVars = output(newtree);
-    
+
     Long64_t nentries = OldTree->GetEntries();
     std::cout << "nentries = " << nentries << std::endl;
-    
+
     std::vector<TLorentzVector> Jets;
     std::vector<Float_t> b_dis;
 
     int temp_percentage_done = 0;
-    
+
     for (Long64_t jentry=0; jentry<nentries;jentry++) {
-        flashggReader.GetEntry(jentry);  
+        flashggReader.GetEntry(jentry);
         // if(jentry>10) break;  // For debug purpose
 
         Jets.clear();
         b_dis.clear();
-        
-        
+
+
         int percentage_done = (int)(((float)jentry/(float)nentries)*100);
         if (percentage_done % 10 == 0) {
           if (percentage_done != temp_percentage_done) {
@@ -85,21 +85,21 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
             temp_percentage_done = percentage_done;
           }
         }
-        
-        if (flashggReader.N_goodJets>=4){        
-            b_dis.push_back(flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb + 
+
+        if (flashggReader.N_goodJets>=4){
+            b_dis.push_back(flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                             flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                             flashggReader.allJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                             );
-            b_dis.push_back(flashggReader.goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb + 
+            b_dis.push_back(flashggReader.goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                             flashggReader.goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                             flashggReader.allJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                             );
-            b_dis.push_back(flashggReader.goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb + 
+            b_dis.push_back(flashggReader.goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                             flashggReader.goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                             flashggReader.allJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                             );
-            b_dis.push_back(flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probb + 
+            b_dis.push_back(flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                             flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                             flashggReader.allJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                             );
@@ -132,10 +132,10 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
                                   flashggReader.goodJets_3_E
                                 );
         }
-        if (flashggReader.N_goodJets>=5){        
+        if (flashggReader.N_goodJets>=5){
             b_dis.push_back(flashggReader.goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                             flashggReader.goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                            flashggReader.allJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+                            flashggReader.allJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                             );
             Jets.push_back(TLorentzVector(0,0,0,0));
             Jets.back().SetPxPyPzE(
@@ -145,10 +145,10 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
                                   flashggReader.goodJets_4_E
                                 );
         }
-        if (flashggReader.N_goodJets>=6){        
+        if (flashggReader.N_goodJets>=6){
             b_dis.push_back(flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                             flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                            flashggReader.allJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+                            flashggReader.allJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                             );
           Jets.push_back(TLorentzVector(0,0,0,0));
           Jets.back().SetPxPyPzE(
@@ -161,7 +161,7 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         if (flashggReader.N_goodJets>=7){
             b_dis.push_back(flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                             flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                            flashggReader.allJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+                            flashggReader.allJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                             );
           Jets.push_back(TLorentzVector(0,0,0,0));
           Jets.back().SetPxPyPzE(
@@ -174,7 +174,7 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         if (flashggReader.N_goodJets>=8){
             b_dis.push_back(flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                             flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                            flashggReader.allJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+                            flashggReader.allJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                             );
           Jets.push_back(TLorentzVector(0,0,0,0));
           Jets.back().SetPxPyPzE(
@@ -184,10 +184,10 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
                                   flashggReader.goodJets_7_E
                                 );
         }
-        if (flashggReader.N_goodJets>=9) {        
+        if (flashggReader.N_goodJets>=9) {
             b_dis.push_back(flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                             flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                            flashggReader.allJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+                            flashggReader.allJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                             );
           Jets.push_back(TLorentzVector(0,0,0,0));
           Jets.back().SetPxPyPzE(
@@ -197,10 +197,10 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
                                   flashggReader.goodJets_8_E
                                 );
         }
-        if (flashggReader.N_goodJets>=10){        
+        if (flashggReader.N_goodJets>=10){
             b_dis.push_back(flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                             flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                            flashggReader.allJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+                            flashggReader.allJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                             );
           Jets.push_back(TLorentzVector(0,0,0,0));
           Jets.back().SetPxPyPzE(
@@ -210,8 +210,9 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
                                   flashggReader.goodJets_9_E
                                 );
         }
-        std::vector<TLorentzVector> SelectedGoodJets;
-        std::vector<Float_t> Selectedb_dis;
+
+        std::vector<TLorentzVector> SelectedGoodJets; // Fill the FH selected jets
+        std::vector<Float_t> Selectedb_dis; // Fill the b-discriminator value for FH selected jets
         GetFHminWHJets(Jets, b_dis, SelectedGoodJets, Selectedb_dis, 0);
 
         // std::cout << "Jets size = " << Jets.size() << std::endl;
@@ -251,7 +252,7 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
 
         newtree->Fill();
     }
-    
+
     newtree->Write();
     newfile->Write();
 }

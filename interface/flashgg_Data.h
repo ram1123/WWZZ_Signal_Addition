@@ -1294,7 +1294,7 @@ public :
          }
          TDirectory * dir = (TDirectory*)f->Get("small.root:/tagsDumper/trees");
          dir->GetObject("GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1",tree);  //1301L
-      }  
+      }
       Init(tree);
    };
    flashgg_Data(){};
