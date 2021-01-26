@@ -3,7 +3,7 @@
  *
  *       Filename:  ReRunFHJetSelection.h
  *
- *    Description:  
+ *    Description:
  *
  *        Version:  1.0
  *        Created:  01/22/21 00:25:50
@@ -19,9 +19,7 @@
 
 TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG=0);
 void GetFHminWHJets(bool DEBUG, std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb_dis);
-
 TString GetLastString(string s, string delimiter, bool DEBUG=0);
-
 
 
 /**
@@ -31,7 +29,7 @@ TString GetLastString(string s, string delimiter, bool DEBUG=0);
  * @param      f                     Input root file
  * @param      RootFileDirStructure  This has a size of three where the first
  *                                   two elements contains the two directory
- *                                   name and the third element contains the 
+ *                                   name and the third element contains the
  *                                   tree name.
  * @param[in]  DEBUG                 it can take values 0 or 1. If its 1 then
  *                                   it prints several couts which helps us in
@@ -46,6 +44,13 @@ TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG) {
     TKey *key;
     while ( (key = (TKey*)next())) {
         if (DEBUG) std::cout << "key name: " << key->GetName() << std::endl;
+        if (string(key->GetName()).find("Tag_1") != std::string::npos)
+        {
+            if (DEBUG) std::cout << "Found key name: " << key->GetName() << std::endl;
+            RootFileDirStructure[0] = key->GetName();
+            treeName += key->GetName();
+            break;
+        }
         if (key->IsFolder()) {
             f->cd(key->GetName());
             treeName += key->GetName();
@@ -55,6 +60,14 @@ TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG) {
             TKey *key2;
             while ( (key2 = (TKey*)next())) {
                 if (DEBUG) std::cout << "key2 name: " << key2->GetName() << std::endl;
+                if (string(key2->GetName()).find("Tag_1") != std::string::npos)
+                {
+                    if (DEBUG) std::cout << "Found key2 name: " << key2->GetName() << std::endl;
+                    RootFileDirStructure[1] = key2->GetName();
+                    treeName += "/";
+                    treeName += key2->GetName();
+                    break;
+                }
                 if (key->IsFolder()){
                     treeName += "/";
                     treeName += key2->GetName();
@@ -75,10 +88,10 @@ TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG) {
                         }
                     }
                 }
-            }            
+            }
         }
     }
-    return treeName;    
+    return treeName;
 }
 
 /**
@@ -97,12 +110,12 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_
     Selectedb_dis.clear();
     double TempMinWMass = 999999.0;
     double TempMinHMass = 999999.0;
-    
+
     int OnShellW_LeadingJetIndex = -1;
     int OnShellW_SubLeadingJetIndex = -1;
     int OffShellW_LeadingJetIndex = -1;
     int OffShellW_SubLeadingJetIndex = -1;
-    
+
     TLorentzVector jet11;
     TLorentzVector jet12;
     TLorentzVector jet1;
@@ -113,16 +126,16 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_
     Float_t jet2b;
     Float_t jet3b;
     Float_t jet4b;
-    
+
     int nTagJets = AllGoodJets.size();
-    
+
     // Select 2 jets whose mass closest to W-boson mass
     for (int CountJet1 = 0; CountJet1 < nTagJets-1; CountJet1++) {
         for (int CountJet2 = CountJet1+1; CountJet2 < nTagJets; CountJet2++) {
             if (DEBUG) std::cout << "(CountJet1,CountJet2) = (" << CountJet1 << "," << CountJet2 << ")" << std::endl;
             jet11 = AllGoodJets[CountJet1];
             jet12 = AllGoodJets[CountJet2];
-            
+
             double deltaMass =  abs((jet11 + jet12).M() - 80.0);
             if (DEBUG) std::cout << "deltaMass = " << deltaMass << "\t TempMinWMass = " << TempMinWMass << std::endl;
             if ( deltaMass < TempMinWMass)
@@ -140,7 +153,7 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_
         }
     }
     if (DEBUG) std::cout << "[INFO] Print Jet Index (After W-Selection): " << OnShellW_LeadingJetIndex << "\t" << OnShellW_SubLeadingJetIndex << "\t" << OffShellW_LeadingJetIndex << "\t" << OffShellW_SubLeadingJetIndex  << std::endl;
-    
+
     for (int CountJet1 = 0; CountJet1 < nTagJets-1; CountJet1++) {
         if (CountJet1 == OnShellW_LeadingJetIndex || CountJet1 == OnShellW_SubLeadingJetIndex) continue;
         for (int CountJet2 = CountJet1+1; CountJet2 < nTagJets; CountJet2++) {
@@ -148,7 +161,7 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_
             if (DEBUG) std::cout << "(CountJet1,CountJet2) = (" << CountJet1 << "," << CountJet2 << ")" << std::endl;
             jet11 = AllGoodJets[CountJet1];
             jet12 = AllGoodJets[CountJet2];
-            
+
             double deltaMass =  abs((jet11 + jet12 + AllGoodJets[OnShellW_LeadingJetIndex] + AllGoodJets[OnShellW_SubLeadingJetIndex] ).M() - 125.0);
             if (DEBUG) std::cout << "deltaMass = " << deltaMass << "\t TempMinHMass = " << TempMinHMass << std::endl;
             if ( deltaMass < TempMinHMass)
@@ -173,13 +186,13 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_
     jet2b = b_dis[OnShellW_SubLeadingJetIndex];
     jet3b = b_dis[OffShellW_LeadingJetIndex];
     jet4b = b_dis[OffShellW_SubLeadingJetIndex];
-    
+
     if (DEBUG) std::cout << "[INFO] Print pt of 4 selected jets: " << OnShellW_LeadingJetIndex << "\t" << OnShellW_SubLeadingJetIndex << "\t" << OffShellW_LeadingJetIndex << "\t" << OffShellW_SubLeadingJetIndex  << std::endl;
     if (DEBUG) std::cout << "[INFO] jet1 pT = " << jet1.Pt() << std::endl;
     if (DEBUG) std::cout << "[INFO] jet2 pT = " << jet2.Pt() << std::endl;
     if (DEBUG) std::cout << "[INFO] jet3 pT = " << jet3.Pt() << std::endl;
     if (DEBUG) std::cout << "[INFO] jet4 pT = " << jet4.Pt() << std::endl;
-    
+
     SelectedJets.push_back(jet1);
     SelectedJets.push_back(jet2);
     SelectedJets.push_back(jet3);
@@ -188,11 +201,11 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_
     Selectedb_dis.push_back(jet2b);
     Selectedb_dis.push_back(jet3b);
     Selectedb_dis.push_back(jet4b);
-    
+
 }
 
 /**
- * @brief      Get the root file name. Its the last string when 
+ * @brief      Get the root file name. Its the last string when
  *             we split is using "/" deliminator.
  *
  * @param[in]  s          Input string
