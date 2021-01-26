@@ -145,71 +145,71 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
                                   flashggReader.goodJets_4_E
                                 );
         }
-        // if (flashggReader.N_goodJets>=6){        
-            // b_dis.push_back(flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
-            //                 flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-            //                 flashggReader.allJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
-            //                 );
-        //   Jets.push_back(TLorentzVector(0,0,0,0));
-        //   Jets.back().SetPxPyPzE(
-        //                           flashggReader.goodJets_5_px,
-        //                           flashggReader.goodJets_5_py,
-        //                           flashggReader.goodJets_5_pz,
-        //                           flashggReader.goodJets_5_E
-        //                         );
-        // }
-        // if (flashggReader.N_goodJets>=7){
-            // b_dis.push_back(flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
-            //                 flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-            //                 flashggReader.allJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
-            //                 );
-        //   Jets.push_back(TLorentzVector(0,0,0,0));
-        //   Jets.back().SetPxPyPzE(
-        //                           flashggReader.goodJets_6_px,
-        //                           flashggReader.goodJets_6_py,
-        //                           flashggReader.goodJets_6_pz,
-        //                           flashggReader.goodJets_6_E
-        //                         );
-        // }
-        // if (flashggReader.N_goodJets>=8){
-            // b_dis.push_back(flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
-            //                 flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-            //                 flashggReader.allJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
-            //                 );
-        //   Jets.push_back(TLorentzVector(0,0,0,0));
-        //   Jets.back().SetPxPyPzE(
-        //                           flashggReader.goodJets_7_px,
-        //                           flashggReader.goodJets_7_py,
-        //                           flashggReader.goodJets_7_pz,
-        //                           flashggReader.goodJets_7_E
-        //                         );
-        // }
-        // if (flashggReader.N_goodJets>=9) {        
-            // b_dis.push_back(flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
-            //                 flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-            //                 flashggReader.allJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
-            //                 );
-        //   Jets.push_back(TLorentzVector(0,0,0,0));
-        //   Jets.back().SetPxPyPzE(
-        //                           flashggReader.goodJets_8_px,
-        //                           flashggReader.goodJets_8_py,
-        //                           flashggReader.goodJets_8_pz,
-        //                           flashggReader.goodJets_8_E
-        //                         );
-        // }
-        // if (flashggReader.N_goodJets>=10){        
-            // b_dis.push_back(flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
-            //                 flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-            //                 flashggReader.allJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
-            //                 );
-        //   Jets.push_back(TLorentzVector(0,0,0,0));
-        //   Jets.back().SetPxPyPzE(
-        //                           flashggReader.goodJets_9_px,
-        //                           flashggReader.goodJets_9_py,
-        //                           flashggReader.goodJets_9_pz,
-        //                           flashggReader.goodJets_9_E
-        //                         );
-        // }
+        if (flashggReader.N_goodJets>=6){        
+            b_dis.push_back(flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                            flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                            flashggReader.allJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+                            );
+          Jets.push_back(TLorentzVector(0,0,0,0));
+          Jets.back().SetPxPyPzE(
+                                  flashggReader.goodJets_5_px,
+                                  flashggReader.goodJets_5_py,
+                                  flashggReader.goodJets_5_pz,
+                                  flashggReader.goodJets_5_E
+                                );
+        }
+        if (flashggReader.N_goodJets>=7){
+            b_dis.push_back(flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                            flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                            flashggReader.allJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+                            );
+          Jets.push_back(TLorentzVector(0,0,0,0));
+          Jets.back().SetPxPyPzE(
+                                  flashggReader.goodJets_6_px,
+                                  flashggReader.goodJets_6_py,
+                                  flashggReader.goodJets_6_pz,
+                                  flashggReader.goodJets_6_E
+                                );
+        }
+        if (flashggReader.N_goodJets>=8){
+            b_dis.push_back(flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                            flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                            flashggReader.allJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+                            );
+          Jets.push_back(TLorentzVector(0,0,0,0));
+          Jets.back().SetPxPyPzE(
+                                  flashggReader.goodJets_7_px,
+                                  flashggReader.goodJets_7_py,
+                                  flashggReader.goodJets_7_pz,
+                                  flashggReader.goodJets_7_E
+                                );
+        }
+        if (flashggReader.N_goodJets>=9) {        
+            b_dis.push_back(flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                            flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                            flashggReader.allJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+                            );
+          Jets.push_back(TLorentzVector(0,0,0,0));
+          Jets.back().SetPxPyPzE(
+                                  flashggReader.goodJets_8_px,
+                                  flashggReader.goodJets_8_py,
+                                  flashggReader.goodJets_8_pz,
+                                  flashggReader.goodJets_8_E
+                                );
+        }
+        if (flashggReader.N_goodJets>=10){        
+            b_dis.push_back(flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                            flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                            flashggReader.allJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+                            );
+          Jets.push_back(TLorentzVector(0,0,0,0));
+          Jets.back().SetPxPyPzE(
+                                  flashggReader.goodJets_9_px,
+                                  flashggReader.goodJets_9_py,
+                                  flashggReader.goodJets_9_pz,
+                                  flashggReader.goodJets_9_E
+                                );
+        }
         std::vector<TLorentzVector> SelectedGoodJets;
         std::vector<Float_t> Selectedb_dis;
         GetFHminWHJets(Jets, b_dis, SelectedGoodJets, Selectedb_dis, 0);
