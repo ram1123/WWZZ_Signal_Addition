@@ -18,7 +18,7 @@
 
 
 TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG=0);
-void GetFHminWHJets(bool DEBUG, std::vector<TLorentzVector> &AllGoodJets, std::vector<TLorentzVector> &SelectedJets);
+void GetFHminWHJets(bool DEBUG, std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb_dis);
 
 TString GetLastString(string s, string delimiter, bool DEBUG=0);
 
@@ -81,12 +81,20 @@ TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG) {
     return treeName;    
 }
 
-
-// vector<Ptr<flashgg::Jet> > HHWWggTagProducer::GetFHminWHJets(bool doHHWWggDebug, std::vector<edm::Ptr<Jet> > AllGoodJets)
-void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<TLorentzVector> &SelectedJets, bool DEBUG = 0)
+/**
+ * @brief      Select 4 jets for FH selection that satisfies W-mass and H-mass constraints.
+ *
+ * @param      AllGoodJets    All good jets satisfying the jets pre-selection.
+ * @param      b_dis          b-discriminator branches fro all good jets.
+ * @param      SelectedJets   Four selected jets that satisfying FH selection.
+ * @param      Selectedb_dis  b-discriminator for the 4-selected jets.
+ * @param[in]  DEBUG          If its 1 then print more info that helps for debug.
+ */
+void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb_dis, bool DEBUG = 0)
 {
     // get 4 jets for FH final state with minWH vals
     SelectedJets.clear();
+    Selectedb_dis.clear();
     double TempMinWMass = 999999.0;
     double TempMinHMass = 999999.0;
     
@@ -101,6 +109,10 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<TLoren
     TLorentzVector jet2;
     TLorentzVector jet3;
     TLorentzVector jet4;
+    Float_t jet1b;
+    Float_t jet2b;
+    Float_t jet3b;
+    Float_t jet4b;
     
     int nTagJets = AllGoodJets.size();
     
@@ -157,6 +169,10 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<TLoren
     jet2 = AllGoodJets[OnShellW_SubLeadingJetIndex];
     jet3 = AllGoodJets[OffShellW_LeadingJetIndex];
     jet4 = AllGoodJets[OffShellW_SubLeadingJetIndex];
+    jet1b = b_dis[OnShellW_LeadingJetIndex];
+    jet2b = b_dis[OnShellW_SubLeadingJetIndex];
+    jet3b = b_dis[OffShellW_LeadingJetIndex];
+    jet4b = b_dis[OffShellW_SubLeadingJetIndex];
     
     if (DEBUG) std::cout << "[INFO] Print pt of 4 selected jets: " << OnShellW_LeadingJetIndex << "\t" << OnShellW_SubLeadingJetIndex << "\t" << OffShellW_LeadingJetIndex << "\t" << OffShellW_SubLeadingJetIndex  << std::endl;
     if (DEBUG) std::cout << "[INFO] jet1 pT = " << jet1.Pt() << std::endl;
@@ -168,19 +184,30 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<TLoren
     SelectedJets.push_back(jet2);
     SelectedJets.push_back(jet3);
     SelectedJets.push_back(jet4);
+    Selectedb_dis.push_back(jet1b);
+    Selectedb_dis.push_back(jet2b);
+    Selectedb_dis.push_back(jet3b);
+    Selectedb_dis.push_back(jet4b);
     
 }
 
-
+/**
+ * @brief      Get the root file name. Its the last string when 
+ *             we split is using "/" deliminator.
+ *
+ * @param[in]  s          Input string
+ * @param[in]  delimiter  The delimiter to be used for seperation.
+ * @param[in]  DEBUG      The debug
+ *
+ * @return     It returns the root file name.
+ */
 TString GetLastString(string s, string delimiter, bool DEBUG)
 {
-    // std::string s = string(inputFile1);
-    // std::string delimiter = "/";
     size_t pos = 0;
     std::string token;
     while ((pos = s.find(delimiter)) != std::string::npos) {
         token = s.substr(0, pos);
-        if (DEBUG) std::cout << token << std::endl;
+        if (DEBUG) std::cout << "\t==> " << token << std::endl;
         s.erase(0, pos + delimiter.length());
     }
     std::cout << "[INFO] ReRunFHJetSelection.h#186: Last string: " << s << std::endl;
