@@ -87,10 +87,22 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         }
         
         if (flashggReader.N_goodJets>=4){        
-            b_dis.push_back(flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-            b_dis.push_back(flashggReader.goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-            b_dis.push_back(flashggReader.goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-            b_dis.push_back(flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+            b_dis.push_back(flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb + 
+                            flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                            flashggReader.allJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
+                            );
+            b_dis.push_back(flashggReader.goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb + 
+                            flashggReader.goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                            flashggReader.allJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
+                            );
+            b_dis.push_back(flashggReader.goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb + 
+                            flashggReader.goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                            flashggReader.allJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
+                            );
+            b_dis.push_back(flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probb + 
+                            flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                            flashggReader.allJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
+                            );
             Jets.push_back(TLorentzVector(0,0,0,0));
             Jets.back().SetPxPyPzE(
                                   flashggReader.goodJets_0_px,
@@ -121,7 +133,10 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
                                 );
         }
         if (flashggReader.N_goodJets>=5){        
-            b_dis.push_back(flashggReader.goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+            b_dis.push_back(flashggReader.goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                            flashggReader.goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                            flashggReader.allJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+                            );
             Jets.push_back(TLorentzVector(0,0,0,0));
             Jets.back().SetPxPyPzE(
                                   flashggReader.goodJets_4_px,
@@ -131,7 +146,10 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
                                 );
         }
         // if (flashggReader.N_goodJets>=6){        
-            // b_dis.push_back(flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+            // b_dis.push_back(flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+            //                 flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+            //                 flashggReader.allJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+            //                 );
         //   Jets.push_back(TLorentzVector(0,0,0,0));
         //   Jets.back().SetPxPyPzE(
         //                           flashggReader.goodJets_5_px,
@@ -141,7 +159,10 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         //                         );
         // }
         // if (flashggReader.N_goodJets>=7){
-            // b_dis.push_back(flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+            // b_dis.push_back(flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+            //                 flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+            //                 flashggReader.allJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+            //                 );
         //   Jets.push_back(TLorentzVector(0,0,0,0));
         //   Jets.back().SetPxPyPzE(
         //                           flashggReader.goodJets_6_px,
@@ -151,7 +172,10 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         //                         );
         // }
         // if (flashggReader.N_goodJets>=8){
-            // b_dis.push_back(flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+            // b_dis.push_back(flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+            //                 flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+            //                 flashggReader.allJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+            //                 );
         //   Jets.push_back(TLorentzVector(0,0,0,0));
         //   Jets.back().SetPxPyPzE(
         //                           flashggReader.goodJets_7_px,
@@ -161,7 +185,10 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         //                         );
         // }
         // if (flashggReader.N_goodJets>=9) {        
-            // b_dis.push_back(flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+            // b_dis.push_back(flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+            //                 flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+            //                 flashggReader.allJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+            //                 );
         //   Jets.push_back(TLorentzVector(0,0,0,0));
         //   Jets.back().SetPxPyPzE(
         //                           flashggReader.goodJets_8_px,
@@ -171,7 +198,10 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         //                         );
         // }
         // if (flashggReader.N_goodJets>=10){        
-            // b_dis.push_back(flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+            // b_dis.push_back(flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+            //                 flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+            //                 flashggReader.allJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_problepb                
+            //                 );
         //   Jets.push_back(TLorentzVector(0,0,0,0));
         //   Jets.back().SetPxPyPzE(
         //                           flashggReader.goodJets_9_px,
