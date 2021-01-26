@@ -53,6 +53,10 @@ public:
    Float_t         New_Sub3leading_Jet_pz = -999.0;
    Float_t         New_Sub3leading_Jet_eta = -999.0;
    Float_t         New_Sub3leading_Jet_phi = -999.0;
+   Float_t         New_OnShellW_LeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb = -999.0;
+   Float_t         New_OnShellW_SubLeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb = -999.0;
+   Float_t         New_OffShellW_LeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb = -999.0;
+   Float_t         New_OffShellW_SubLeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb = -999.0;
 
 
 
@@ -93,5 +97,11 @@ void output::init(TTree* tree) {
    fTree->Branch("New_Sub3leading_Jet_pz", &New_Sub3leading_Jet_pz, "New_Sub3leading_Jet_pz/F");
    fTree->Branch("New_Sub3leading_Jet_eta", &New_Sub3leading_Jet_eta, "New_Sub3leading_Jet_eta/F");
    fTree->Branch("New_Sub3leading_Jet_phi", &New_Sub3leading_Jet_phi, "New_Sub3leading_Jet_phi/F");
+   fTree->Branch("New_OnShellW_LeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb", &New_OnShellW_LeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb, "New_OnShellW_LeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb/F");
+   fTree->Branch("New_OnShellW_SubLeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb", &New_OnShellW_SubLeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb, "New_OnShellW_SubLeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb/F");
+   fTree->Branch("New_OffShellW_LeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb", &New_OffShellW_LeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb, "New_OffShellW_LeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb/F");
+   fTree->Branch("New_OffShellW_SubLeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb", &New_OffShellW_SubLeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb, "New_OffShellW_SubLeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb/F");
+   
+   
 
 }
