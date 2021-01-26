@@ -81,8 +81,15 @@ TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG) {
     return treeName;    
 }
 
-
-// vector<Ptr<flashgg::Jet> > HHWWggTagProducer::GetFHminWHJets(bool doHHWWggDebug, std::vector<edm::Ptr<Jet> > AllGoodJets)
+/**
+ * @brief      Select 4 jets for FH selection that satisfies W-mass and H-mass constraints.
+ *
+ * @param      AllGoodJets    All good jets satisfying the jets pre-selection.
+ * @param      b_dis          b-discriminator branches fro all good jets.
+ * @param      SelectedJets   Four selected jets that satisfying FH selection.
+ * @param      Selectedb_dis  b-discriminator for the 4-selected jets.
+ * @param[in]  DEBUG          If its 1 then print more info that helps for debug.
+ */
 void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb_dis, bool DEBUG = 0)
 {
     // get 4 jets for FH final state with minWH vals
@@ -184,16 +191,23 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_
     
 }
 
-
+/**
+ * @brief      Get the root file name. Its the last string when 
+ *             we split is using "/" deliminator.
+ *
+ * @param[in]  s          Input string
+ * @param[in]  delimiter  The delimiter to be used for seperation.
+ * @param[in]  DEBUG      The debug
+ *
+ * @return     It returns the root file name.
+ */
 TString GetLastString(string s, string delimiter, bool DEBUG)
 {
-    // std::string s = string(inputFile1);
-    // std::string delimiter = "/";
     size_t pos = 0;
     std::string token;
     while ((pos = s.find(delimiter)) != std::string::npos) {
         token = s.substr(0, pos);
-        if (DEBUG) std::cout << token << std::endl;
+        if (DEBUG) std::cout << "\t==> " << token << std::endl;
         s.erase(0, pos + delimiter.length());
     }
     std::cout << "[INFO] ReRunFHJetSelection.h#186: Last string: " << s << std::endl;

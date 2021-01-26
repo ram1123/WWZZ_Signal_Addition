@@ -86,57 +86,52 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
           }
         }
         
-        // outputVars.New_Leading_Jet_E = flashggReader.goodJets_0_E;
-        // std::cout << outputVars.New_Leading_Jet_E <<"\t" << flashggReader.goodJets_0_E << std::endl;
-        b_dis.push_back(flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-        b_dis.push_back(flashggReader.goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-        b_dis.push_back(flashggReader.goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-        b_dis.push_back(flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-        b_dis.push_back(flashggReader.goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-        //b_dis.push_back(goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-        //b_dis.push_back(goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-        //b_dis.push_back(goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-        //b_dis.push_back(goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-        //b_dis.push_back(goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
-        
-        Jets.push_back(TLorentzVector(0,0,0,0));
-        Jets.back().SetPxPyPzE(
+        if (flashggReader.N_goodJets>=4){        
+            b_dis.push_back(flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+            b_dis.push_back(flashggReader.goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+            b_dis.push_back(flashggReader.goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+            b_dis.push_back(flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+            Jets.push_back(TLorentzVector(0,0,0,0));
+            Jets.back().SetPxPyPzE(
                                   flashggReader.goodJets_0_px,
                                   flashggReader.goodJets_0_py,
                                   flashggReader.goodJets_0_pz,
                                   flashggReader.goodJets_0_E
                                 );
-        Jets.push_back(TLorentzVector(0,0,0,0));
-        Jets.back().SetPxPyPzE(
+            Jets.push_back(TLorentzVector(0,0,0,0));
+            Jets.back().SetPxPyPzE(
                                   flashggReader.goodJets_1_px,
                                   flashggReader.goodJets_1_py,
                                   flashggReader.goodJets_1_pz,
                                   flashggReader.goodJets_1_E
                                 );
-        Jets.push_back(TLorentzVector(0,0,0,0));
-        Jets.back().SetPxPyPzE(
+            Jets.push_back(TLorentzVector(0,0,0,0));
+            Jets.back().SetPxPyPzE(
                                   flashggReader.goodJets_2_px,
                                   flashggReader.goodJets_2_py,
                                   flashggReader.goodJets_2_pz,
                                   flashggReader.goodJets_2_E
                                 );
-        Jets.push_back(TLorentzVector(0,0,0,0));
-        Jets.back().SetPxPyPzE(
+            Jets.push_back(TLorentzVector(0,0,0,0));
+            Jets.back().SetPxPyPzE(
                                   flashggReader.goodJets_3_px,
                                   flashggReader.goodJets_3_py,
                                   flashggReader.goodJets_3_pz,
                                   flashggReader.goodJets_3_E
                                 );
-        if (flashggReader.N_goodJets==5){        
-          Jets.push_back(TLorentzVector(0,0,0,0));
-          Jets.back().SetPxPyPzE(
+        }
+        if (flashggReader.N_goodJets>=5){        
+            b_dis.push_back(flashggReader.goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
+            Jets.push_back(TLorentzVector(0,0,0,0));
+            Jets.back().SetPxPyPzE(
                                   flashggReader.goodJets_4_px,
                                   flashggReader.goodJets_4_py,
                                   flashggReader.goodJets_4_pz,
                                   flashggReader.goodJets_4_E
                                 );
         }
-        // if (flashggReader.N_goodJets==6){        
+        // if (flashggReader.N_goodJets>=6){        
+            // b_dis.push_back(flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
         //   Jets.push_back(TLorentzVector(0,0,0,0));
         //   Jets.back().SetPxPyPzE(
         //                           flashggReader.goodJets_5_px,
@@ -145,7 +140,8 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         //                           flashggReader.goodJets_5_E
         //                         );
         // }
-        // if (flashggReader.N_goodJets==7){
+        // if (flashggReader.N_goodJets>=7){
+            // b_dis.push_back(flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
         //   Jets.push_back(TLorentzVector(0,0,0,0));
         //   Jets.back().SetPxPyPzE(
         //                           flashggReader.goodJets_6_px,
@@ -154,7 +150,8 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         //                           flashggReader.goodJets_6_E
         //                         );
         // }
-        // if (flashggReader.N_goodJets==8){
+        // if (flashggReader.N_goodJets>=8){
+            // b_dis.push_back(flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
         //   Jets.push_back(TLorentzVector(0,0,0,0));
         //   Jets.back().SetPxPyPzE(
         //                           flashggReader.goodJets_7_px,
@@ -163,7 +160,8 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         //                           flashggReader.goodJets_7_E
         //                         );
         // }
-        // if (flashggReader.N_goodJets==9) {        
+        // if (flashggReader.N_goodJets>=9) {        
+            // b_dis.push_back(flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
         //   Jets.push_back(TLorentzVector(0,0,0,0));
         //   Jets.back().SetPxPyPzE(
         //                           flashggReader.goodJets_8_px,
@@ -172,7 +170,8 @@ void ReRunFHJetSelection(TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWW
         //                           flashggReader.goodJets_8_E
         //                         );
         // }
-        // if (flashggReader.N_goodJets==10){        
+        // if (flashggReader.N_goodJets>=10){        
+            // b_dis.push_back(flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probb);
         //   Jets.push_back(TLorentzVector(0,0,0,0));
         //   Jets.back().SetPxPyPzE(
         //                           flashggReader.goodJets_9_px,
