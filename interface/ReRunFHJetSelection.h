@@ -18,6 +18,7 @@
 
 
 TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG=0);
+TString GetTreeName(TFile *f, std::vector<TString> &RootFileDirStructure, std::vector<TString> &ListOfAllTrees, bool DEBUG=0);
 void GetFHminWHJets(bool DEBUG, std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb_dis);
 TString GetLastString(string s, string delimiter, bool DEBUG=0);
 
@@ -94,6 +95,53 @@ TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG) {
     return treeName;
 }
 
+
+TString GetTreeName(TFile *f, std::vector<TString> &RootFileDirStructure, std::vector<TString> &ListOfAllTrees, bool DEBUG)
+{
+    TString DirName = "";
+
+    TIter next(f->GetListOfKeys());
+    TKey *key;
+    while ( (key = (TKey*)next())) {
+        if (DEBUG) std::cout << "key name: " << key->GetName() << "\tClass: " << key->GetClassName() << std::endl;
+        // if (key->GetClassName() == "TDirectoryFile") std::cout << "Ram" << std::endl;
+        // if (strstr(key->GetClassName(),"TDirectoryFile"))
+        // {
+        //     RootFileDirStructure.push_back(TString(key->GetName()));
+        // }
+        if (key->IsFolder()) {
+            f->cd(key->GetName());
+            DirName += key->GetName();
+            RootFileDirStructure.push_back(TString(key->GetName()));
+            TDirectory *subdir = gDirectory;
+            TIter next(subdir->GetListOfKeys());
+            TKey *key2;
+            while ( (key2 = (TKey*)next())) {
+                if (DEBUG) std::cout << "key2 name: " << key2->GetName() << "\tClass: " << key2->GetClassName() << std::endl;
+                if (key->IsFolder()){
+                    DirName += "/";
+                    DirName += key2->GetName();
+                    RootFileDirStructure.push_back(TString(key2->GetName()));
+                    subdir->cd(key2->GetName());
+                    TDirectory *subdir = gDirectory;
+                    TIter next(subdir->GetListOfKeys());
+                    TKey *key3;
+                    while ( (key3 = (TKey*)next())) {
+                        if (string(key3->GetName()).find("Tag_1") != std::string::npos)
+                        {
+                            if (DEBUG) std::cout << "key3 name: " << key3->GetName() << "\tClass: " << key3->GetClassName() << std::endl;
+                            // RootFileDirStructure.push_back(TString(key3->GetName()));
+                            // DirName += "/";
+                            // DirName += key3->GetName();
+                            ListOfAllTrees.push_back(TString(key3->GetName()));
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return DirName;
+}
 /**
  * @brief      Select 4 jets for FH selection that satisfies W-mass and H-mass constraints.
  *
