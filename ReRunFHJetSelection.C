@@ -24,7 +24,13 @@
 #include "progressbar.hpp"
 #include <time.h>
 
-void ReRunFHJetSelection(bool isMC = true, TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Signal/FH_NLO_2017_hadded/GluGluToHHTo2G4Q_node_cHHH1_2017.root", TString OutPutPath = "./")
+void ReRunFHJetSelection( bool isMC = true,
+                          TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Signal/FH_NLO_2017_hadded/GluGluToHHTo2G4Q_node_cHHH1_2017.root",
+                          TString OutPutPath = "./",
+                          TString PrefixOutPutRootFileName = "",
+                          bool WithSyst = true,
+                          bool ifDNN = false
+                        )
 {
     clock_t tStart = clock();
     TFile *OldRootFile = new TFile(inputFile1,"READ");
@@ -44,7 +50,9 @@ void ReRunFHJetSelection(bool isMC = true, TString inputFile1 = "/eos/user/a/ati
     std::cout << "Number of Trees: " << Size_Vec_ListOfAllTrees << std::endl;
 
     TString NewRootFileName = GetLastString(string(inputFile1), "/");
-    TFile *newfile = new TFile(OutPutPath+"TEST_"+NewRootFileName, "RECREATE","",207);
+    TString OutPutRootFileName = OutPutPath+"/"+PrefixOutPutRootFileName+NewRootFileName;
+    std::cout << "Output root file name: " << OutPutRootFileName << std::endl;
+    TFile *newfile = new TFile(OutPutRootFileName, "RECREATE","",207);
     newfile->mkdir(DirectoryName);
 
     int TreesCount = 0;
@@ -52,6 +60,9 @@ void ReRunFHJetSelection(bool isMC = true, TString inputFile1 = "/eos/user/a/ati
     {
         TreesCount++;
         std::cout << "Reading Tree: " << *OldTreeName << std::endl;
+        if (!WithSyst) {
+          if (TreesCount>=2) break;
+        }
 
         TTree *OldTree = (TTree*)OldRootFile->Get(DirectoryName+"/"+TString(*OldTreeName));
 
@@ -79,8 +90,11 @@ void ReRunFHJetSelection(bool isMC = true, TString inputFile1 = "/eos/user/a/ati
         progressbar bar(20);
         for (Long64_t jentry=0; jentry<nentries;jentry++) {
             flashggReader.GetEntry(jentry);
-            if (jentry%1000 == 1) newtree->AutoSave("SaveSelf");
+            // if (jentry%1000 == 1) newtree->AutoSave("SaveSelf");
             // if(jentry>1000) break;  // For debug purpose
+            //
+            //
+            if (flashggReader.HGGCandidate_pt < 160 && (!ifDNN)) continue;
 
             Jets.clear();
             b_dis.clear();
