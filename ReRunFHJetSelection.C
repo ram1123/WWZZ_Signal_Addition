@@ -40,13 +40,17 @@ void ReRunFHJetSelection(bool isMC = true, TString inputFile1 = "/eos/user/a/ati
     std::vector<TString> Vec_ListOfAllTrees;
     TString DirectoryName = GetTreeName(OldRootFile, Vec_RootFileDirStructure, Vec_ListOfAllTrees, 0);
     std::cout << "DirectoryName: " << DirectoryName << std::endl;
+    int Size_Vec_ListOfAllTrees = Vec_ListOfAllTrees.size();
+    std::cout << "Number of Trees: " << Size_Vec_ListOfAllTrees << std::endl;
 
     TString NewRootFileName = GetLastString(string(inputFile1), "/");
     TFile *newfile = new TFile(OutPutPath+"TEST_"+NewRootFileName, "RECREATE","",207);
     newfile->mkdir(DirectoryName);
 
+    int TreesCount = 0;
     for (std::vector<TString>::iterator OldTreeName = Vec_ListOfAllTrees.begin(); OldTreeName != Vec_ListOfAllTrees.end(); ++OldTreeName)
     {
+        TreesCount++;
         std::cout << "Reading Tree: " << *OldTreeName << std::endl;
 
         TTree *OldTree = (TTree*)OldRootFile->Get(DirectoryName+"/"+TString(*OldTreeName));
@@ -64,7 +68,7 @@ void ReRunFHJetSelection(bool isMC = true, TString inputFile1 = "/eos/user/a/ati
         output outputVars = output(newtree);
 
         Long64_t nentries = OldTree->GetEntries();
-        std::cout << "nentries = " << nentries << std::endl;
+        std::cout << "Files: " << TreesCount << "/" << Size_Vec_ListOfAllTrees <<  ",  nentries = " << nentries << std::endl;
         printf("Time taken: %.2fs\n", (double)(clock() - tStart)/CLOCKS_PER_SEC);
 
         std::vector<TLorentzVector> Jets;
