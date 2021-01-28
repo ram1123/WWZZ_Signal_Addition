@@ -183,6 +183,8 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_
             if (DEBUG) std::cout << "(CountJet1,CountJet2) = (" << CountJet1 << "," << CountJet2 << ")" << std::endl;
             jet11 = AllGoodJets[CountJet1];
             jet12 = AllGoodJets[CountJet2];
+            if (b_dis[CountJet1] > 0.7221) continue;
+            if (b_dis[CountJet2] > 0.7221) continue;
 
             double deltaMass =  abs((jet11 + jet12).M() - 80.0);
             if (DEBUG) std::cout << "deltaMass = " << deltaMass << "\t TempMinWMass = " << TempMinWMass << std::endl;
