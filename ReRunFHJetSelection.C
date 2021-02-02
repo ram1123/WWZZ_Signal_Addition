@@ -42,12 +42,19 @@ void ReRunFHJetSelection( bool isMC = true,
     }
     std::cout << "Reading file ==> " << inputFile1 << std::endl;
 
-    std::vector<TString> Vec_RootFileDirStructure;
     std::vector<TString> Vec_ListOfAllTrees;
-    TString DirectoryName = GetTreeName(OldRootFile, Vec_RootFileDirStructure, Vec_ListOfAllTrees, 0);
-    std::cout << "DirectoryName: " << DirectoryName << std::endl;
+    getallTrees(OldRootFile,"/",Vec_ListOfAllTrees);
     int Size_Vec_ListOfAllTrees = Vec_ListOfAllTrees.size();
     std::cout << "Number of Trees: " << Size_Vec_ListOfAllTrees << std::endl;
+
+    vector<string> fields;
+    Tokenize(std::string(Vec_ListOfAllTrees[0]),fields, "/");
+    TString DirectoryName = "";
+    for (std::vector<string>::iterator DirName = fields.begin(); DirName != (fields.end()-1); ++DirName)
+    {
+        DirectoryName += *DirName + "/";
+    }
+    std::cout << "DirectoryName: " << DirectoryName << std::endl;
 
     TString NewRootFileName = GetLastString(string(inputFile1), "/");
     TString OutPutRootFileName = OutPutPath+"/"+PrefixOutPutRootFileName+NewRootFileName;
@@ -64,7 +71,7 @@ void ReRunFHJetSelection( bool isMC = true,
           if (TreesCount>=2) break;
         }
 
-        TTree *OldTree = (TTree*)OldRootFile->Get(DirectoryName+"/"+TString(*OldTreeName));
+        TTree *OldTree = (TTree*)OldRootFile->Get(TString(*OldTreeName));
 
         // if (isMC) {
         flashgg_MC flashggReader(OldTree);
