@@ -15,16 +15,6 @@ root -l -b -q "ReRunFHJetSelection.C(\"/eos/user/a/atishelm/ntuples/HHWWgg_flash
 
 # Get Scaled ZZ root file
 
-```bash
-rooteventselector -s "rand()/2147483647 <= 0.12269939" nodecHHH1_GluGluToHHTo2G2ZTo2G4Q_1.root:tagsDumper/trees/GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1 nodecHHH1_GluGluToHHTo2G2ZTo2G4Q_trimmed.root
-```
-
-This command applies a scale factor of 0.12 to the input root tree.
-
-The above command changes the tree structure from `tagsDumper/trees/GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1` to `GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1`.
-
-To regain the tree structure run the c++ macro: `ReStructureTTree.C`.
-
-# Get WW+ZZ root file
-
-Now just hadd the scaled ZZ root file and the original WW root file.
+1. Run script: `python TrimZZRootFile.py`
+    1. This will generate a trimmed root file for ZZ. But, it strips the directory name `tagsDumper/trees`.
+2. To get the directory name `tagsDumper/trees` run the script: `root -l -b -q ReStructureTTree.C`.
