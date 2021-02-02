@@ -20,6 +20,7 @@
 #include "interface/flashgg_Data.h"
 #include "interface/flashgg_MC.h"
 #include "interface/output.h"
+#include "interface/utils.C"
 #include <chrono>
 #include "progressbar.hpp"
 #include <time.h>
@@ -43,7 +44,7 @@ void ReRunFHJetSelection( bool isMC = true,
     std::cout << "Reading file ==> " << inputFile1 << std::endl;
 
     std::vector<TString> Vec_ListOfAllTrees;
-    getallTrees(OldRootFile,"/",Vec_ListOfAllTrees);
+    getallTrees(OldRootFile,"/",Vec_ListOfAllTrees, "Tag_1");
     int Size_Vec_ListOfAllTrees = Vec_ListOfAllTrees.size();
     std::cout << "Number of Trees: " << Size_Vec_ListOfAllTrees << std::endl;
 

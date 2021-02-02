@@ -36,7 +36,7 @@ void getallTrees(TDirectory *f, TString basepath, std::vector<TString> &TreeName
             if (DEBUG) std::cout << "kname: " <<  kname << std::endl;
             f->cd(key->GetName());
             TDirectory *subdir = gDirectory;
-            getallTrees(subdir, basepath+kname+"/", TreeNames);
+            getallTrees(subdir, basepath+kname+"/", TreeNames, SearchString);
         } else if(obj->IsA()->InheritsFrom(TTree::Class()) && kname.Contains(SearchString)) {
             if (DEBUG) std::cout << "basepath: " << basepath+kname << std::endl;
             TreeNames.push_back(basepath+kname);
