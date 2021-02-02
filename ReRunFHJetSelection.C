@@ -237,6 +237,8 @@ void ReRunFHJetSelection( bool isMC = true,
             GetFHminWHJets(Jets, b_dis, SelectedGoodJets, Selectedb_dis, 0);
 
             // std::cout << "Jets size = " << Jets.size() << std::endl;
+            if (Selectedb_dis[0]<-1 || Selectedb_dis[1]<-1 || Selectedb_dis[2]<-1 || Selectedb_dis[3]<-1)
+              continue;
 
             outputVars.New_Leading_Jet_E  = SelectedGoodJets[0].E();
             outputVars.New_Leading_Jet_pt = SelectedGoodJets[0].Pt();

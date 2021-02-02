@@ -27,10 +27,19 @@
 TString GetTreeName(TFile *f, std::vector<TString> &RootFileDirStructure, std::vector<TString> &ListOfAllTrees, bool DEBUG=0);
 TString GetLastString(string s, string delimiter, bool DEBUG=0);
 
+std::string replaceFirstOccurrence(
+    std::string& s,
+    const std::string& toReplace,
+    const std::string& replaceWith)
+{
+    std::size_t pos = s.find(toReplace);
+    if (pos == std::string::npos) return s;
+    return s.replace(pos, toReplace.length(), replaceWith);
+}
 
 void ReStructureTTree()
 {
-    TString inputFile1 = "/tmp/rasharma/RemovedDuplicates_GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_2016_Trimmed.root";
+    TString inputFile1 = "RemovedDuplicates_GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_2016_Trimmed.root";
     TString PrefixOutPutRootFileName = "TEMP_";
 
     TFile *OldRootFile = new TFile(inputFile1);
@@ -70,6 +79,9 @@ void ReStructureTTree()
 
         // Clone the old tree
         auto NewTree = OldTree->CloneTree();
+        // std::cout << replaceFirstOccurrence((*OldTreeName).c_str(),"To2G2ZTo2G4Q","To2G4Q") << std::endl;
+        TString NewTreeName = (*OldTreeName).Remove(10,6);
+        NewTree->SetName(NewTreeName);
         delete OldTree;
     }
     newfile->Write();

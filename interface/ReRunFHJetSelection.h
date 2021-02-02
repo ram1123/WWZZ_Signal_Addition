@@ -243,15 +243,27 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_
     if (DEBUG) std::cout << "[INFO] jet3 pT = " << jet3.Pt() << std::endl;
     if (DEBUG) std::cout << "[INFO] jet4 pT = " << jet4.Pt() << std::endl;
 
-    SelectedJets.push_back(jet1);
-    SelectedJets.push_back(jet2);
-    SelectedJets.push_back(jet3);
-    SelectedJets.push_back(jet4);
-    Selectedb_dis.push_back(jet1b);
-    Selectedb_dis.push_back(jet2b);
-    Selectedb_dis.push_back(jet3b);
-    Selectedb_dis.push_back(jet4b);
-
+    if (OnShellW_LeadingJetIndex== -1 || OnShellW_SubLeadingJetIndex==-1 || OffShellW_LeadingJetIndex == -1 || OffShellW_SubLeadingJetIndex==-1)
+    {
+        SelectedJets.push_back(TLorentzVector(0,0,0,0));
+        SelectedJets.push_back(TLorentzVector(0,0,0,0));
+        SelectedJets.push_back(TLorentzVector(0,0,0,0));
+        SelectedJets.push_back(TLorentzVector(0,0,0,0));
+        Selectedb_dis.push_back(-999.0);
+        Selectedb_dis.push_back(-999.0);
+        Selectedb_dis.push_back(-999.0);
+        Selectedb_dis.push_back(-999.0);
+        /* code */
+    } else {
+        SelectedJets.push_back(jet1);
+        SelectedJets.push_back(jet2);
+        SelectedJets.push_back(jet3);
+        SelectedJets.push_back(jet4);
+        Selectedb_dis.push_back(jet1b);
+        Selectedb_dis.push_back(jet2b);
+        Selectedb_dis.push_back(jet3b);
+        Selectedb_dis.push_back(jet4b);
+    }
 }
 
 /**
