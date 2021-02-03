@@ -29,7 +29,7 @@ void ReRunFHJetSelection( bool isMC = true,
                           TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Signal/FH_NLO_2017_hadded/GluGluToHHTo2G4Q_node_cHHH1_2017.root",
                           TString OutPutPath = "./",
                           TString PrefixOutPutRootFileName = "",
-                          bool WithSyst = true,
+                          bool WithSyst = false,
                           bool ifDNN = false
                         )
 {
@@ -99,7 +99,7 @@ void ReRunFHJetSelection( bool isMC = true,
         for (Long64_t jentry=0; jentry<nentries;jentry++) {
             flashggReader.GetEntry(jentry);
             // if (jentry%1000 == 1) newtree->AutoSave("SaveSelf");
-            // if(jentry>1000) break;  // For debug purpose
+            if(jentry>1000) break;  // For debug purpose
             //
             //
             if (flashggReader.HGGCandidate_pt < 160 && (!ifDNN)) continue;
@@ -114,8 +114,57 @@ void ReRunFHJetSelection( bool isMC = true,
                     temp_percentage_done = percentage_done;
                 }
             }
+            bool isBjets = false;
 
-            if (flashggReader.N_goodJets>=4){
+            if (flashggReader.N_goodJets >= 4) {
+              if (flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                  flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                  flashggReader.allJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_problepb > 0.7221) isBjets = true;
+              if (flashggReader.goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                  flashggReader.goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                  flashggReader.allJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_problepb > 0.7221) isBjets = true;
+              if (flashggReader.goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                  flashggReader.goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                  flashggReader.allJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_problepb > 0.7221) isBjets = true;
+              if (flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                  flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                  flashggReader.allJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_problepb > 0.7221) isBjets = true;
+            }
+            if (flashggReader.N_goodJets == 4) {
+              if (flashggReader.goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                flashggReader.goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                flashggReader.allJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_problepb > 0.7221) isBjets = true;
+            }
+            if (flashggReader.N_goodJets == 5) {
+              if (flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                  flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                  flashggReader.allJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_problepb > 0.7221) isBjets = true;
+            }
+            if (flashggReader.N_goodJets == 6) {
+              if (flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                  flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                  flashggReader.allJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_problepb > 0.7221) isBjets = true;
+            }
+            if (flashggReader.N_goodJets == 7) {
+              if (flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                  flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                  flashggReader.allJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_problepb > 0.7221) isBjets = true;
+            }
+            if (flashggReader.N_goodJets == 8) {
+              if (flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                  flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                  flashggReader.allJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_problepb > 0.7221) isBjets = true;
+            }
+            if (flashggReader.N_goodJets == 9) {
+              if (flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
+                  flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
+                  flashggReader.allJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_problepb > 0.7221) isBjets = true;
+            }
+
+          if (isBjets) continue;
+
+            if (flashggReader.N_goodJets>=4)
+            {
                 b_dis.push_back(flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                                 flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                                 flashggReader.allJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
