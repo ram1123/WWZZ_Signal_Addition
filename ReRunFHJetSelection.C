@@ -29,7 +29,7 @@ void ReRunFHJetSelection( bool isMC = true,
                           TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Signal/FH_NLO_2017_hadded/GluGluToHHTo2G4Q_node_cHHH1_2017.root",
                           TString OutPutPath = "./",
                           TString PrefixOutPutRootFileName = "",
-                          bool WithSyst = true,
+                          bool WithSyst = false,
                           bool ifDNN = false
                         )
 {
@@ -92,6 +92,8 @@ void ReRunFHJetSelection( bool isMC = true,
 
         std::vector<TLorentzVector> Jets;
         std::vector<Float_t> b_dis;
+        std::vector<int> passMediumJetID;
+        std::vector<int> passTightJetID;
 
         int temp_percentage_done = 0;
 
@@ -101,10 +103,14 @@ void ReRunFHJetSelection( bool isMC = true,
             // if (jentry%1000 == 1) newtree->AutoSave("SaveSelf");
             // if(jentry>1000) break;  // For debug purpose
 
-            if (flashggReader.HGGCandidate_pt < 160 && (!ifDNN)) continue;
+            // if (int(flashggReader.passPhotonSels) != 1) continue;
+            // if (flashggReader.HGGCandidate_pt < 160 ) continue;
+            // if (flashggReader.dipho_MVA < 0.9) continue;
 
             Jets.clear();
             b_dis.clear();
+            passMediumJetID.clear();
+            passTightJetID.clear();
 
             int percentage_done = (int)(((float)jentry/(float)nentries)*100);
             if (percentage_done % 5 == 0) {
@@ -160,7 +166,7 @@ void ReRunFHJetSelection( bool isMC = true,
                   flashggReader.allJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_problepb > 0.7221) isBjets = true;
             }
 
-          if (isBjets) continue;
+          // if (isBjets) continue;
 
             if (flashggReader.N_goodJets>=4)
             {
@@ -180,6 +186,15 @@ void ReRunFHJetSelection( bool isMC = true,
                                 flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                                 flashggReader.allJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
+                passMediumJetID.push_back( flashggReader.goodJets_0_PassMediumJetPUID );
+                passMediumJetID.push_back( flashggReader.goodJets_1_PassMediumJetPUID );
+                passMediumJetID.push_back( flashggReader.goodJets_2_PassMediumJetPUID );
+                passMediumJetID.push_back( flashggReader.goodJets_3_PassMediumJetPUID );
+                passTightJetID.push_back( flashggReader.goodJets_0_PassTightJetPUID );
+                passTightJetID.push_back( flashggReader.goodJets_1_PassTightJetPUID );
+                passTightJetID.push_back( flashggReader.goodJets_2_PassTightJetPUID );
+                passTightJetID.push_back( flashggReader.goodJets_3_PassTightJetPUID );
+
                 Jets.push_back(TLorentzVector(0,0,0,0));
                 Jets.back().SetPxPyPzE(
                                        flashggReader.goodJets_0_px,
@@ -214,6 +229,8 @@ void ReRunFHJetSelection( bool isMC = true,
                                 flashggReader.goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                                 flashggReader.allJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
+                passMediumJetID.push_back( flashggReader.goodJets_4_PassMediumJetPUID );
+                passTightJetID.push_back( flashggReader.goodJets_4_PassTightJetPUID );
                 Jets.push_back(TLorentzVector(0,0,0,0));
                 Jets.back().SetPxPyPzE(
                                        flashggReader.goodJets_4_px,
@@ -227,6 +244,8 @@ void ReRunFHJetSelection( bool isMC = true,
                                 flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                                 flashggReader.allJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
+                passMediumJetID.push_back( flashggReader.goodJets_5_PassMediumJetPUID );
+                passTightJetID.push_back( flashggReader.goodJets_5_PassTightJetPUID );
                 Jets.push_back(TLorentzVector(0,0,0,0));
                 Jets.back().SetPxPyPzE(
                                        flashggReader.goodJets_5_px,
@@ -240,6 +259,8 @@ void ReRunFHJetSelection( bool isMC = true,
                                 flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                                 flashggReader.allJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
+                passMediumJetID.push_back( flashggReader.goodJets_6_PassMediumJetPUID );
+                passTightJetID.push_back( flashggReader.goodJets_6_PassTightJetPUID );
                 Jets.push_back(TLorentzVector(0,0,0,0));
                 Jets.back().SetPxPyPzE(
                                        flashggReader.goodJets_6_px,
@@ -253,6 +274,8 @@ void ReRunFHJetSelection( bool isMC = true,
                                 flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                                 flashggReader.allJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
+                passMediumJetID.push_back( flashggReader.goodJets_7_PassMediumJetPUID );
+                passTightJetID.push_back( flashggReader.goodJets_7_PassTightJetPUID );
                 Jets.push_back(TLorentzVector(0,0,0,0));
                 Jets.back().SetPxPyPzE(
                                        flashggReader.goodJets_7_px,
@@ -266,6 +289,8 @@ void ReRunFHJetSelection( bool isMC = true,
                                 flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                                 flashggReader.allJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
+                passMediumJetID.push_back( flashggReader.goodJets_8_PassMediumJetPUID );
+                passTightJetID.push_back( flashggReader.goodJets_8_PassTightJetPUID );
                 Jets.push_back(TLorentzVector(0,0,0,0));
                 Jets.back().SetPxPyPzE(
                                        flashggReader.goodJets_8_px,
@@ -279,6 +304,8 @@ void ReRunFHJetSelection( bool isMC = true,
                                 flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                                 flashggReader.allJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
+                passMediumJetID.push_back( flashggReader.goodJets_9_PassMediumJetPUID );
+                passTightJetID.push_back( flashggReader.goodJets_9_PassTightJetPUID );
                 Jets.push_back(TLorentzVector(0,0,0,0));
                 Jets.back().SetPxPyPzE(
                                        flashggReader.goodJets_9_px,
@@ -290,11 +317,11 @@ void ReRunFHJetSelection( bool isMC = true,
 
             std::vector<TLorentzVector> SelectedGoodJets; // Fill the FH selected jets
             std::vector<Float_t> Selectedb_dis; // Fill the b-discriminator value for FH selected jets
-            GetFHminWHJets(Jets, b_dis, SelectedGoodJets, Selectedb_dis, 0);
+            GetFHminWHJets(Jets, b_dis, passMediumJetID, passTightJetID, SelectedGoodJets, Selectedb_dis, 0);
 
             // std::cout << "Jets size = " << Jets.size() << std::endl;
-            if (Selectedb_dis[0]<-1 || Selectedb_dis[1]<-1 || Selectedb_dis[2]<-1 || Selectedb_dis[3]<-1)
-              continue;
+            // if (Selectedb_dis[0]<-1 || Selectedb_dis[1]<-1 || Selectedb_dis[2]<-1 || Selectedb_dis[3]<-1)
+              // continue;
 
             outputVars.New_Leading_Jet_E  = SelectedGoodJets[0].E();
             outputVars.New_Leading_Jet_pt = SelectedGoodJets[0].Pt();

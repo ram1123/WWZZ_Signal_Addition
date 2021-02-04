@@ -17,9 +17,24 @@
  */
 
 
-void getallTrees(TDirectory *f, TString basepath, std::vector<TString> &TreeNames, TString SearchString, bool DEBUG=false);
-void GetFHminWHJets(bool DEBUG, std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb_dis);
-TString GetLastString(string s, string delimiter, bool DEBUG=0);
+void getallTrees(TDirectory *f,
+                TString basepath,
+                std::vector<TString> &TreeNames,
+                TString SearchString,
+                bool DEBUG=false
+                );
+void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets,
+                    std::vector<Float_t> &b_dis,
+                    std::vector<int> &passMediumJetID,
+                    std::vector<int> &passTightJetID,
+                    std::vector<TLorentzVector> &SelectedJets,
+                    std::vector<Float_t> &Selectedb_dis,
+                    bool DEBUG = 0
+                    );
+TString GetLastString(string s,
+                      string delimiter,
+                      bool DEBUG=0
+                      );
 
 
 void getallTrees(TDirectory *f, TString basepath, std::vector<TString> &TreeNames, TString SearchString, bool DEBUG)
@@ -46,15 +61,24 @@ void getallTrees(TDirectory *f, TString basepath, std::vector<TString> &TreeName
 
 
 /**
- * @brief      Select 4 jets for FH selection that satisfies W-mass and H-mass constraints.
+ * @brief      Select 4 jets for FH selection that satisfies W-mass and H-mass constraints
  *
- * @param      AllGoodJets    All good jets satisfying the jets pre-selection.
- * @param      b_dis          b-discriminator branches fro all good jets.
- * @param      SelectedJets   Four selected jets that satisfying FH selection.
- * @param      Selectedb_dis  b-discriminator for the 4-selected jets.
- * @param[in]  DEBUG          If its 1 then print more info that helps for debug.
+ * @param      AllGoodJets      All good jets satisfying the jets pre-selection
+ * @param      b_dis            b-discriminator branches for all good jets
+ * @param      passMediumJetID  pass medium jet ID branch for all good jets
+ * @param      passTightJetID   pass tight jet ID branch for all good jets
+ * @param      SelectedJets     Four selected jets that satisfying FH selection.
+ * @param      Selectedb_dis    b-discriminator for the 4-selected jets.
+ * @param[in]  DEBUG            If its 1 then print more info that helps for debug
  */
-void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb_dis, bool DEBUG = 0)
+void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets,
+                    std::vector<Float_t> &b_dis,
+                    std::vector<int> &passMediumJetID,
+                    std::vector<int> &passTightJetID,
+                    std::vector<TLorentzVector> &SelectedJets,
+                    std::vector<Float_t> &Selectedb_dis,
+                    bool DEBUG
+                    )
 {
     // get 4 jets for FH final state with minWH vals
     SelectedJets.clear();
@@ -88,6 +112,8 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_
             jet12 = AllGoodJets[CountJet2];
             // if (b_dis[CountJet1] > 0.7221) continue;
             // if (b_dis[CountJet2] > 0.7221) continue;
+            // if (int(passTightJetID[CountJet1]) == 1) continue;
+            // if (int(passTightJetID[CountJet2]) == 1) continue;
 
             double deltaMass =  abs((jet11 + jet12).M() - 80.0);
             if (DEBUG) std::cout << "deltaMass = " << deltaMass << "\t TempMinWMass = " << TempMinWMass << std::endl;
