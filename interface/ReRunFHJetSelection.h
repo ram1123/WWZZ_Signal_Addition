@@ -112,8 +112,8 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets,
             jet12 = AllGoodJets[CountJet2];
             // if (b_dis[CountJet1] > 0.7221) continue;
             // if (b_dis[CountJet2] > 0.7221) continue;
-            // if (int(passTightJetID[CountJet1]) == 1) continue;
-            // if (int(passTightJetID[CountJet2]) == 1) continue;
+            // if (int(passMediumJetID[CountJet1]) != 1) continue;
+            // if (int(passMediumJetID[CountJet2]) != 1) continue;
 
             double deltaMass =  abs((jet11 + jet12).M() - 80.0);
             if (DEBUG) std::cout << "deltaMass = " << deltaMass << "\t TempMinWMass = " << TempMinWMass << std::endl;
@@ -140,7 +140,8 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets,
             if (DEBUG) std::cout << "(CountJet1,CountJet2) = (" << CountJet1 << "," << CountJet2 << ")" << std::endl;
             jet11 = AllGoodJets[CountJet1];
             jet12 = AllGoodJets[CountJet2];
-
+            // if (int(passMediumJetID[CountJet1]) != 1) continue;
+            // if (int(passMediumJetID[CountJet2]) != 1) continue;
             double deltaMass =  abs((jet11 + jet12 + AllGoodJets[OnShellW_LeadingJetIndex] + AllGoodJets[OnShellW_SubLeadingJetIndex] ).M() - 125.0);
             if (DEBUG) std::cout << "deltaMass = " << deltaMass << "\t TempMinHMass = " << TempMinHMass << std::endl;
             if ( deltaMass < TempMinHMass)
