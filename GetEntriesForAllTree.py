@@ -2,7 +2,7 @@
 # @Author: Ram Krishna Sharma
 # @Date:   2021-02-04 10:01:07
 # @Last Modified by:   ramkrishna
-# @Last Modified time: 2021-02-04 10:24:39
+# @Last Modified time: 2021-02-04 15:16:44
 
 import os
 import sys
@@ -25,10 +25,6 @@ parser.add_argument("--InFile",
                     default="",
                     help="Name of input root file",
                     required=False)
-parser.add_argument("--InPath",
-                    default="",
-                    required=True,
-                    help="Path where input files are present")
 args = parser.parse_args()
 
 """
@@ -42,12 +38,7 @@ ROOT.gROOT.SetBatch(True)
 
 IfDryRun = True
 
-InputRootFile = args.InFile
-InputRootFilePath = args.InPath
-InputFileWithPath = InputRootFilePath+os.sep+InputRootFile
-
-print "Input Path: ",InputRootFilePath
-print "Input Root file: ",InputRootFile
+InputFileWithPath = args.InFile
 
 def getallTrees(d, basepath="/", SearchString="Tag_1", verbose=False):
     "Recurse through a ROOT file/dir and generate (path, obj) pairs"
@@ -73,7 +64,7 @@ if __name__ == '__main__':
     pool = Pool(processes=multiprocessing.cpu_count())
 
     file = TFile.Open(InputFileWithPath)
-    rootobjects_raw =  list(getallTrees(file))
+    rootobjects_raw =  list(getallTrees(file,"/","Tag_1"))
     OnlyTreesNames = [item for item in rootobjects_raw]
 
     print "Number of trees: ",len(OnlyTreesNames)
@@ -85,7 +76,7 @@ if __name__ == '__main__':
 
     t = PrettyTable(['Entries', 'Tree-Name'])
     for entries in EntriesDetails:
-        t.add_row([entries[1],entries[0]])
+        t.add_row([entries[1],entries[0].replace("/tagsDumper/trees/","")])
     print(t)
 
     print "Total runtime of the python program is ",time.time() - begin
