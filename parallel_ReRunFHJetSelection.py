@@ -2,7 +2,7 @@
 # @Author: Ram Krishna Sharma
 # @Date:   2021-02-03 12:49:29
 # @Last Modified by:   ramkrishna
-# @Last Modified time: 2021-02-04 03:02:11
+# @Last Modified time: 2021-02-04 10:39:26
 
 import os
 import sys
@@ -115,8 +115,10 @@ def function(x):
     print command
     os.system(command)
 
+# Reference: https://stackoverflow.com/a/10192611/2302094
+
 if __name__ == '__main__':
-    pool = Pool(processes=multiprocessing.cpu_count())
+    pool = Pool(processes=int((multiprocessing.cpu_count())/2))
 
     print "File ",InputFileWithPath
     file = TFile.Open(InputFileWithPath)
