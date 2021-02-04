@@ -2,13 +2,20 @@
 # @Author: Ram Krishna Sharma
 # @Date:   2021-02-03 12:49:29
 # @Last Modified by:   ramkrishna
-# @Last Modified time: 2021-02-04 00:55:57
+# @Last Modified time: 2021-02-04 02:49:20
 
 import os
 import sys
 import argparse
 from os import listdir
 from os.path import isfile, join
+import multiprocessing
+from multiprocessing import Pool, TimeoutError
+import time
+import datetime
+import getpass
+
+begin = time.time()
 
 parser = argparse.ArgumentParser(description="""
                     This script is going check root file and remove the duplicate trees.
@@ -38,7 +45,9 @@ args = parser.parse_args()
 [ISSUE] If we import ROOT before argparse then ROOT loads its own help message instead of the
 python message that  we would like to print. So, always load ROOT after the argparse.
 """
+import ROOT
 from ROOT import TFile
+ROOT.gROOT.SetBatch(True)
 
 IfDryRun = False
 
@@ -78,11 +87,12 @@ def getallTrees(d, basepath="/", verbose=False):
 
 print "onlyfiles:"
 print onlyfiles
-for count, InputRootFile in enumerate(onlyfiles):
-    print "\n\n"
+
+
+def function(InputRootFile):
     contains_duplicates = True
     InputFileWithPath = InputRootFilePath+os.sep+InputRootFile
-    print "File (",str(count)+"/"+str(len(onlyfiles)),"): ",InputFileWithPath
+    print "File: ",InputFileWithPath
     while contains_duplicates:
         file = TFile.Open(InputFileWithPath)
         rootobjects_raw =  list(getallTrees(file))
@@ -97,7 +107,7 @@ for count, InputRootFile in enumerate(onlyfiles):
         OutputRootFileWithPath = ""
         if contains_duplicates:
             print("Found duplicate trees. So, running the hadd command to remove duplicate trees.")
-            OutputRootFileWithPath = "/tmp/rasharma"+os.sep+InputRootFile
+            OutputRootFileWithPath = "/tmp/"+getpass.getuser()+os.sep+InputRootFile
             hadd_command = "hadd -f "+OutputRootFileWithPath+" "+InputFileWithPath
             print("===> "+hadd_command)
             if not IfDryRun: os.system(hadd_command)
@@ -110,3 +120,18 @@ for count, InputRootFile in enumerate(onlyfiles):
         InputFileWithPath = OutputRootFileWithPath
         if IfDryRun: contains_duplicates = False
         print "contains_duplicates: ",contains_duplicates
+
+# for InputRootFile in onlyfiles:
+#     print "\n\n"
+
+if __name__ == '__main__':
+    pool = Pool(processes=multiprocessing.cpu_count())
+
+    print "Number of CPUs: ",multiprocessing.cpu_count()
+
+    pool.map(function, onlyfiles)
+
+    # total time taken
+    print "Total runtime of the python program is ",time.time() - begin
+
+

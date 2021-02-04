@@ -17,7 +17,6 @@
  */
 
 #include "interface/ReRunFHJetSelection.h"
-#include "interface/flashgg_Data.h"
 #include "interface/flashgg_MC.h"
 #include "interface/output.h"
 #include "interface/utils.C"
@@ -51,11 +50,7 @@ void parallel_ReRunFHJetSelection( bool isMC = true,
     std::cout << "Reading Tree: " << OldTreeName << std::endl;
 
     TTree *OldTree = (TTree*)OldRootFile->Get(TString(DirectoryName+'/'+OldTreeName));
-    // if (isMC) {
     flashgg_MC flashggReader(OldTree);
-    // } else {
-    // flashgg_Data flashggReader(OldTree);
-    // }
 
     // TFile *newfile = new TFile(OutPutRootFileName, "RECREATE","",207);
     TFile *newfile = new TFile(OutPutRootFileName, "RECREATE");

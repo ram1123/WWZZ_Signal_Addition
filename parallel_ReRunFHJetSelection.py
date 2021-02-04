@@ -2,7 +2,7 @@
 # @Author: Ram Krishna Sharma
 # @Date:   2021-02-03 12:49:29
 # @Last Modified by:   ramkrishna
-# @Last Modified time: 2021-02-04 02:05:03
+# @Last Modified time: 2021-02-04 03:02:11
 
 import os
 import sys
@@ -38,6 +38,10 @@ parser.add_argument("--OutPath",
 parser.add_argument("--IsMany",
                     default=False,
                     help="Need to hadd only one file or all files in the input directory?")
+parser.add_argument("--IsData",
+                    default=False,
+                    required=True,
+                    help="If running over data make this True, else False")
 args = parser.parse_args()
 
 """
@@ -51,6 +55,12 @@ ROOT.gROOT.SetBatch(True)
 
 IfDryRun = True
 
+if args.IsData:
+    copy_command = 'cp parallel_ReRunFHJetSelection.C parallel_ReRunFHJetSelection_Data.C'
+    sed_command1 = "sed 's/parallel_ReRunFHJetSelection/parallel_ReRunFHJetSelection_Data/' parallel_ReRunFHJetSelection.C > parallel_ReRunFHJetSelection_Data.C"
+    sed_command2 = "sed -i 's/flashgg_MC/flashgg_Data/' parallel_ReRunFHJetSelection_Data.C"
+    os.system(sed_command1)
+    os.system(sed_command2)
 
 InputRootFile = args.InFile
 if InputRootFile == "":
@@ -98,7 +108,10 @@ def function(x):
     # print 'running:', current.name, current._identity
     # print 'created:', created.name, created._identity
     # print 'created:', created._identity[1]
-    command = 'root -l -b -q "parallel_ReRunFHJetSelection.C(true, \\"'+InputFileWithPath+'\\",\\"'+TEMP_OutputRootFilePath+'\\",\\"'+x.split("/")[1]+os.sep+x.split("/")[2]+'\\",\\"'+x.split("/")[3]+'\\",\\"TempRootFile_'+str(created._identity[0])+'_'+str(created._identity[1])+'.root\\")"'
+    if args.IsData:
+        command = 'root -l -b -q "parallel_ReRunFHJetSelection_Data.C(true, \\"'+InputFileWithPath+'\\",\\"'+TEMP_OutputRootFilePath+'\\",\\"'+x.split("/")[1]+os.sep+x.split("/")[2]+'\\",\\"'+x.split("/")[3]+'\\",\\"TempRootFile_'+str(created._identity[0])+'_'+str(created._identity[1])+'.root\\")"'
+    else:
+        command = 'root -l -b -q "parallel_ReRunFHJetSelection.C(true, \\"'+InputFileWithPath+'\\",\\"'+TEMP_OutputRootFilePath+'\\",\\"'+x.split("/")[1]+os.sep+x.split("/")[2]+'\\",\\"'+x.split("/")[3]+'\\",\\"TempRootFile_'+str(created._identity[0])+'_'+str(created._identity[1])+'.root\\")"'
     print command
     os.system(command)
 
