@@ -2,7 +2,7 @@
 # @Author: Ram Krishna Sharma
 # @Date:   2021-02-03 12:49:29
 # @Last Modified by:   ramkrishna
-# @Last Modified time: 2021-02-03 22:00:17
+# @Last Modified time: 2021-02-04 00:55:57
 
 import os
 import sys
@@ -40,6 +40,9 @@ python message that  we would like to print. So, always load ROOT after the argp
 """
 from ROOT import TFile
 
+IfDryRun = False
+
+
 InputRootFile = args.InFile
 if InputRootFile == "":
     args.IsMany = True
@@ -47,11 +50,10 @@ InputRootFilePath = args.InPath
 if args.OutPath == "":
     # OutputRootFilePath = "/tmp/rasharma"
     OutputRootFilePath = (InputRootFilePath+os.sep+"hadd").replace("//","/")
-    os.system("mkdir "+OutputRootFilePath)
+    if not IfDryRun: os.system("mkdir "+OutputRootFilePath)
 else:
     OutputRootFilePath = args.OutPath
 
-IfDryRun = False
 
 print "Input Path: ",InputRootFilePath
 print "Input Root file: ",InputRootFile
@@ -104,5 +106,7 @@ for count, InputRootFile in enumerate(onlyfiles):
             contains_duplicates = False
             move_command = "mv "+InputFileWithPath+ " " + OutputRootFilePath+os.sep
             print "Running command:\n\t",move_command
-            os.system(move_command)
+            if not IfDryRun: os.system(move_command)
         InputFileWithPath = OutputRootFileWithPath
+        if IfDryRun: contains_duplicates = False
+        print "contains_duplicates: ",contains_duplicates

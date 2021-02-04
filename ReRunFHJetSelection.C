@@ -99,9 +99,8 @@ void ReRunFHJetSelection( bool isMC = true,
         for (Long64_t jentry=0; jentry<nentries;jentry++) {
             flashggReader.GetEntry(jentry);
             // if (jentry%1000 == 1) newtree->AutoSave("SaveSelf");
-            if(jentry>1000) break;  // For debug purpose
-            //
-            //
+            // if(jentry>1000) break;  // For debug purpose
+
             if (flashggReader.HGGCandidate_pt < 160 && (!ifDNN)) continue;
 
             Jets.clear();
