@@ -21,7 +21,7 @@
 #include "interface/output.h"
 #include "interface/utils.C"
 #include <chrono>
-#include "progressbar.hpp"
+// #include "progressbar.hpp"
 #include <time.h>
 
 void parallel_ReRunFHJetSelection( bool isMC = true,
@@ -69,7 +69,7 @@ void parallel_ReRunFHJetSelection( bool isMC = true,
 
     int temp_percentage_done = 0;
 
-    progressbar bar(20);
+    // progressbar bar(20);
     for (Long64_t jentry=0; jentry<nentries;jentry++) {
         flashggReader.GetEntry(jentry);
         // if (jentry%1000 == 1) newtree->AutoSave("SaveSelf");
@@ -80,13 +80,13 @@ void parallel_ReRunFHJetSelection( bool isMC = true,
         Jets.clear();
         b_dis.clear();
 
-        int percentage_done = (int)(((float)jentry/(float)nentries)*100);
-        if (percentage_done % 5 == 0) {
-            if (percentage_done != temp_percentage_done) {
-                bar.update();
-                temp_percentage_done = percentage_done;
-            }
-        }
+        // int percentage_done = (int)(((float)jentry/(float)nentries)*100);
+        // if (percentage_done % 5 == 0) {
+        //     if (percentage_done != temp_percentage_done) {
+        //         bar.update();
+        //         temp_percentage_done = percentage_done;
+        //     }
+        // }
         bool isBjets = false;
 
         if (flashggReader.N_goodJets >= 4) {

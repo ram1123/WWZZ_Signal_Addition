@@ -2,7 +2,7 @@
 # @Author: Ram Krishna Sharma
 # @Date:   2021-02-03 12:49:29
 # @Last Modified by:   ramkrishna
-# @Last Modified time: 2021-02-04 10:39:26
+# @Last Modified time: 2021-02-04 14:32:48
 
 import os
 import sys
@@ -36,10 +36,14 @@ parser.add_argument("--OutPath",
                         file there.
                         """)
 parser.add_argument("--IsMany",
-                    default=False,
+                    default=1,
+                    type=int,
+                    choices=[0,1],
                     help="Need to hadd only one file or all files in the input directory?")
 parser.add_argument("--IsData",
-                    default=False,
+                    default=0,
+                    type=int,
+                    choices=[0,1],
                     required=True,
                     help="If running over data make this True, else False")
 args = parser.parse_args()
@@ -56,6 +60,7 @@ ROOT.gROOT.SetBatch(True)
 IfDryRun = True
 
 if args.IsData:
+    print "Copying the MC c++ code to Data code., args.IsData: ",args.IsData,type(args.IsData)
     copy_command = 'cp parallel_ReRunFHJetSelection.C parallel_ReRunFHJetSelection_Data.C'
     sed_command1 = "sed 's/parallel_ReRunFHJetSelection/parallel_ReRunFHJetSelection_Data/' parallel_ReRunFHJetSelection.C > parallel_ReRunFHJetSelection_Data.C"
     sed_command2 = "sed -i 's/flashgg_MC/flashgg_Data/' parallel_ReRunFHJetSelection_Data.C"
@@ -101,6 +106,11 @@ InputFileWithPath = InputRootFilePath+os.sep+InputRootFile
 TEMP_OutputRootFilePath = "/tmp/"+getpass.getuser()+"/RootFiles_"+datetime.datetime.now().strftime('%Y_%m_%d_%Hh%Mm%Ss')
 os.system("mkdir -p "+TEMP_OutputRootFilePath)
 
+def GetEntries(file, TreeName):
+    Tfile = TFile.Open(file)
+    treeIn = Tfile.Get(TreeName)
+    return treeIn.GetEntries()
+
 def function(x):
     # print "\n\n"
     created = multiprocessing.Process()
@@ -108,17 +118,25 @@ def function(x):
     # print 'running:', current.name, current._identity
     # print 'created:', created.name, created._identity
     # print 'created:', created._identity[1]
+    TEMP_OutputRootFileName = "TempRootFile_"+str(created._identity[0])+"_"+str(created._identity[1])+".root"
+    DirectoryName = str(x.split("/")[1]+"/"+x.split("/")[2])
+    TreeName = str(x.split("/")[3])
     if args.IsData:
-        command = 'root -l -b -q "parallel_ReRunFHJetSelection_Data.C(true, \\"'+InputFileWithPath+'\\",\\"'+TEMP_OutputRootFilePath+'\\",\\"'+x.split("/")[1]+os.sep+x.split("/")[2]+'\\",\\"'+x.split("/")[3]+'\\",\\"TempRootFile_'+str(created._identity[0])+'_'+str(created._identity[1])+'.root\\")"'
+        command = 'root -l -b -q "parallel_ReRunFHJetSelection_Data.C(true, \\"'+InputFileWithPath+'\\",\\"'+TEMP_OutputRootFilePath+'\\",\\"'+DirectoryName+'\\",\\"'+TreeName+'\\",\\"'+TEMP_OutputRootFileName+'\\")"'
     else:
-        command = 'root -l -b -q "parallel_ReRunFHJetSelection.C(true, \\"'+InputFileWithPath+'\\",\\"'+TEMP_OutputRootFilePath+'\\",\\"'+x.split("/")[1]+os.sep+x.split("/")[2]+'\\",\\"'+x.split("/")[3]+'\\",\\"TempRootFile_'+str(created._identity[0])+'_'+str(created._identity[1])+'.root\\")"'
+        command = 'root -l -b -q      "parallel_ReRunFHJetSelection.C(true, \\"'+InputFileWithPath+'\\",\\"'+TEMP_OutputRootFilePath+'\\",\\"'+DirectoryName+'\\",\\"'+TreeName+'\\",\\"'+TEMP_OutputRootFileName+'\\")"'
     print command
     os.system(command)
+
+    return str(TreeName), int(GetEntries(TEMP_OutputRootFilePath+os.sys+TEMP_OutputRootFileName, TreeName))
+    # return TEMP_OutputRootFilePath+os.sys+TEMP_OutputRootFileName, TreeName
 
 # Reference: https://stackoverflow.com/a/10192611/2302094
 
 if __name__ == '__main__':
-    pool = Pool(processes=int((multiprocessing.cpu_count())/2))
+    pool = Pool(processes=int((multiprocessing.cpu_count())))
+    # pool = Pool(processes=int((multiprocessing.cpu_count())/2))
+    # pool = Pool(processes=1)
 
     print "File ",InputFileWithPath
     file = TFile.Open(InputFileWithPath)
@@ -130,7 +148,14 @@ if __name__ == '__main__':
     print "Number of trees: ",len(OnlyTreesNames)
     print "Number of CPUs: ",multiprocessing.cpu_count()
 
-    pool.map(function, OnlyTreesNames)
+    EntriesDetails = pool.map(function, OnlyTreesNames)
+
+    from prettytable import PrettyTable
+
+    t = PrettyTable(['Entries', 'Tree-Name'])
+    for entries in EntriesDetails:
+        t.add_row([entries[1],entries[0].replace("/tagsDumper/trees/","")])
+    print(t)
 
     # total time taken
     print "Total runtime of the python program is ",time.time() - begin

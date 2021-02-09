@@ -45,6 +45,7 @@ void ReRunFHJetSelection( bool isMC = true,
 
     std::vector<TString> Vec_ListOfAllTrees;
     getallTrees(OldRootFile,"/",Vec_ListOfAllTrees, "Tag_1");
+    OldRootFile->Close();
     int Size_Vec_ListOfAllTrees = Vec_ListOfAllTrees.size();
     std::cout << "Number of Trees: " << Size_Vec_ListOfAllTrees << std::endl;
 
@@ -52,37 +53,6 @@ void ReRunFHJetSelection( bool isMC = true,
     Tokenize(std::string(Vec_ListOfAllTrees[0]),fields, "/");
     TString DirectoryName = "";
 
-    // TH1F *h1 = new TH1F("h1","",14,0, 14);
-    // h1->GetXaxis()->SetBinLabel(1,"Total Event");
-    // h1->GetXaxis()->SetBinLabel(2,"passPhotonSels");
-    // h1->GetXaxis()->SetBinLabel(3,"dipho_MVA>0.9");
-    // h1->GetXaxis()->SetBinLabel(4,"diPhoPt>50");
-    // h1->GetXaxis()->SetBinLabel(5,"diPhoPt>100");
-    // h1->GetXaxis()->SetBinLabel(6,"diPhoPt>110");
-    // h1->GetXaxis()->SetBinLabel(7,"diPhoPt>120");
-    // h1->GetXaxis()->SetBinLabel(8,"diPhoPt>130");
-    // h1->GetXaxis()->SetBinLabel(9,"diPhoPt>140");
-    // h1->GetXaxis()->SetBinLabel(10,"diPhoPt>150");
-    // h1->GetXaxis()->SetBinLabel(11,"diPhoPt>160");
-    // h1->GetXaxis()->SetBinLabel(12,"diPhoPt>190");
-    // h1->GetXaxis()->SetBinLabel(13,"Any b-jet");
-    // h1->GetXaxis()->SetBinLabel(14,"FH Jet Sel");
-
-    // TH1F *h1_weight = new TH1F("h1_weight","",14,0,14);
-    // h1_weight->GetXaxis()->SetBinLabel(1,"Total Event");
-    // h1_weight->GetXaxis()->SetBinLabel(2,"passPhotonSels");
-    // h1_weight->GetXaxis()->SetBinLabel(3,"dipho_MVA>0.9");
-    // h1_weight->GetXaxis()->SetBinLabel(4,"diPhoPt>50");
-    // h1_weight->GetXaxis()->SetBinLabel(5,"diPhoPt>100");
-    // h1_weight->GetXaxis()->SetBinLabel(6,"diPhoPt>110");
-    // h1_weight->GetXaxis()->SetBinLabel(7,"diPhoPt>120");
-    // h1_weight->GetXaxis()->SetBinLabel(8,"diPhoPt>130");
-    // h1_weight->GetXaxis()->SetBinLabel(9,"diPhoPt>140");
-    // h1_weight->GetXaxis()->SetBinLabel(10,"diPhoPt>150");
-    // h1_weight->GetXaxis()->SetBinLabel(11,"diPhoPt>160");
-    // h1_weight->GetXaxis()->SetBinLabel(12,"diPhoPt>190");
-    // h1_weight->GetXaxis()->SetBinLabel(13,"Any b-jet");
-    // h1_weight->GetXaxis()->SetBinLabel(14,"FH Jet Sel");
 
     for (std::vector<string>::iterator DirName = fields.begin(); DirName != (fields.end()-1); ++DirName)
     {
@@ -95,16 +65,55 @@ void ReRunFHJetSelection( bool isMC = true,
     std::cout << "Output root file name: " << OutPutRootFileName << std::endl;
     TFile *newfile = new TFile(OutPutRootFileName, "RECREATE","",207);
     newfile->mkdir(DirectoryName);
+    // newfile->cd(DirectoryName);
+    newfile->Close();
 
     int TreesCount = 0;
     for (std::vector<TString>::iterator OldTreeName = Vec_ListOfAllTrees.begin(); OldTreeName != Vec_ListOfAllTrees.end(); ++OldTreeName)
     {
+
+        // TH1F *h1 = new TH1F("h1",*OldTreeName,14,0, 14);
+        // h1->GetXaxis()->SetBinLabel(1,"Total Event");
+        // h1->GetXaxis()->SetBinLabel(2,"passPhotonSels");
+        // h1->GetXaxis()->SetBinLabel(3,"dipho_MVA>0.9");
+        // h1->GetXaxis()->SetBinLabel(4,"diPhoPt>50");
+        // h1->GetXaxis()->SetBinLabel(5,"diPhoPt>100");
+        // h1->GetXaxis()->SetBinLabel(6,"diPhoPt>110");
+        // h1->GetXaxis()->SetBinLabel(7,"diPhoPt>120");
+        // h1->GetXaxis()->SetBinLabel(8,"diPhoPt>130");
+        // h1->GetXaxis()->SetBinLabel(9,"diPhoPt>140");
+        // h1->GetXaxis()->SetBinLabel(10,"diPhoPt>150");
+        // h1->GetXaxis()->SetBinLabel(11,"diPhoPt>160");
+        // h1->GetXaxis()->SetBinLabel(12,"diPhoPt>190");
+        // h1->GetXaxis()->SetBinLabel(13,"Any b-jet");
+        // h1->GetXaxis()->SetBinLabel(14,"FH Jet Sel");
+
+        // TH1F *h1_weight = new TH1F("h1_weight",*OldTreeName+"_weight",14,0,14);
+        // h1_weight->GetXaxis()->SetBinLabel(1,"Total Event");
+        // h1_weight->GetXaxis()->SetBinLabel(2,"passPhotonSels");
+        // h1_weight->GetXaxis()->SetBinLabel(3,"dipho_MVA>0.9");
+        // h1_weight->GetXaxis()->SetBinLabel(4,"diPhoPt>50");
+        // h1_weight->GetXaxis()->SetBinLabel(5,"diPhoPt>100");
+        // h1_weight->GetXaxis()->SetBinLabel(6,"diPhoPt>110");
+        // h1_weight->GetXaxis()->SetBinLabel(7,"diPhoPt>120");
+        // h1_weight->GetXaxis()->SetBinLabel(8,"diPhoPt>130");
+        // h1_weight->GetXaxis()->SetBinLabel(9,"diPhoPt>140");
+        // h1_weight->GetXaxis()->SetBinLabel(10,"diPhoPt>150");
+        // h1_weight->GetXaxis()->SetBinLabel(11,"diPhoPt>160");
+        // h1_weight->GetXaxis()->SetBinLabel(12,"diPhoPt>190");
+        // h1_weight->GetXaxis()->SetBinLabel(13,"Any b-jet");
+        // h1_weight->GetXaxis()->SetBinLabel(14,"FH Jet Sel");
+
+
         TreesCount++;
-        if (!WithSyst) {
-          if (TreesCount>=2) break;
-        }
+        // if (!WithSyst) {
+          if (TreesCount>1 ) break;
+          //if (TreesCount<2) continue;
+          // if (TreesCount>2) continue;
+        // }
         std::cout << "Reading Tree: " << *OldTreeName << std::endl;
 
+        TFile *OldRootFile = new TFile(inputFile1,"READ");
         TTree *OldTree = (TTree*)OldRootFile->Get(TString(*OldTreeName));
 
         // if (isMC) {
@@ -113,6 +122,7 @@ void ReRunFHJetSelection( bool isMC = true,
         // flashgg_Data flashggReader(OldTree);
         // }
 
+        TFile *newfile = new TFile(OutPutRootFileName, "update");
         newfile->cd(DirectoryName);
 
         // Clone the old tree
@@ -128,9 +138,7 @@ void ReRunFHJetSelection( bool isMC = true,
         std::vector<int> passMediumJetID;
         std::vector<int> passTightJetID;
 
-        int temp_percentage_done = 0;
 
-        progressbar bar(20);
         for (Long64_t jentry=0; jentry<nentries;jentry++) {
             flashggReader.GetEntry(jentry);
             // if (jentry%1000 == 1) newtree->AutoSave("SaveSelf");
@@ -143,8 +151,14 @@ void ReRunFHJetSelection( bool isMC = true,
             //   h1_weight->Fill(1.,flashggReader.weight);
             // }
             if (int(flashggReader.passPhotonSels) != 1) continue;
+              // h1->Fill(1);
+              // h1_weight->Fill(1.,flashggReader.weight);
             if (flashggReader.dipho_MVA < 0.9) continue;
+              // h1->Fill(2);
+              // h1_weight->Fill(2.,flashggReader.weight);
             if (flashggReader.HGGCandidate_pt < 140 ) continue;
+              // h1->Fill(3);
+              // h1_weight->Fill(3.,flashggReader.weight);
             // if (int(flashggReader.passPhotonSels) == 1 && flashggReader.dipho_MVA > 0.9) {
             //   h1->Fill(2);
             //   h1_weight->Fill(2.,flashggReader.weight);
@@ -192,12 +206,8 @@ void ReRunFHJetSelection( bool isMC = true,
             passMediumJetID.clear();
             passTightJetID.clear();
 
-            int percentage_done = (int)(((float)jentry/(float)nentries)*100);
-            if (percentage_done % 5 == 0) {
-                if (percentage_done != temp_percentage_done) {
-                    bar.update();
-                    temp_percentage_done = percentage_done;
-                }
+            if (jentry % 1000 == 0) {
+              std::cout << "jentry: " << jentry << std::endl;
             }
             bool isBjets = false;
 
@@ -252,6 +262,8 @@ void ReRunFHJetSelection( bool isMC = true,
           //     h1_weight->Fill(12.,flashggReader.weight);
           // }
           if (isBjets) continue;
+              // h1->Fill(12);
+              // h1_weight->Fill(12.,flashggReader.weight);
 
             if (flashggReader.N_goodJets>=4)
             {
@@ -413,6 +425,9 @@ void ReRunFHJetSelection( bool isMC = true,
             if (Selectedb_dis[0]<-1 || Selectedb_dis[1]<-1 || Selectedb_dis[2]<-1 || Selectedb_dis[3]<-1)
               continue;
 
+              // h1->Fill(13);
+              // h1_weight->Fill(13.,flashggReader.weight);
+
             outputVars.New_Leading_Jet_E  = SelectedGoodJets[0].E();
             outputVars.New_Leading_Jet_pt = SelectedGoodJets[0].Pt();
             outputVars.New_Leading_Jet_px = SelectedGoodJets[0].Px();
@@ -451,12 +466,14 @@ void ReRunFHJetSelection( bool isMC = true,
         std::cout << "\n" << std::endl;
 
         newtree->Write("",TObject::kOverwrite);
+        std::cout << "Entries after: " << newtree->GetEntries() << std::endl;
         // h1->Write();
         // h1_weight->Write();
         newfile->Write();
-        delete OldTree;
+        // delete OldTree;
+        // OldRootFile->Close();
+        // newfile->Close();
     }
     printf("Time taken: %.2fs\n", (double)(clock() - tStart)/CLOCKS_PER_SEC);
-    newfile->Close();
     printf("Time taken to run full code: %.2fs  (%.2fm)\n", (double)(clock() - tStart)/CLOCKS_PER_SEC, (double)(clock() - tStart)/(CLOCKS_PER_SEC*60));
 }
