@@ -73,10 +73,12 @@ void ReRunFHJetSelection_TTreeReader(
         std::cout << "\tTotal entries before selection: " << OldTree->GetEntries() << std::endl;
 
         TString N_goodJets = "N_goodJets >= 4";
-        TString DiPhotonCut = "HGGCandidate_pt < 140";
+        TString DiPhotonCut = "HGGCandidate_pt > 140";
         TString passPhotonSels = "passPhotonSels == 1";
         TString dipho_MVA = "dipho_MVA > 0.9";
         TString bDiscriminator_mini_pfDeepFlavor =  "";
+
+        // int bTagDisToCheck = (TString(*OldTreeName).Contains("sigma")) ? bTagDisToCheck = 5 : bTagDisToCheck = 10;
 
         int bTagDisToCheck = -1;
         if (TString(*OldTreeName).Contains("sigma"))  
