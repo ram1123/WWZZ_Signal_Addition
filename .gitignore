@@ -1,4 +1,6 @@
 # User files
+*.pdf
+*.png
 *.root
 
 # Prerequisites
