@@ -1656,7 +1656,6 @@ Long64_t flashgg_Data::LoadTree(Long64_t entry)
    if (centry < 0) return centry;
    if (fChain->GetTreeNumber() != fCurrent) {
       fCurrent = fChain->GetTreeNumber();
-      Notify();
    }
    return centry;
 }

@@ -23,6 +23,7 @@
 #include <chrono>
 #include "progressbar.hpp"
 #include <time.h>
+#include "interface/utils.C"
 
 void ReRunFHJetSelection( bool isMC = true,
                           TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Signal/FH_NLO_2017_hadded/GluGluToHHTo2G4Q_node_cHHH1_2017.root",
@@ -94,7 +95,7 @@ void ReRunFHJetSelection( bool isMC = true,
             // if(jentry>1000) break;  // For debug purpose
             //
             //
-            if (flashggReader.HGGCandidate_pt < 160 && (!ifDNN)) continue;
+            // if (flashggReader.HGGCandidate_pt < 160 && (!ifDNN)) continue;
 
             Jets.clear();
             b_dis.clear();
@@ -124,6 +125,10 @@ void ReRunFHJetSelection( bool isMC = true,
                                 flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                                 flashggReader.allJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
+                if (b_dis[0]>0.7221) continue;
+                if (b_dis[1]>0.7221) continue;
+                if (b_dis[2]>0.7221) continue;
+                if (b_dis[3]>0.7221) continue;
                 Jets.push_back(TLorentzVector(0,0,0,0));
                 Jets.back().SetPxPyPzE(
                                        flashggReader.goodJets_0_px,
@@ -158,6 +163,7 @@ void ReRunFHJetSelection( bool isMC = true,
                                 flashggReader.goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                                 flashggReader.allJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
+                if (b_dis[4]>0.7221) continue;
                 Jets.push_back(TLorentzVector(0,0,0,0));
                 Jets.back().SetPxPyPzE(
                                        flashggReader.goodJets_4_px,
@@ -171,6 +177,7 @@ void ReRunFHJetSelection( bool isMC = true,
                                 flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                                 flashggReader.allJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
+                if (b_dis[5]>0.7221) continue;
                 Jets.push_back(TLorentzVector(0,0,0,0));
                 Jets.back().SetPxPyPzE(
                                        flashggReader.goodJets_5_px,
@@ -184,6 +191,7 @@ void ReRunFHJetSelection( bool isMC = true,
                                 flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                                 flashggReader.allJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
+                if (b_dis[6]>0.7221) continue;
                 Jets.push_back(TLorentzVector(0,0,0,0));
                 Jets.back().SetPxPyPzE(
                                        flashggReader.goodJets_6_px,
@@ -197,6 +205,7 @@ void ReRunFHJetSelection( bool isMC = true,
                                 flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                                 flashggReader.allJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
+                if (b_dis[7]>0.7221) continue;
                 Jets.push_back(TLorentzVector(0,0,0,0));
                 Jets.back().SetPxPyPzE(
                                        flashggReader.goodJets_7_px,
@@ -210,6 +219,7 @@ void ReRunFHJetSelection( bool isMC = true,
                                 flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                                 flashggReader.allJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
+                if (b_dis[8]>0.7221) continue;
                 Jets.push_back(TLorentzVector(0,0,0,0));
                 Jets.back().SetPxPyPzE(
                                        flashggReader.goodJets_8_px,
@@ -223,6 +233,7 @@ void ReRunFHJetSelection( bool isMC = true,
                                 flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
                                 flashggReader.allJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
+                if (b_dis[9]>0.7221) continue;
                 Jets.push_back(TLorentzVector(0,0,0,0));
                 Jets.back().SetPxPyPzE(
                                        flashggReader.goodJets_9_px,
@@ -231,6 +242,12 @@ void ReRunFHJetSelection( bool isMC = true,
                                        flashggReader.goodJets_9_E
                                        );
             }
+            // std::cout << "===========================================" << std::endl;
+            // for (std::vector<float>::iterator bdiscriminator = b_dis.begin(); bdiscriminator != b_dis.end(); ++bdiscriminator)
+            // {
+              // std::cout << "bdiscriminator = " << *bdiscriminator << std::endl;
+            // }
+            // std::cout << "===========================================" << std::endl;
 
             std::vector<TLorentzVector> SelectedGoodJets; // Fill the FH selected jets
             std::vector<Float_t> Selectedb_dis; // Fill the b-discriminator value for FH selected jets
@@ -266,10 +283,20 @@ void ReRunFHJetSelection( bool isMC = true,
             outputVars.New_Sub3leading_Jet_pz = SelectedGoodJets[3].Pz();
             outputVars.New_Sub3leading_Jet_eta  = SelectedGoodJets[3].Eta();
             outputVars.New_Sub3leading_Jet_phi  = SelectedGoodJets[3].Phi();
-            outputVars.New_OnShellW_LeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb  = Selectedb_dis[0];
-            outputVars.New_OnShellW_SubLeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb  = Selectedb_dis[1];
-            outputVars.New_OffShellW_LeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb  = Selectedb_dis[2];
-            outputVars.New_OffShellW_SubLeadingJet_bDiscriminator_mini_pfDeepFlavourJetTags_probb  = Selectedb_dis[3];
+            outputVars.New_OnShellW_LeadingJet_bDis  = Selectedb_dis[0];
+            outputVars.New_OnShellW_SubLeadingJet_bDis  = Selectedb_dis[1];
+            outputVars.New_OffShellW_LeadingJet_bDis  = Selectedb_dis[2];
+            outputVars.New_OffShellW_SubLeadingJet_bDis  = Selectedb_dis[3];
+
+            outputVars.New_DPhi_gg = deltaPhi(flashggReader.Leading_Photon_phi, flashggReader.Subleading_Photon_phi);
+            outputVars.New_DR_gg = deltaR(flashggReader.Leading_Photon_eta, flashggReader.Leading_Photon_phi, flashggReader.Subleading_Photon_eta, flashggReader.Subleading_Photon_phi);
+
+            TLorentzVector HiggsFromJets = SelectedGoodJets[0]+ SelectedGoodJets[1]+ SelectedGoodJets[2]+ SelectedGoodJets[3];
+            outputVars.New_DPhi_HH = deltaPhi(HiggsFromJets.Phi(), flashggReader.HGGCandidate_phi);
+            outputVars.New_DR_HH = deltaR(HiggsFromJets.Eta(), HiggsFromJets.Phi(), flashggReader.HGGCandidate_eta, flashggReader.HGGCandidate_phi);
+
+            outputVars.PhotonID_min = (flashggReader.Leading_Photon_MVA > flashggReader.Subleading_Photon_MVA) ? flashggReader.Subleading_Photon_MVA : flashggReader.Leading_Photon_MVA;
+            outputVars.PhotonID_max = (flashggReader.Leading_Photon_MVA > flashggReader.Subleading_Photon_MVA) ? flashggReader.Leading_Photon_MVA : flashggReader.Subleading_Photon_MVA;
 
             newtree->Fill();
         }
