@@ -1,8 +1,8 @@
 //////////////////////////////////////////////////////////
 // This class has been automatically generated on
-// Tue Jan 26 22:23:23 2021 by ROOT version 6.14/09
+// Tue Mar 23 21:21:03 2021 by ROOT version 6.14/09
 // from TTree Data_13TeV_HHWWggTag_1/Data_13TeV_HHWWggTag_1
-// found on file: /eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016//Data_Trees_2016_Hadded_Combined/allData.root
+// found on file: /eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Data_Trees_2016_Hadded_Combined/allData.root
 //////////////////////////////////////////////////////////
 
 #ifndef flashgg_Data_h
@@ -1619,18 +1619,21 @@ public :
    TBranch        *b_npu;   //!
    TBranch        *b_puweight;   //!
 
-   flashgg_Data(TTree *tree=0){
+   flashgg_Data(TTree *tree=0)
+   {
+   // if parameter tree is not specified (or zero), connect the file
+   // used to generate this class and read the Tree.
       if (tree == 0) {
-         TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016//Data_Trees_2016_Hadded_Combined/allData.root");
+         TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Data_Trees_2016_Hadded_Combined/allData.root");
          if (!f || !f->IsOpen()) {
-            f = new TFile("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016//Data_Trees_2016_Hadded_Combined/allData.root");
+            f = new TFile("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Data_Trees_2016_Hadded_Combined/allData.root");
          }
-         TDirectory * dir = (TDirectory*)f->Get("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016//Data_Trees_2016_Hadded_Combined/allData.root:/tagsDumper/trees");
+         TDirectory * dir = (TDirectory*)f->Get("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Data_Trees_2016_Hadded_Combined/allData.root:/tagsDumper/trees");
          dir->GetObject("Data_13TeV_HHWWggTag_1",tree);
+
       }
-      Init(tree);
+      Init(tree);      
    };
-   flashgg_Data(){};
    virtual ~flashgg_Data(){};
    virtual Int_t    GetEntry(Long64_t entry);
    virtual Long64_t LoadTree(Long64_t entry);
@@ -1653,6 +1656,7 @@ Long64_t flashgg_Data::LoadTree(Long64_t entry)
    if (centry < 0) return centry;
    if (fChain->GetTreeNumber() != fCurrent) {
       fCurrent = fChain->GetTreeNumber();
+      Notify();
    }
    return centry;
 }
@@ -2471,4 +2475,3 @@ void flashgg_Data::Init(TTree *tree)
    fChain->SetBranchAddress("npu", &npu, &b_npu);
    fChain->SetBranchAddress("puweight", &puweight, &b_puweight);
 }
-
