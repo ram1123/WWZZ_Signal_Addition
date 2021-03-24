@@ -20,6 +20,7 @@
 TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG=0);
 TString GetTreeName(TFile *f, std::vector<TString> &RootFileDirStructure, std::vector<TString> &ListOfAllTrees, bool DEBUG=0);
 void GetFHminWHJets(bool DEBUG, std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb_dis);
+void GetFHJetUsingDR(bool DEBUG,TLorentzVector &Hgg, std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb_dis);
 TString GetLastString(string s, string delimiter, bool DEBUG=0);
 void computeAngles(TLorentzVector thep4H, TLorentzVector thep4Z1, TLorentzVector thep4M11, TLorentzVector thep4M12, 
           TLorentzVector thep4Z2, TLorentzVector thep4M21, TLorentzVector thep4M22,
@@ -257,6 +258,61 @@ void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_
     Selectedb_dis.push_back(jet4b);
 
 }
+
+void GetFHJetUsingDR(bool DEBUG,TLorentzVector &Hgg, std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb_dis)
+{
+    // get 4 jets for FH final state with minWH vals
+    SelectedJets.clear();
+    Selectedb_dis.clear();
+    double TempMinWMass = 999999.0;
+    double TempMinHMass = 999999.0;
+
+    int OnShellW_LeadingJetIndex = -1;
+    int OnShellW_SubLeadingJetIndex = -1;
+    int OffShellW_LeadingJetIndex = -1;
+    int OffShellW_SubLeadingJetIndex = -1;
+
+    TLorentzVector jet11;
+    TLorentzVector jet12;
+    TLorentzVector jet21;
+    TLorentzVector jet22;    
+    TLorentzVector jet1;
+    TLorentzVector jet2;
+    TLorentzVector jet3;
+    TLorentzVector jet4;
+    Float_t jet1b;
+    Float_t jet2b;
+    Float_t jet3b;
+    Float_t jet4b;
+
+    int nTagJets = AllGoodJets.size();
+
+
+    jet1 = AllGoodJets[OnShellW_LeadingJetIndex];
+    jet2 = AllGoodJets[OnShellW_SubLeadingJetIndex];
+    jet3 = AllGoodJets[OffShellW_LeadingJetIndex];
+    jet4 = AllGoodJets[OffShellW_SubLeadingJetIndex];
+    jet1b = b_dis[OnShellW_LeadingJetIndex];
+    jet2b = b_dis[OnShellW_SubLeadingJetIndex];
+    jet3b = b_dis[OffShellW_LeadingJetIndex];
+    jet4b = b_dis[OffShellW_SubLeadingJetIndex];
+
+    if (DEBUG) std::cout << "[INFO] Print pt of 4 selected jets: " << OnShellW_LeadingJetIndex << "\t" << OnShellW_SubLeadingJetIndex << "\t" << OffShellW_LeadingJetIndex << "\t" << OffShellW_SubLeadingJetIndex  << std::endl;
+    if (DEBUG) std::cout << "[INFO] jet1 pT = " << jet1.Pt() << std::endl;
+    if (DEBUG) std::cout << "[INFO] jet2 pT = " << jet2.Pt() << std::endl;
+    if (DEBUG) std::cout << "[INFO] jet3 pT = " << jet3.Pt() << std::endl;
+    if (DEBUG) std::cout << "[INFO] jet4 pT = " << jet4.Pt() << std::endl;
+
+    SelectedJets.push_back(jet1);
+    SelectedJets.push_back(jet2);
+    SelectedJets.push_back(jet3);
+    SelectedJets.push_back(jet4);
+    Selectedb_dis.push_back(jet1b);
+    Selectedb_dis.push_back(jet2b);
+    Selectedb_dis.push_back(jet3b);
+    Selectedb_dis.push_back(jet4b);    
+}
+
 
 /**
  * @brief      Get the root file name. Its the last string when

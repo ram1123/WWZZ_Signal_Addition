@@ -27,7 +27,7 @@
 
 void ReRunFHJetSelection( /* bool isMC = true, */
                           TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Signal/FH_NLO_2017_hadded/GluGluToHHTo2G4Q_node_cHHH1_2017.root",
-                          TString OutPutPath = "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar/Backgrounds/",
+                          TString OutPutPath = "./",
                                                 // Signal, Backgrounds, Data
                           TString PrefixOutPutRootFileName = "",
                           bool WithSyst = false,
@@ -306,6 +306,42 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             LV_Hgg = LV_LeadingPho + LV_SubLeadPho;
             computeAngles(LV_Hgg + LV_HiggsFromJets, LV_Hgg, LV_LeadingPho, LV_SubLeadPho, LV_HiggsFromJets, SelectedGoodJets[0]+ SelectedGoodJets[1], SelectedGoodJets[2]+ SelectedGoodJets[3] , a_costheta1, a_costheta2, a_Phi, a_costhetastar, a_Phi1);
 
+            outputVars.a_costheta1    = a_costheta1;
+            outputVars.a_costheta2    = a_costheta2;
+            outputVars.a_costhetastar = a_costhetastar;
+            outputVars.a_Phi          = a_Phi;
+            outputVars.a_Phi1         = a_Phi1;
+
+            outputVars.New_OnShellW_E     = (SelectedGoodJets[0] + SelectedGoodJets[1]).E();
+            outputVars.New_OnShellW_pt    = (SelectedGoodJets[0] + SelectedGoodJets[1]).Pt();
+            outputVars.New_OnShellW_px    = (SelectedGoodJets[0] + SelectedGoodJets[1]).Px();
+            outputVars.New_OnShellW_py    = (SelectedGoodJets[0] + SelectedGoodJets[1]).Py();
+            outputVars.New_OnShellW_pz    = (SelectedGoodJets[0] + SelectedGoodJets[1]).Py();
+            outputVars.New_OnShellW_eta   = (SelectedGoodJets[0] + SelectedGoodJets[1]).Pz();
+            outputVars.New_OnShellW_phi   = (SelectedGoodJets[0] + SelectedGoodJets[1]).Phi();
+            outputVars.New_OffShellW_E    = (SelectedGoodJets[2] + SelectedGoodJets[3]).E();
+            outputVars.New_OffShellW_pt   = (SelectedGoodJets[2] + SelectedGoodJets[3]).Pt();
+            outputVars.New_OffShellW_px   = (SelectedGoodJets[2] + SelectedGoodJets[3]).Px();
+            outputVars.New_OffShellW_py   = (SelectedGoodJets[2] + SelectedGoodJets[3]).Py();
+            outputVars.New_OffShellW_pz   = (SelectedGoodJets[2] + SelectedGoodJets[3]).Py();
+            outputVars.New_OffShellW_eta  = (SelectedGoodJets[2] + SelectedGoodJets[3]).Pz();
+            outputVars.New_OffShellW_phi  = (SelectedGoodJets[2] + SelectedGoodJets[3]).Phi();
+            outputVars.New_HWW_E    = LV_HiggsFromJets.E();
+            outputVars.New_HWW_pt   = LV_HiggsFromJets.Pt();
+            outputVars.New_HWW_px   = LV_HiggsFromJets.Px();
+            outputVars.New_HWW_py   = LV_HiggsFromJets.Py();
+            outputVars.New_HWW_pz   = LV_HiggsFromJets.Py();
+            outputVars.New_HWW_eta  = LV_HiggsFromJets.Pz();
+            outputVars.New_HWW_phi  = LV_HiggsFromJets.Phi();
+            outputVars.New_dR_Hgg_Jet1    = deltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), SelectedGoodJets[0].Eta(), SelectedGoodJets[0].Phi());
+            outputVars.New_dR_Hgg_Jet2    = deltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), SelectedGoodJets[1].Eta(), SelectedGoodJets[1].Phi());
+            outputVars.New_dR_Hgg_Jet3    = deltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), SelectedGoodJets[2].Eta(), SelectedGoodJets[2].Phi());
+            outputVars.New_dR_Hgg_Jet4    = deltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), SelectedGoodJets[3].Eta(), SelectedGoodJets[3].Phi());
+
+            outputVars.New_dPhi_Hgg_Jet1    = deltaPhi(LV_Hgg.Phi(), SelectedGoodJets[0].Phi());
+            outputVars.New_dPhi_Hgg_Jet2    = deltaPhi(LV_Hgg.Phi(), SelectedGoodJets[1].Phi());
+            outputVars.New_dPhi_Hgg_Jet3    = deltaPhi(LV_Hgg.Phi(), SelectedGoodJets[2].Phi());
+            outputVars.New_dPhi_Hgg_Jet4    = deltaPhi(LV_Hgg.Phi(), SelectedGoodJets[3].Phi());
             newtree->Fill();
         }
         std::cout << "\n" << std::endl;
