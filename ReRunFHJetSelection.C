@@ -25,11 +25,12 @@
 #include <time.h>
 #include "interface/utils.C"
 
-void ReRunFHJetSelection( bool isMC = true,
+void ReRunFHJetSelection( /* bool isMC = true, */
                           TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Signal/FH_NLO_2017_hadded/GluGluToHHTo2G4Q_node_cHHH1_2017.root",
-                          TString OutPutPath = "./",
+                          TString OutPutPath = "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar/Backgrounds/",
+                                                // Signal, Backgrounds, Data
                           TString PrefixOutPutRootFileName = "",
-                          bool WithSyst = true,
+                          bool WithSyst = false,
                           bool ifDNN = false
                         )
 {
@@ -291,12 +292,19 @@ void ReRunFHJetSelection( bool isMC = true,
             outputVars.New_DPhi_gg = deltaPhi(flashggReader.Leading_Photon_phi, flashggReader.Subleading_Photon_phi);
             outputVars.New_DR_gg = deltaR(flashggReader.Leading_Photon_eta, flashggReader.Leading_Photon_phi, flashggReader.Subleading_Photon_eta, flashggReader.Subleading_Photon_phi);
 
-            TLorentzVector HiggsFromJets = SelectedGoodJets[0]+ SelectedGoodJets[1]+ SelectedGoodJets[2]+ SelectedGoodJets[3];
-            outputVars.New_DPhi_HH = deltaPhi(HiggsFromJets.Phi(), flashggReader.HGGCandidate_phi);
-            outputVars.New_DR_HH = deltaR(HiggsFromJets.Eta(), HiggsFromJets.Phi(), flashggReader.HGGCandidate_eta, flashggReader.HGGCandidate_phi);
+            TLorentzVector LV_HiggsFromJets = SelectedGoodJets[0]+ SelectedGoodJets[1]+ SelectedGoodJets[2]+ SelectedGoodJets[3];
+            outputVars.New_DPhi_HH = deltaPhi(LV_HiggsFromJets.Phi(), flashggReader.HGGCandidate_phi);
+            outputVars.New_DR_HH = deltaR(LV_HiggsFromJets.Eta(), LV_HiggsFromJets.Phi(), flashggReader.HGGCandidate_eta, flashggReader.HGGCandidate_phi);
 
             outputVars.PhotonID_min = (flashggReader.Leading_Photon_MVA > flashggReader.Subleading_Photon_MVA) ? flashggReader.Subleading_Photon_MVA : flashggReader.Leading_Photon_MVA;
             outputVars.PhotonID_max = (flashggReader.Leading_Photon_MVA > flashggReader.Subleading_Photon_MVA) ? flashggReader.Leading_Photon_MVA : flashggReader.Subleading_Photon_MVA;
+
+            double a_costheta1, a_costheta2, a_costhetastar, a_Phi, a_Phi1;
+            TLorentzVector LV_LeadingPho, LV_SubLeadPho, LV_Hgg;
+            LV_LeadingPho.SetPtEtaPhiE(flashggReader.Leading_Photon_pt,flashggReader.Leading_Photon_eta,flashggReader.Leading_Photon_phi,flashggReader.Leading_Photon_E);
+            LV_SubLeadPho.SetPtEtaPhiE(flashggReader.Subleading_Photon_pt,flashggReader.Subleading_Photon_eta,flashggReader.Subleading_Photon_phi,flashggReader.Subleading_Photon_E);
+            LV_Hgg = LV_LeadingPho + LV_SubLeadPho;
+            computeAngles(LV_Hgg + LV_HiggsFromJets, LV_Hgg, LV_LeadingPho, LV_SubLeadPho, LV_HiggsFromJets, SelectedGoodJets[0]+ SelectedGoodJets[1], SelectedGoodJets[2]+ SelectedGoodJets[3] , a_costheta1, a_costheta2, a_Phi, a_costhetastar, a_Phi1);
 
             newtree->Fill();
         }

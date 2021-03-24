@@ -104,4 +104,11 @@ void output::init(TTree* tree) {
   fTree->Branch("New_OffShellW_LeadingJet_bDis", &New_OffShellW_LeadingJet_bDis, "New_OffShellW_LeadingJet_bDis/F");
   fTree->Branch("New_OffShellW_SubLeadingJet_bDis", &New_OffShellW_SubLeadingJet_bDis, "New_OffShellW_SubLeadingJet_bDis/F");
 
+  fTree->Branch("New_DPhi_gg",  &New_DPhi_gg,   "New_DPhi_gg/F");
+  fTree->Branch("New_DR_gg",    &New_DR_gg,     "New_DR_gg/F");
+  fTree->Branch("New_DPhi_HH",  &New_DPhi_HH,   "New_DPhi_HH/F");
+  fTree->Branch("New_DR_HH",    &New_DR_HH,     "New_DR_HH/F");
+  fTree->Branch("PhotonID_min", &PhotonID_min,  "PhotonID_min/F");
+  fTree->Branch("PhotonID_max", &PhotonID_max,  "PhotonID_max/F");
+
 }
