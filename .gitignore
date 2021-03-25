@@ -1,5 +1,6 @@
 # User files
 *.root
+*.png
 
 # Prerequisites
 *.d

@@ -145,3 +145,35 @@ double deltaR(double eta1,double phi1,double eta2,double phi2)
   double dphi = deltaPhi(phi1, phi2);
   return std::sqrt(deta*deta + dphi*dphi);
 }
+
+
+//======================================================================
+
+// template<typename T> std::vector<std::vector<T>> getAllCombinations(const std::vector<T>& inputVector, int k);
+/*
+* Function return all possible combinations of k elements from N-size inputVector.
+* The result is returned as a vector of k-long vectors containing all combinations.
+* Reference: https://stackoverflow.com/a/66581396/2302094
+*/
+template<typename T> std::vector<std::vector<T>> getAllCombinations(const std::vector<T>& inputVector, int k)
+{
+    std::vector<std::vector<T>> combinations;
+    std::vector<int> selector(inputVector.size());
+    std::fill(selector.begin(), selector.begin() + k, 1);
+
+    do {
+        std::vector<int> selectedIds;
+        std::vector<T> selectedVectorElements;
+        for (int i = 0; i < inputVector.size(); i++) {
+            if (selector[i]) {
+                selectedIds.push_back(i);
+            }
+        }
+        for (auto& id : selectedIds) {
+            selectedVectorElements.push_back(inputVector[id]);
+        }
+        combinations.push_back(selectedVectorElements);
+    } while (std::prev_permutation(selector.begin(), selector.end()));
+
+    return combinations;
+}
