@@ -25,6 +25,7 @@ public :
    Int_t           candidate_id;
    Float_t         weight;
    Float_t         CMS_hgg_mass;
+   Float_t         sigmaRV;
    Float_t         sigmaMoM_decorr;
    Float_t         dZ;
    Float_t         centralObjectWeight;
@@ -924,6 +925,7 @@ public :
    TBranch        *b_candidate_id;   //!
    TBranch        *b_weight;   //!
    TBranch        *b_CMS_hgg_mass;   //!
+   TBranch        *b_sigmaRV;   //!
    TBranch        *b_sigmaMoM_decorr;   //!
    TBranch        *b_dZ;   //!
    TBranch        *b_centralObjectWeight;   //!
@@ -1879,6 +1881,7 @@ void flashgg_MC::Init(TTree *tree)
    fChain->SetBranchAddress("candidate_id", &candidate_id, &b_candidate_id);
    fChain->SetBranchAddress("weight", &weight, &b_weight);
    fChain->SetBranchAddress("CMS_hgg_mass", &CMS_hgg_mass, &b_CMS_hgg_mass);
+   fChain->SetBranchAddress("sigmaRV", &sigmaRV, &b_sigmaRV);
    fChain->SetBranchAddress("sigmaMoM_decorr", &sigmaMoM_decorr, &b_sigmaMoM_decorr);
    fChain->SetBranchAddress("dZ", &dZ, &b_dZ);
    fChain->SetBranchAddress("centralObjectWeight", &centralObjectWeight, &b_centralObjectWeight);

@@ -96,11 +96,17 @@ public:
   Float_t   New_DR_gg = -999.0;
   Float_t   New_DPhi_HH = -999.0;
   Float_t   New_DR_HH = -999.0;
+  Float_t   New_minDeltaR_gg4j = -999.0;
+  Float_t   New_maxDeltaR_gg4j = -999.0;
   Float_t   a_costheta1 = -999.0;
   Float_t   a_costheta2 = -999.0;
   Float_t   a_costhetastar = -999.0;
   Float_t   a_Phi = -999.0;
   Float_t   a_Phi1 = -999.0;
+  Float_t   CosThetaStar_CS = -999.0;
+  Float_t   CosThetaStar_CS_old = -999.0;
+  Float_t   HelicityCostheta1 = -999.0;
+  Float_t   HelicityCostheta2 = -999.0;
 
   Float_t   New_DRBased_Leading_Jet_E = -999.0;
   Float_t   New_DRBased_Leading_Jet_pt = -999.0;
@@ -254,11 +260,17 @@ void output::init(TTree* tree) {
   fTree->Branch("New_DR_gg",    &New_DR_gg,     "New_DR_gg/F");
   fTree->Branch("New_DPhi_HH",  &New_DPhi_HH,   "New_DPhi_HH/F");
   fTree->Branch("New_DR_HH",    &New_DR_HH,     "New_DR_HH/F");
+  fTree->Branch("New_minDeltaR_gg4j",    &New_minDeltaR_gg4j,     "New_minDeltaR_gg4j/F");
+  fTree->Branch("New_maxDeltaR_gg4j",    &New_maxDeltaR_gg4j,     "New_maxDeltaR_gg4j/F");
   fTree->Branch("a_costheta1",    &a_costheta1,   "a_costheta1/F");
   fTree->Branch("a_costheta2",    &a_costheta2,   "a_costheta2/F");
   fTree->Branch("a_costhetastar", &a_costhetastar,"a_costhetastar/F");
   fTree->Branch("a_Phi",          &a_Phi,         "a_Phi/F");
   fTree->Branch("a_Phi1",         &a_Phi1,        "a_Phi1/F");
+  fTree->Branch("CosThetaStar_CS",  &CosThetaStar_CS, "CosThetaStar_CS/F");
+  fTree->Branch("CosThetaStar_CS_old",  &CosThetaStar_CS_old, "CosThetaStar_CS_old/F");
+  fTree->Branch("HelicityCostheta1",  &HelicityCostheta1, "HelicityCostheta1/F");
+  fTree->Branch("HelicityCostheta2",  &HelicityCostheta2, "HelicityCostheta2/F");
 
 
   fTree->Branch("New_DRBased_Leading_Jet_E", &New_DRBased_Leading_Jet_E, "New_DRBased_Leading_Jet_E/F");

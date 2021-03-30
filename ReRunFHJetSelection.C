@@ -316,6 +316,10 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             outputVars.a_costhetastar = a_costhetastar;
             outputVars.a_Phi          = a_Phi;
             outputVars.a_Phi1         = a_Phi1;
+            outputVars.CosThetaStar_CS = Angles1.getCosThetaStar_CS();
+            outputVars.CosThetaStar_CS_old = Angles1.getCosThetaStar_CS_old(7500);
+            outputVars.HelicityCostheta1 =  Angles1.CosThetaAngles()[0];
+            outputVars.HelicityCostheta2 =  Angles1.CosThetaAngles()[1];
 
             outputVars.New_OnShellW_E     = (SelectedGoodJets[0] + SelectedGoodJets[1]).E();
             outputVars.New_OnShellW_Mass     = (SelectedGoodJets[0] + SelectedGoodJets[1]).M();
@@ -350,7 +354,18 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             outputVars.New_dPhi_Hgg_Jet2    = DeltaPhi(LV_Hgg.Phi(), SelectedGoodJets[1].Phi());
             outputVars.New_dPhi_Hgg_Jet3    = DeltaPhi(LV_Hgg.Phi(), SelectedGoodJets[2].Phi());
             outputVars.New_dPhi_Hgg_Jet4    = DeltaPhi(LV_Hgg.Phi(), SelectedGoodJets[3].Phi());
-
+            outputVars.New_minDeltaR_gg4j  = DeltaRmin(flashggReader.Leading_Photon_eta, flashggReader.Leading_Photon_phi,
+                                                  flashggReader.Subleading_Photon_eta, flashggReader.Subleading_Photon_phi,
+                                                  SelectedGoodJets[0].Eta(), SelectedGoodJets[0].Phi(),
+                                                  SelectedGoodJets[1].Eta(), SelectedGoodJets[1].Phi(),
+                                                  SelectedGoodJets[2].Eta(), SelectedGoodJets[2].Phi(),
+                                                  SelectedGoodJets[3].Eta(), SelectedGoodJets[3].Phi());
+            outputVars.New_maxDeltaR_gg4j  = DeltaRmax(flashggReader.Leading_Photon_eta, flashggReader.Leading_Photon_phi,
+                                                  flashggReader.Subleading_Photon_eta, flashggReader.Subleading_Photon_phi,
+                                                  SelectedGoodJets[0].Eta(), SelectedGoodJets[0].Phi(),
+                                                  SelectedGoodJets[1].Eta(), SelectedGoodJets[1].Phi(),
+                                                  SelectedGoodJets[2].Eta(), SelectedGoodJets[2].Phi(),
+                                                  SelectedGoodJets[3].Eta(), SelectedGoodJets[3].Phi());
             /*************************************************************************************/
             /*      Get FH jets based on DeltaR                                                  */
             /*************************************************************************************/
