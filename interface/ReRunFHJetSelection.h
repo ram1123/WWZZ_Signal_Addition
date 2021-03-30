@@ -272,7 +272,7 @@ void GetFHJetUsingDR(TLorentzVector &Hgg, std::vector<TLorentzVector> &AllGoodJe
     TLorentzVector jet11;
     TLorentzVector jet12;
     TLorentzVector jet21;
-    TLorentzVector jet22;    
+    TLorentzVector jet22;
     TLorentzVector jet1;
     TLorentzVector jet2;
     TLorentzVector jet3;
@@ -304,7 +304,7 @@ void GetFHJetUsingDR(TLorentzVector &Hgg, std::vector<TLorentzVector> &AllGoodJe
             if (DEBUG) std::cout << CombinationsOf4Jets[i][j] << "\t";
         }
         TLorentzVector HWW = AllGoodJets[CombinationsOf4Jets[i][0]] + AllGoodJets[CombinationsOf4Jets[i][1]] + AllGoodJets[CombinationsOf4Jets[i][2]] + AllGoodJets[CombinationsOf4Jets[i][3]];
-        float temp_dR = deltaR(Hgg.Eta(), Hgg.Phi(), HWW.Eta(), HWW.Phi());
+        float temp_dR = DeltaR(Hgg.Eta(), Hgg.Phi(), HWW.Eta(), HWW.Phi());
 
         if (temp_dR > minDR)
         {
@@ -323,7 +323,7 @@ void GetFHJetUsingDR(TLorentzVector &Hgg, std::vector<TLorentzVector> &AllGoodJe
                 {
                     minDMass = temp_Mass;
                     OnShellW_LeadingJetIndex = CombinationsOf2Jets[WMassIndex][0];
-                    OnShellW_SubLeadingJetIndex = CombinationsOf2Jets[WMassIndex][1];                                        
+                    OnShellW_SubLeadingJetIndex = CombinationsOf2Jets[WMassIndex][1];
                 }
             }
 
@@ -334,7 +334,7 @@ void GetFHJetUsingDR(TLorentzVector &Hgg, std::vector<TLorentzVector> &AllGoodJe
                 if (CombinationsOf4Jets[i][IndexOffShellW] == OnShellW_SubLeadingJetIndex) continue;
                 countOffShellJets++;
                 if (countOffShellJets==1) OffShellW_LeadingJetIndex = CombinationsOf4Jets[i][IndexOffShellW];
-                if (countOffShellJets==2) OffShellW_SubLeadingJetIndex = CombinationsOf4Jets[i][IndexOffShellW];                
+                if (countOffShellJets==2) OffShellW_SubLeadingJetIndex = CombinationsOf4Jets[i][IndexOffShellW];
             }
 
         }
@@ -364,7 +364,7 @@ void GetFHJetUsingDR(TLorentzVector &Hgg, std::vector<TLorentzVector> &AllGoodJe
     Selectedb_dis.push_back(jet1b);
     Selectedb_dis.push_back(jet2b);
     Selectedb_dis.push_back(jet3b);
-    Selectedb_dis.push_back(jet4b);    
+    Selectedb_dis.push_back(jet4b);
 }
 
 

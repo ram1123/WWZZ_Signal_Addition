@@ -2,7 +2,7 @@
 # @Author: Ram Krishna Sharma
 # @Date:   2021-03-25 01:08:04
 # @Last Modified by:   ramkrishna
-# @Last Modified time: 2021-03-25 18:08:43
+# @Last Modified time: 2021-03-25 18:40:49
 
 import ROOT
 ROOT.gROOT.SetBatch(True)
@@ -41,7 +41,7 @@ class HistogramFile(object):
             hist = ROOT.TH1F("hist",title,nbin, minX, maxX)
         # hist = tree.Draw(name)
         self.tree.Draw(name+" >> hist","weight*((Leading_Photon_pt/CMS_hgg_mass>0.35)*(Subleading_Photon_pt/CMS_hgg_mass>0.25)*(passPhotonSels==1)*(CMS_hgg_mass<115 \
-|| CMS_hgg_mass>135)*(Leading_Photon_MVA<-0.7)*(Subleading_Photon_MVA<-0.7))")
+|| CMS_hgg_mass>135)*(Leading_Photon_MVA>-0.7)*(Subleading_Photon_MVA>-0.7))")
         # print tree
         # print tree.GetEntries()
         # if hist:
@@ -58,169 +58,55 @@ class HistogramFile(object):
 #     canvas.SaveAs(filename)          
 
 
-RootFileName = "GluGluToHHTo2G4Q_node_cHHH1_2017"
-TreeName = "GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1"
-
-AdditionalString = "Photon_MVA_lt0p7"
-
-# with HistogramFile('GluGluToHHTo2G4Q_node_cHHH1_2017.root','tagsDumper/trees/GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1') as f,canvas('canvas', 'test.pdf', '', 500, 500):
-with HistogramFile("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar/Signal/"+RootFileName+'.root',TreeName) as f:
-    canvas = ROOT.TCanvas('canvas', '', 500, 500)
-    hist = f.get_histogram_fromTree('PhotonID_min',25,-1,1,"PhotonID_min")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_min.png')  
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_min.root')  
-
-    hist = f.get_histogram_fromTree('PhotonID_max',25,-1,1,"PhotonID_max")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_max.png')  
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_max.root')  
-    # hist = f.get_histogram_fromTree('weight',25,-1,1,"weight")
-    # hist.Draw()
-    # canvas.SaveAs(RootFileName+'_'+AdditionalString+'_weight.png')      
-    # hist = dataset.get_histogram('electron_momentum')
-    # hist.Draw()    
-
-RootFileName = "DiPhotonJetsBox_MGG-80toInf_13TeV"
-TreeName = "DiPhotonJetsBox_MGG_80toInf_13TeV_Sherpa_13TeV_HHWWggTag_1"
+AdditionalString = "Photon_MVA_gt0p7"
 
 
 
-# with HistogramFile('GluGluToHHTo2G4Q_node_cHHH1_2017.root','tagsDumper/trees/GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1') as f,canvas('canvas', 'test.pdf', '', 500, 500):
-with HistogramFile("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar/Backgrounds/"+RootFileName+'.root',TreeName) as f:
-    canvas = ROOT.TCanvas('canvas', '', 500, 500)
-    hist = f.get_histogram_fromTree('PhotonID_min',25,-1,1,"PhotonID_min")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_min.root')  
+RootFileDict = {
+    "Signal/GluGluToHHTo2G4Q_node_cHHH1_2017": "GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1",
 
-    hist = f.get_histogram_fromTree('PhotonID_max',25,-1,1,"PhotonID_max")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_max.root')  
-    # hist = dataset.get_histogram('electron_momentum')
-    # hist.Draw()       
+    "Backgrounds/GJet_Pt-40toInf_DoubleEMEnriched_MGG-80toInf": "GJet_Pt_40toInf_DoubleEMEnriched_MGG_80toInf_TuneCP5_13TeV_Pythia8_13TeV_HHWWggTag_1",
+    "Backgrounds/GJet_Pt-20to40_DoubleEMEnriched_MGG-80toInf_TuneCP5_13TeV": "GJet_Pt_20to40_DoubleEMEnriched_MGG_80toInf_TuneCP5_13TeV_Pythia8_13TeV_HHWWggTag_1",
+    "Backgrounds/GJet_Pt-20toInf_DoubleEMEnriched_MGG-40to80_TuneCP5_13TeV": "GJet_Pt_20toInf_DoubleEMEnriched_MGG_40to80_TuneCP5_13TeV_Pythia8_13TeV_HHWWggTag_1",
+
+    "Backgrounds/VHToGG_M125_13TeV": "wzh_125_13TeV_HHWWggTag_1",
+    "Backgrounds/GluGluHToGG_M125_TuneCP5_13TeV": "ggh_125_13TeV_HHWWggTag_1",
+    "Backgrounds/VBFHToGG_M125_13TeV": "vbf_125_13TeV_HHWWggTag_1",
+    "Backgrounds/ttHJetToGG_M125_13TeV": "tth_125_13TeV_HHWWggTag_1",
     
+    "Backgrounds/TTGJets_TuneCP5_13TeV": "TTGJets_TuneCP5_13TeV_amcatnloFXFX_madspin_pythia8_13TeV_HHWWggTag_1",
+    "Backgrounds/TTGG_0Jets_TuneCP5_13TeV": "TTGG_0Jets_TuneCP5_13TeV_amcatnlo_madspin_pythia8_13TeV_HHWWggTag_1",
+    "Backgrounds/TTJets_TuneCP5_13TeV": "TTJets_TuneCP5_13TeV_amcatnloFXFX_pythia8_13TeV_HHWWggTag_1",
+    "Backgrounds/TTToHadronic_TuneCP5_13TeV-powheg-pythia8": "TTToHadronic_TuneCP5_13TeV_powheg_pythia8_13TeV_HHWWggTag_1",
+    "Backgrounds/ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8": "ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8_13TeV_HHWWggTag_1",
 
-RootFileName = "TTGG_0Jets_TuneCP5_13TeV"
-TreeName = "TTGG_0Jets_TuneCP5_13TeV_amcatnlo_madspin_pythia8_13TeV_HHWWggTag_1"
+    "Backgrounds/DYJetsToLL_M-50_TuneCP5_13TeV": "DYJetsToLL_M_50_TuneCP5_13TeV_amcatnloFXFX_pythia8_13TeV_HHWWggTag_1",
 
+    "Backgrounds/DiPhotonJetsBox_MGG-80toInf_13TeV": "DiPhotonJetsBox_MGG_80toInf_13TeV_Sherpa_13TeV_HHWWggTag_1",
+    "Backgrounds/DiPhotonJetsBox_M40_80": "DiPhotonJetsBox_M40_80_Sherpa_13TeV_HHWWggTag_1",
 
-# with HistogramFile('GluGluToHHTo2G4Q_node_cHHH1_2017.root','tagsDumper/trees/GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1') as f,canvas('canvas', 'test.pdf', '', 500, 500):
-with HistogramFile("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar/Backgrounds/"+RootFileName+'.root',TreeName) as f:
-    canvas = ROOT.TCanvas('canvas', '', 500, 500)
-    hist = f.get_histogram_fromTree('PhotonID_min',25,-1,1,"PhotonID_min")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_min.root')  
+    "Backgrounds/WGGJets_TuneCP5_13TeV_madgraphMLM_pythia8": "WGGJets_TuneCP5_13TeV_madgraphMLM_pythia8_13TeV_HHWWggTag_1",
+    "Backgrounds/WGJJToLNu_EWK_QCD_TuneCP5_13TeV-madgraph-pythia8": "WGJJToLNu_EWK_QCD_TuneCP5_13TeV_madgraph_pythia8_13TeV_HHWWggTag_1",
+    "Backgrounds/WWTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8": "WWTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_13TeV_HHWWggTag_1"
+}
 
-    hist = f.get_histogram_fromTree('PhotonID_max',25,-1,1,"PhotonID_max")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_max.root')  
-    # hist = dataset.get_histogram('electron_momentum')
-    # hist.Draw()    
-    # 
-RootFileName = "TTGJets_TuneCP5_13TeV"
-TreeName = "TTGJets_TuneCP5_13TeV_amcatnloFXFX_madspin_pythia8_13TeV_HHWWggTag_1"
+for RootFileName in RootFileDict:
+    print ("="*51,"\n")
+    TreeName = RootFileDict[RootFileName]
+    print ("RootFileName: ",RootFileName)
+    print ("TreeName: ",TreeName)
 
+    with HistogramFile("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar/"+RootFileName+'.root',TreeName) as f:
+        canvas = ROOT.TCanvas('canvas', '', 500, 500)
+        hist = f.get_histogram_fromTree('PhotonID_min',25,-1,1,"PhotonID_min")
+        hist.Draw()
+        canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_min.png')  
+        canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_min.root')  
 
-# with HistogramFile('GluGluToHHTo2G4Q_node_cHHH1_2017.root','tagsDumper/trees/GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1') as f,canvas('canvas', 'test.pdf', '', 500, 500):
-with HistogramFile("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar/Backgrounds/"+RootFileName+'.root',TreeName) as f:
-    canvas = ROOT.TCanvas('canvas', '', 500, 500)
-    hist = f.get_histogram_fromTree('PhotonID_min',25,-1,1,"PhotonID_min")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_min.root')  
-
-    hist = f.get_histogram_fromTree('PhotonID_max',25,-1,1,"PhotonID_max")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_max.root')  
-    # hist = dataset.get_histogram('electron_momentum')
-    # hist.Draw()    
-
-RootFileName = "ttHJetToGG_M125_13TeV"
-TreeName = "tth_125_13TeV_HHWWggTag_1"
-
-
-# with HistogramFile('GluGluToHHTo2G4Q_node_cHHH1_2017.root','tagsDumper/trees/GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1') as f,canvas('canvas', 'test.pdf', '', 500, 500):
-with HistogramFile("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar/Backgrounds/"+RootFileName+'.root',TreeName) as f:
-    canvas = ROOT.TCanvas('canvas', '', 500, 500)
-    hist = f.get_histogram_fromTree('PhotonID_min',25,-1,1,"PhotonID_min")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_min.root')  
-
-    hist = f.get_histogram_fromTree('PhotonID_max',25,-1,1,"PhotonID_max")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_max.root')  
-    # hist = dataset.get_histogram('electron_momentum')
-    # hist.Draw()    
-
-
-RootFileName = "VBFHToGG_M125_13TeV"
-TreeName = "vbf_125_13TeV_HHWWggTag_1"
-
-
-# with HistogramFile('GluGluToHHTo2G4Q_node_cHHH1_2017.root','tagsDumper/trees/GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1') as f,canvas('canvas', 'test.pdf', '', 500, 500):
-with HistogramFile("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar/Backgrounds/"+RootFileName+'.root',TreeName) as f:
-    canvas = ROOT.TCanvas('canvas', '', 500, 500)
-    hist = f.get_histogram_fromTree('PhotonID_min',25,-1,1,"PhotonID_min")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_min.root')  
-
-    hist = f.get_histogram_fromTree('PhotonID_max',25,-1,1,"PhotonID_max")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_max.root')  
-    # hist = dataset.get_histogram('electron_momentum')
-    # hist.Draw()    
-
-
-RootFileName = "GluGluHToGG_M125_TuneCP5_13TeV"
-TreeName = "ggh_125_13TeV_HHWWggTag_1"
-
-
-# with HistogramFile('GluGluToHHTo2G4Q_node_cHHH1_2017.root','tagsDumper/trees/GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1') as f,canvas('canvas', 'test.pdf', '', 500, 500):
-with HistogramFile("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar/Backgrounds/"+RootFileName+'.root',TreeName) as f:
-    canvas = ROOT.TCanvas('canvas', '', 500, 500)
-    hist = f.get_histogram_fromTree('PhotonID_min',25,-1,1,"PhotonID_min")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_min.root')  
-
-    hist = f.get_histogram_fromTree('PhotonID_max',25,-1,1,"PhotonID_max")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_max.root')  
-    # hist = dataset.get_histogram('electron_momentum')
-    # hist.Draw()    
-
-
-RootFileName = "VHToGG_M125_13TeV"
-TreeName = "wzh_125_13TeV_HHWWggTag_1"    
-
-
-# with HistogramFile('GluGluToHHTo2G4Q_node_cHHH1_2017.root','tagsDumper/trees/GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1') as f,canvas('canvas', 'test.pdf', '', 500, 500):
-with HistogramFile("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar/Backgrounds/"+RootFileName+'.root',TreeName) as f:
-    canvas = ROOT.TCanvas('canvas', '', 500, 500)
-    hist = f.get_histogram_fromTree('PhotonID_min',25,-1,1,"PhotonID_min")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_min.root')  
-
-    hist = f.get_histogram_fromTree('PhotonID_max',25,-1,1,"PhotonID_max")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_max.root')  
-    # hist = dataset.get_histogram('electron_momentum')
-    # hist.Draw()    
-
-RootFileName = "GJet_Pt-40toInf_DoubleEMEnriched_MGG-80toInf"
-TreeName = "GJet_Pt_40toInf_DoubleEMEnriched_MGG_80toInf_TuneCP5_13TeV_Pythia8_13TeV_HHWWggTag_1"
-
-# with HistogramFile('GluGluToHHTo2G4Q_node_cHHH1_2017.root','tagsDumper/trees/GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1') as f,canvas('canvas', 'test.pdf', '', 500, 500):
-with HistogramFile("/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar/Backgrounds/"+RootFileName+'.root',TreeName) as f:
-    canvas = ROOT.TCanvas('canvas', '', 500, 500)
-    hist = f.get_histogram_fromTree('PhotonID_min',25,-1,1,"PhotonID_min")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_min.root')  
-
-    hist = f.get_histogram_fromTree('PhotonID_max',25,-1,1,"PhotonID_max")
-    hist.Draw()
-    canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_max.root')  
-    # hist = dataset.get_histogram('electron_momentum')
-    # hist.Draw()   
-
+        hist = f.get_histogram_fromTree('PhotonID_max',25,-1,1,"PhotonID_max")
+        hist.Draw()
+        canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_max.png')  
+        canvas.SaveAs(RootFileName+'_'+AdditionalString+'_PhotonID_max.root')  
 
 
 # import ROOT as root

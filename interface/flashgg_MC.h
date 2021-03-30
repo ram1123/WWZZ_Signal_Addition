@@ -1832,7 +1832,7 @@ public :
          dir->GetObject("GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1",tree);
 
       }
-      Init(tree);      
+      Init(tree);
    };
    virtual ~flashgg_MC(){};
    virtual Int_t    GetEntry(Long64_t entry);

@@ -1632,7 +1632,7 @@ public :
          dir->GetObject("Data_13TeV_HHWWggTag_1",tree);
 
       }
-      Init(tree);      
+      Init(tree);
    };
    virtual ~flashgg_Data(){};
    virtual Int_t    GetEntry(Long64_t entry);

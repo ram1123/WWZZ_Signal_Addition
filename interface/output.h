@@ -24,7 +24,7 @@ public:
   //------------------------------------//
   //       METADATA AND EVENT WEIGHTS   //
   //------------------------------------//
-  
+
   Float_t   PhotonID_min = -999.0;
   Float_t   PhotonID_max = -999.0;
 
@@ -75,7 +75,7 @@ public:
   Float_t   New_OffShellW_py = -999.0;
   Float_t   New_OffShellW_pz = -999.0;
   Float_t   New_OffShellW_eta = -999.0;
-  Float_t   New_OffShellW_phi = -999.0; 
+  Float_t   New_OffShellW_phi = -999.0;
   Float_t   New_HWW_E = -999.0;
   Float_t   New_HWW_Mass = -999.0;
   Float_t   New_HWW_pt = -999.0;
@@ -149,7 +149,7 @@ public:
   Float_t   New_DRBased_OffShellW_py = -999.0;
   Float_t   New_DRBased_OffShellW_pz = -999.0;
   Float_t   New_DRBased_OffShellW_eta = -999.0;
-  Float_t   New_DRBased_OffShellW_phi = -999.0; 
+  Float_t   New_DRBased_OffShellW_phi = -999.0;
   Float_t   New_DRBased_HWW_E = -999.0;
   Float_t   New_DRBased_HWW_Mass = -999.0;
   Float_t   New_DRBased_HWW_pt = -999.0;

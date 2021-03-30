@@ -121,31 +121,120 @@ void expandGlob(const string& globstr,
     cerr << globstr << endl;
     exit(-1);
   }
-      
+
   for (size_t i=0; i<globbuf.gl_pathc; i++)
     outpaths.push_back(string(globbuf.gl_pathv[i]));
 
-  if (globbuf.gl_pathc) 
+  if (globbuf.gl_pathc)
     globfree(&globbuf);
 }
 
 
 //======================================================================
 
-double deltaPhi(double phi1,double phi2)
+double DeltaPhi(double phi1,double phi2)
 {
   double result = phi1 - phi2;
   if (result > TMath::Pi()) result -= 2*TMath::Pi();
   if (result <= -TMath::Pi()) result += 2*TMath::Pi();
   return result;
 }
-double deltaR(double eta1,double phi1,double eta2,double phi2)
+double DeltaR(double eta1,double phi1,double eta2,double phi2)
 {
   double deta = eta1 - eta2;
-  double dphi = deltaPhi(phi1, phi2);
+  double dphi = DeltaPhi(phi1, phi2);
   return std::sqrt(deta*deta + dphi*dphi);
 }
 
+double DeltaRmin2j(double etaph1=0, double phiph1=0, double etaph2=0, double phiph2=0, double etaj1=0, double phij1=0,double etaj2=0, double phij2=0)
+{
+
+  return min(
+              DeltaR(etaph1, phiph1, etaj1, phij1), min(
+                DeltaR(etaph1, phiph1, etaj2, phij2), min(
+                  DeltaR(etaph2, phiph2, etaj1, phij1),
+                  DeltaR(etaph2, phiph2, etaj2, phij2)
+                )
+              )
+            );
+}
+
+double DeltaRmin(double etaph1=0, double phiph1=0, double etaph2=0, double phiph2=0, double etaj1=0, double phij1=0,double etaj2=0, double phij2=0, double etaj3=0, double phij3=0, double etaj4=0, double phij4=0)
+{
+
+  return min(
+              DeltaR(etaph1, phiph1, etaj1, phij1),
+              min(
+                DeltaR(etaph1, phiph1, etaj2, phij2),
+              min(
+                DeltaR(etaph1, phiph1, etaj3, phij3),
+              min(
+                DeltaR(etaph1, phiph1, etaj4, phij4),
+              min(
+                DeltaR(etaph2, phiph2, etaj1, phij1),
+              min(
+                DeltaR(etaph2, phiph2, etaj2, phij2),
+              min(
+                DeltaR(etaph2, phiph2, etaj3, phij3),
+                DeltaR(etaph2, phiph2, etaj4, phij4)
+                )
+              ) ) ) ) )
+            );
+}
+
+double DeltaRmax(double etaph1=0, double phiph1=0, double etaph2=0, double phiph2=0, double etaj1=0, double phij1=0,double etaj2=0, double phij2=0)
+{
+
+  return max(
+              DeltaR(etaph1, phiph1, etaj1, phij1), max(
+                DeltaR(etaph1, phiph1, etaj2, phij2), max(
+                  DeltaR(etaph2, phiph2, etaj1, phij1),
+                  DeltaR(etaph2, phiph2, etaj2, phij2)
+                )
+              )
+            );
+}
+
+double DeltaRmax(double etaph1=0, double phiph1=0, double etaph2=0, double phiph2=0, double etaj1=0, double phij1=0,double etaj2=0, double phij2=0, double etaj3=0, double phij3=0, double etaj4=0, double phij4=0)
+{
+
+  return max(
+              DeltaR(etaph1, phiph1, etaj1, phij1),
+              max(
+                DeltaR(etaph1, phiph1, etaj2, phij2),
+              max(
+                DeltaR(etaph1, phiph1, etaj3, phij3),
+              max(
+                DeltaR(etaph1, phiph1, etaj4, phij4),
+              max(
+                DeltaR(etaph2, phiph2, etaj1, phij1),
+              max(
+                DeltaR(etaph2, phiph2, etaj2, phij2),
+              max(
+                DeltaR(etaph2, phiph2, etaj3, phij3),
+                DeltaR(etaph2, phiph2, etaj4, phij4)
+                )
+              ) ) ) ) )
+            );
+}
+double otherDeltaR(double etaph1=0, double phiph1=0, double etaph2=0, double phiph2=0, double etaj1=0, double phij1=0,double etaj2=0, double phij2=0)
+{
+  double dRmin = DeltaRmin2j(etaph1, phiph1, etaph2, phiph2, etaj1, phij1,etaj2, phij2);
+
+  if( DeltaR(etaph1, phiph1, etaj1, phij1)==dRmin )
+    return DeltaR(etaph2, phiph2, etaj2, phij2);
+
+  if( DeltaR(etaph1, phiph1, etaj2, phij2)==dRmin )
+    return DeltaR(etaph2, phiph2, etaj1, phij1);
+
+  if( DeltaR(etaph2, phiph2, etaj1, phij1)==dRmin )
+    return DeltaR(etaph1, phiph1, etaj2, phij2);
+
+  if( DeltaR(etaph2, phiph2, etaj2, phij2)==dRmin )
+    return DeltaR(etaph1, phiph1, etaj1, phij1);
+
+  return 0;
+}
 
 //======================================================================
 

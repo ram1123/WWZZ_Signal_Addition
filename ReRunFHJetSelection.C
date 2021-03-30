@@ -18,9 +18,13 @@
 
 #include "interface/utils.C"
 #include "interface/ReRunFHJetSelection.h"
+#include "interface/AngularVariables.cpp"
+
 #include "interface/flashgg_Data.h"
 #include "interface/flashgg_MC.h"
+
 #include "interface/output.h"
+
 #include <chrono>
 #include "progressbar.hpp"
 #include <time.h>
@@ -289,12 +293,12 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             outputVars.New_OffShellW_LeadingJet_bDis  = Selectedb_dis[2];
             outputVars.New_OffShellW_SubLeadingJet_bDis  = Selectedb_dis[3];
 
-            outputVars.New_DPhi_gg = deltaPhi(flashggReader.Leading_Photon_phi, flashggReader.Subleading_Photon_phi);
-            outputVars.New_DR_gg = deltaR(flashggReader.Leading_Photon_eta, flashggReader.Leading_Photon_phi, flashggReader.Subleading_Photon_eta, flashggReader.Subleading_Photon_phi);
+            outputVars.New_DPhi_gg = DeltaPhi(flashggReader.Leading_Photon_phi, flashggReader.Subleading_Photon_phi);
+            outputVars.New_DR_gg = DeltaR(flashggReader.Leading_Photon_eta, flashggReader.Leading_Photon_phi, flashggReader.Subleading_Photon_eta, flashggReader.Subleading_Photon_phi);
 
             TLorentzVector LV_HiggsFromJets = SelectedGoodJets[0]+ SelectedGoodJets[1]+ SelectedGoodJets[2]+ SelectedGoodJets[3];
-            outputVars.New_DPhi_HH = deltaPhi(LV_HiggsFromJets.Phi(), flashggReader.HGGCandidate_phi);
-            outputVars.New_DR_HH = deltaR(LV_HiggsFromJets.Eta(), LV_HiggsFromJets.Phi(), flashggReader.HGGCandidate_eta, flashggReader.HGGCandidate_phi);
+            outputVars.New_DPhi_HH = DeltaPhi(LV_HiggsFromJets.Phi(), flashggReader.HGGCandidate_phi);
+            outputVars.New_DR_HH = DeltaR(LV_HiggsFromJets.Eta(), LV_HiggsFromJets.Phi(), flashggReader.HGGCandidate_eta, flashggReader.HGGCandidate_phi);
 
             outputVars.PhotonID_min = (flashggReader.Leading_Photon_MVA > flashggReader.Subleading_Photon_MVA) ? flashggReader.Subleading_Photon_MVA : flashggReader.Leading_Photon_MVA;
             outputVars.PhotonID_max = (flashggReader.Leading_Photon_MVA > flashggReader.Subleading_Photon_MVA) ? flashggReader.Leading_Photon_MVA : flashggReader.Subleading_Photon_MVA;
@@ -304,7 +308,8 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             LV_LeadingPho.SetPtEtaPhiE(flashggReader.Leading_Photon_pt,flashggReader.Leading_Photon_eta,flashggReader.Leading_Photon_phi,flashggReader.Leading_Photon_E);
             LV_SubLeadPho.SetPtEtaPhiE(flashggReader.Subleading_Photon_pt,flashggReader.Subleading_Photon_eta,flashggReader.Subleading_Photon_phi,flashggReader.Subleading_Photon_E);
             LV_Hgg = LV_LeadingPho + LV_SubLeadPho;
-            computeAngles(LV_Hgg + LV_HiggsFromJets, LV_Hgg, LV_LeadingPho, LV_SubLeadPho, LV_HiggsFromJets, SelectedGoodJets[0]+ SelectedGoodJets[1], SelectedGoodJets[2]+ SelectedGoodJets[3] , a_costheta1, a_costheta2, a_Phi, a_costhetastar, a_Phi1);
+            AngularVariables Angles1(LV_Hgg + LV_HiggsFromJets, LV_Hgg, LV_LeadingPho, LV_SubLeadPho, LV_HiggsFromJets, SelectedGoodJets[0]+ SelectedGoodJets[1], SelectedGoodJets[2]+ SelectedGoodJets[3]);
+            Angles1.computeAngles(a_costheta1, a_costheta2, a_Phi, a_costhetastar, a_Phi1);
 
             outputVars.a_costheta1    = a_costheta1;
             outputVars.a_costheta2    = a_costheta2;
@@ -336,18 +341,18 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             outputVars.New_HWW_pz   = LV_HiggsFromJets.Py();
             outputVars.New_HWW_eta  = LV_HiggsFromJets.Pz();
             outputVars.New_HWW_phi  = LV_HiggsFromJets.Phi();
-            outputVars.New_dR_Hgg_Jet1    = deltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), SelectedGoodJets[0].Eta(), SelectedGoodJets[0].Phi());
-            outputVars.New_dR_Hgg_Jet2    = deltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), SelectedGoodJets[1].Eta(), SelectedGoodJets[1].Phi());
-            outputVars.New_dR_Hgg_Jet3    = deltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), SelectedGoodJets[2].Eta(), SelectedGoodJets[2].Phi());
-            outputVars.New_dR_Hgg_Jet4    = deltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), SelectedGoodJets[3].Eta(), SelectedGoodJets[3].Phi());
+            outputVars.New_dR_Hgg_Jet1    = DeltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), SelectedGoodJets[0].Eta(), SelectedGoodJets[0].Phi());
+            outputVars.New_dR_Hgg_Jet2    = DeltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), SelectedGoodJets[1].Eta(), SelectedGoodJets[1].Phi());
+            outputVars.New_dR_Hgg_Jet3    = DeltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), SelectedGoodJets[2].Eta(), SelectedGoodJets[2].Phi());
+            outputVars.New_dR_Hgg_Jet4    = DeltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), SelectedGoodJets[3].Eta(), SelectedGoodJets[3].Phi());
 
-            outputVars.New_dPhi_Hgg_Jet1    = deltaPhi(LV_Hgg.Phi(), SelectedGoodJets[0].Phi());
-            outputVars.New_dPhi_Hgg_Jet2    = deltaPhi(LV_Hgg.Phi(), SelectedGoodJets[1].Phi());
-            outputVars.New_dPhi_Hgg_Jet3    = deltaPhi(LV_Hgg.Phi(), SelectedGoodJets[2].Phi());
-            outputVars.New_dPhi_Hgg_Jet4    = deltaPhi(LV_Hgg.Phi(), SelectedGoodJets[3].Phi());
+            outputVars.New_dPhi_Hgg_Jet1    = DeltaPhi(LV_Hgg.Phi(), SelectedGoodJets[0].Phi());
+            outputVars.New_dPhi_Hgg_Jet2    = DeltaPhi(LV_Hgg.Phi(), SelectedGoodJets[1].Phi());
+            outputVars.New_dPhi_Hgg_Jet3    = DeltaPhi(LV_Hgg.Phi(), SelectedGoodJets[2].Phi());
+            outputVars.New_dPhi_Hgg_Jet4    = DeltaPhi(LV_Hgg.Phi(), SelectedGoodJets[3].Phi());
 
             /*************************************************************************************/
-            /*      Get FH jets based on deltaR                                                  */
+            /*      Get FH jets based on DeltaR                                                  */
             /*************************************************************************************/
             std::vector<TLorentzVector> SelectedGoodJets_dRBased; // Fill the FH selected jets
             std::vector<Float_t> Selectedb_dis_dRBased; // Fill the b-discriminator value for FH selected jets
@@ -386,12 +391,12 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             outputVars.New_DRBased_OffShellW_LeadingJet_bDis  = Selectedb_dis[2];
             outputVars.New_DRBased_OffShellW_SubLeadingJet_bDis  = Selectedb_dis[3];
 
-            outputVars.New_DRBased_DPhi_gg = deltaPhi(flashggReader.Leading_Photon_phi, flashggReader.Subleading_Photon_phi);
-            outputVars.New_DRBased_DR_gg = deltaR(flashggReader.Leading_Photon_eta, flashggReader.Leading_Photon_phi, flashggReader.Subleading_Photon_eta, flashggReader.Subleading_Photon_phi);
+            outputVars.New_DRBased_DPhi_gg = DeltaPhi(flashggReader.Leading_Photon_phi, flashggReader.Subleading_Photon_phi);
+            outputVars.New_DRBased_DR_gg = DeltaR(flashggReader.Leading_Photon_eta, flashggReader.Leading_Photon_phi, flashggReader.Subleading_Photon_eta, flashggReader.Subleading_Photon_phi);
 
             TLorentzVector LV_HiggsFromJets_DRBased = SelectedGoodJets_dRBased[0]+ SelectedGoodJets_dRBased[1]+ SelectedGoodJets_dRBased[2]+ SelectedGoodJets_dRBased[3];
-            outputVars.New_DRBased_DPhi_HH = deltaPhi(LV_HiggsFromJets_DRBased.Phi(), flashggReader.HGGCandidate_phi);
-            outputVars.New_DRBased_DR_HH = deltaR(LV_HiggsFromJets_DRBased.Eta(), LV_HiggsFromJets_DRBased.Phi(), flashggReader.HGGCandidate_eta, flashggReader.HGGCandidate_phi);
+            outputVars.New_DRBased_DPhi_HH = DeltaPhi(LV_HiggsFromJets_DRBased.Phi(), flashggReader.HGGCandidate_phi);
+            outputVars.New_DRBased_DR_HH = DeltaR(LV_HiggsFromJets_DRBased.Eta(), LV_HiggsFromJets_DRBased.Phi(), flashggReader.HGGCandidate_eta, flashggReader.HGGCandidate_phi);
 
             // outputVars.PhotonID_min = (flashggReader.Leading_Photon_MVA > flashggReader.Subleading_Photon_MVA) ? flashggReader.Subleading_Photon_MVA : flashggReader.Leading_Photon_MVA;
             // outputVars.PhotonID_max = (flashggReader.Leading_Photon_MVA > flashggReader.Subleading_Photon_MVA) ? flashggReader.Leading_Photon_MVA : flashggReader.Subleading_Photon_MVA;
@@ -401,7 +406,8 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             LV_LeadingPho_DRBased.SetPtEtaPhiE(flashggReader.Leading_Photon_pt,flashggReader.Leading_Photon_eta,flashggReader.Leading_Photon_phi,flashggReader.Leading_Photon_E);
             LV_SubLeadPho_DRBased.SetPtEtaPhiE(flashggReader.Subleading_Photon_pt,flashggReader.Subleading_Photon_eta,flashggReader.Subleading_Photon_phi,flashggReader.Subleading_Photon_E);
             LV_Hgg_DRBased = LV_LeadingPho_DRBased + LV_SubLeadPho_DRBased;
-            computeAngles(LV_Hgg_DRBased + LV_HiggsFromJets_DRBased, LV_Hgg_DRBased, LV_LeadingPho_DRBased, LV_SubLeadPho_DRBased, LV_HiggsFromJets_DRBased, SelectedGoodJets_dRBased[0]+ SelectedGoodJets_dRBased[1], SelectedGoodJets_dRBased[2]+ SelectedGoodJets_dRBased[3] , DRBased_a_costheta1, DRBased_a_costheta2, DRBased_a_Phi, DRBased_a_costhetastar, DRBased_a_Phi1);
+            AngularVariables Angles2(LV_Hgg_DRBased + LV_HiggsFromJets_DRBased, LV_Hgg_DRBased, LV_LeadingPho_DRBased, LV_SubLeadPho_DRBased, LV_HiggsFromJets_DRBased, SelectedGoodJets_dRBased[0]+ SelectedGoodJets_dRBased[1], SelectedGoodJets_dRBased[2]+ SelectedGoodJets_dRBased[3]);
+            Angles2.computeAngles(DRBased_a_costheta1, DRBased_a_costheta2, DRBased_a_Phi, DRBased_a_costhetastar, DRBased_a_Phi1);
 
             outputVars.DRBased_a_costheta1    = DRBased_a_costheta1;
             outputVars.DRBased_a_costheta2    = DRBased_a_costheta2;
@@ -433,15 +439,15 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             outputVars.New_DRBased_HWW_pz   = LV_HiggsFromJets_DRBased.Py();
             outputVars.New_DRBased_HWW_eta  = LV_HiggsFromJets_DRBased.Pz();
             outputVars.New_DRBased_HWW_phi  = LV_HiggsFromJets_DRBased.Phi();
-            outputVars.New_DRBased_dR_Hgg_Jet1    = deltaR(LV_Hgg_DRBased.Eta(), LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[0].Eta(), SelectedGoodJets_dRBased[0].Phi());
-            outputVars.New_DRBased_dR_Hgg_Jet2    = deltaR(LV_Hgg_DRBased.Eta(), LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[1].Eta(), SelectedGoodJets_dRBased[1].Phi());
-            outputVars.New_DRBased_dR_Hgg_Jet3    = deltaR(LV_Hgg_DRBased.Eta(), LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[2].Eta(), SelectedGoodJets_dRBased[2].Phi());
-            outputVars.New_DRBased_dR_Hgg_Jet4    = deltaR(LV_Hgg_DRBased.Eta(), LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[3].Eta(), SelectedGoodJets_dRBased[3].Phi());
+            outputVars.New_DRBased_dR_Hgg_Jet1    = DeltaR(LV_Hgg_DRBased.Eta(), LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[0].Eta(), SelectedGoodJets_dRBased[0].Phi());
+            outputVars.New_DRBased_dR_Hgg_Jet2    = DeltaR(LV_Hgg_DRBased.Eta(), LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[1].Eta(), SelectedGoodJets_dRBased[1].Phi());
+            outputVars.New_DRBased_dR_Hgg_Jet3    = DeltaR(LV_Hgg_DRBased.Eta(), LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[2].Eta(), SelectedGoodJets_dRBased[2].Phi());
+            outputVars.New_DRBased_dR_Hgg_Jet4    = DeltaR(LV_Hgg_DRBased.Eta(), LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[3].Eta(), SelectedGoodJets_dRBased[3].Phi());
 
-            outputVars.New_DRBased_dPhi_Hgg_Jet1    = deltaPhi(LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[0].Phi());
-            outputVars.New_DRBased_dPhi_Hgg_Jet2    = deltaPhi(LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[1].Phi());
-            outputVars.New_DRBased_dPhi_Hgg_Jet3    = deltaPhi(LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[2].Phi());
-            outputVars.New_DRBased_dPhi_Hgg_Jet4    = deltaPhi(LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[3].Phi());
+            outputVars.New_DRBased_dPhi_Hgg_Jet1    = DeltaPhi(LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[0].Phi());
+            outputVars.New_DRBased_dPhi_Hgg_Jet2    = DeltaPhi(LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[1].Phi());
+            outputVars.New_DRBased_dPhi_Hgg_Jet3    = DeltaPhi(LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[2].Phi());
+            outputVars.New_DRBased_dPhi_Hgg_Jet4    = DeltaPhi(LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[3].Phi());
             newtree->Fill();
         }
         std::cout << "\n" << std::endl;
