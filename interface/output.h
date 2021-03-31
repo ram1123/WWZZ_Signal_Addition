@@ -98,6 +98,8 @@ public:
   Float_t   New_DR_HH = -999.0;
   Float_t   New_minDeltaR_gg4j = -999.0;
   Float_t   New_maxDeltaR_gg4j = -999.0;
+  Float_t   New_minDeltaR_4j = -999.0;
+  Float_t   New_maxDeltaR_4j = -999.0;
   Float_t   a_costheta1 = -999.0;
   Float_t   a_costheta2 = -999.0;
   Float_t   a_costhetastar = -999.0;
@@ -262,6 +264,8 @@ void output::init(TTree* tree) {
   fTree->Branch("New_DR_HH",    &New_DR_HH,     "New_DR_HH/F");
   fTree->Branch("New_minDeltaR_gg4j",    &New_minDeltaR_gg4j,     "New_minDeltaR_gg4j/F");
   fTree->Branch("New_maxDeltaR_gg4j",    &New_maxDeltaR_gg4j,     "New_maxDeltaR_gg4j/F");
+  fTree->Branch("New_minDeltaR_4j",    &New_minDeltaR_4j,     "New_minDeltaR_4j/F");
+  fTree->Branch("New_maxDeltaR_4j",    &New_maxDeltaR_4j,     "New_maxDeltaR_4j/F");
   fTree->Branch("a_costheta1",    &a_costheta1,   "a_costheta1/F");
   fTree->Branch("a_costheta2",    &a_costheta2,   "a_costheta2/F");
   fTree->Branch("a_costhetastar", &a_costhetastar,"a_costhetastar/F");

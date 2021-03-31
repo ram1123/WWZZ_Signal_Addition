@@ -366,6 +366,17 @@ void ReRunFHJetSelection( /* bool isMC = true, */
                                                   SelectedGoodJets[1].Eta(), SelectedGoodJets[1].Phi(),
                                                   SelectedGoodJets[2].Eta(), SelectedGoodJets[2].Phi(),
                                                   SelectedGoodJets[3].Eta(), SelectedGoodJets[3].Phi());
+            outputVars.New_minDeltaR_4j  = DeltaRmin4Particle(
+                                                  SelectedGoodJets[0].Eta(), SelectedGoodJets[0].Phi(),
+                                                  SelectedGoodJets[1].Eta(), SelectedGoodJets[1].Phi(),
+                                                  SelectedGoodJets[2].Eta(), SelectedGoodJets[2].Phi(),
+                                                  SelectedGoodJets[3].Eta(), SelectedGoodJets[3].Phi());
+            outputVars.New_maxDeltaR_4j  = DeltaRmax4Particle(
+                                                  SelectedGoodJets[0].Eta(), SelectedGoodJets[0].Phi(),
+                                                  SelectedGoodJets[1].Eta(), SelectedGoodJets[1].Phi(),
+                                                  SelectedGoodJets[2].Eta(), SelectedGoodJets[2].Phi(),
+                                                  SelectedGoodJets[3].Eta(), SelectedGoodJets[3].Phi());
+
             /*************************************************************************************/
             /*      Get FH jets based on DeltaR                                                  */
             /*************************************************************************************/

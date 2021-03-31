@@ -1,18 +1,18 @@
 
-class chisquare 
+class chisquare
 {
 
 public:
   chisquare(TH1F* data1, TH1F* constMC1, TH1F* diphotonMC1, TH1F* datadrivenQCD1,
 	    TH1F* data2, TH1F* constMC2, TH1F* diphotonMC2, TH1F* datadrivenQCD2)
   {
-    data1_ = data1; 
-    constMC1_ = constMC1; 
-    diphotonMC1_ = diphotonMC1; 
+    data1_ = data1;
+    constMC1_ = constMC1;
+    diphotonMC1_ = diphotonMC1;
     datadrivenQCD1_ = datadrivenQCD1;
-    data2_ = data2; 
-    constMC2_ = constMC2; 
-    diphotonMC2_ = diphotonMC2; 
+    data2_ = data2;
+    constMC2_ = constMC2;
+    diphotonMC2_ = diphotonMC2;
     datadrivenQCD2_ = datadrivenQCD2;
     SFdiphoton_ = 1.;
     SFdatadrivenQCD_ = 1.;
@@ -27,7 +27,7 @@ public:
       double Nev_constMC1 = constMC1_->GetBinContent(ibin);
       double Nev_diphotonMC1 = SFdiphoton_ * diphotonMC1_->GetBinContent(ibin);
       double Nev_datadrivenQCDMC1 = SFdatadrivenQCD_ * datadrivenQCD1_->GetBinContent(ibin);
-      double Nev_exp1 = Nev_constMC1+Nev_diphotonMC1+Nev_datadrivenQCDMC1; 
+      double Nev_exp1 = Nev_constMC1+Nev_diphotonMC1+Nev_datadrivenQCDMC1;
       chisquarevalue += (Nev_data1-Nev_exp1)*(Nev_data1-Nev_exp1) / Nev_data1;
     }
     for(int ibin=1; ibin<=data2_->GetXaxis()->GetNbins(); ++ibin) {
@@ -35,13 +35,13 @@ public:
       double Nev_constMC2 = constMC2_->GetBinContent(ibin);
       double Nev_diphotonMC2 = SFdiphoton_ * diphotonMC2_->GetBinContent(ibin);
       double Nev_datadrivenQCDMC2 = SFdatadrivenQCD_ * datadrivenQCD2_->GetBinContent(ibin);
-      double Nev_exp2 = Nev_constMC2+Nev_diphotonMC2+Nev_datadrivenQCDMC2; 
+      double Nev_exp2 = Nev_constMC2+Nev_diphotonMC2+Nev_datadrivenQCDMC2;
       chisquarevalue += (Nev_data2-Nev_exp2)*(Nev_data2-Nev_exp2) / Nev_data2;
     }
 
     return chisquarevalue;
   }
-  
+
 private:
   TH1F *data1_, *constMC1_, *diphotonMC1_, *datadrivenQCD1_;
   TH1F *data2_, *constMC2_, *diphotonMC2_, *datadrivenQCD2_;
@@ -53,16 +53,16 @@ void deriveSF()
 
   // Inputs
   string common_selection = "(Leading_Photon_pt/CMS_hgg_mass>0.35)*(Subleading_Photon_pt/CMS_hgg_mass>0.25)*(passPhotonSels==1)*(CMS_hgg_mass<115 || CMS_hgg_mass>135)*(PhotonID_min>-0.7)";
-  
+
   map<string, vector<string> > filenames_map;
   map<string, vector<string> > treenames_map;
   map<string, vector<float> > lumis_map;
 
   filenames_map["diphoton"] = { vector<string>{
-      "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar/Backgrounds/DiPhotonJetsBox_MGG-80toInf_13TeV.root"
+      "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/DiPhotonJetsBox_MGG-80toInf_13TeV.root"
     }};
   filenames_map["data"] = { vector<string>{
-      "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar/Backgrounds/Data_2017.root"
+      "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Data/allData.root"
     }};
   filenames_map["qcd"] = { vector<string>{
       "/afs/cern.ch/user/f/fmonti/public/4ram/makedatadriveQCD/datadrivenQCD_v2.root"
@@ -112,12 +112,12 @@ void deriveSF()
       ch->Draw( Form("PhotonID_max >>+ h_maxphotonID_%s",samplename.c_str()),
 		Form("(weight)*(%f)*(%s)",lumis[ifile],common_selection.c_str()),
 		"goff");
-      
+
       cout<<h_minphotonID[samplename]->GetEntries()<<endl;
       cout<<h_maxphotonID[samplename]->GetEntries()<<endl;
     }
   }
-  
+
   // For now assume no other MC --> h_minphotonID["otherMC"] and h_maxphotonID["otherMC"] are left empty
   // this can be updated to further improve the data/MC agreement of few percent
   h_minphotonID["otherMC"] = new TH1F("constMC1","constMC1",34,-0.7,1);
@@ -135,6 +135,8 @@ void deriveSF()
   h_minphotonID["data"]->SetMarkerStyle(20);
   h_minphotonID["data"]->Draw("E1 same");
   h_minphotonID["MCtot"]->GetYaxis()->SetRangeUser(0., 1.3*TMath::Max(h_minphotonID["MCtot"]->GetMaximum(),h_minphotonID["data"]->GetMaximum()) );
+  c1->SaveAs("h_minphotonID_MCtot1.pdf");
+  c1->SaveAs("h_minphotonID_MCtot1.png");
 
   TCanvas* c12 = new TCanvas();
   h_maxphotonID["MCtot"]->Add(h_maxphotonID["otherMC"]);
@@ -144,15 +146,17 @@ void deriveSF()
   h_maxphotonID["data"]->SetMarkerStyle(20);
   h_maxphotonID["data"]->Draw("E1 same");
   h_maxphotonID["MCtot"]->GetYaxis()->SetRangeUser(0., 1.3*TMath::Max(h_maxphotonID["MCtot"]->GetMaximum(),h_maxphotonID["data"]->GetMaximum()) );
+  c12->SaveAs("h_maxphotonID_MCtot2.pdf");
+  c12->SaveAs("h_maxphotonID_MCtot2.png");
 
-  chisquare chisquareobj(h_minphotonID["data"], h_minphotonID["otherMC"], h_minphotonID["diphoton"], h_minphotonID["qcd"], 
+  chisquare chisquareobj(h_minphotonID["data"], h_minphotonID["otherMC"], h_minphotonID["diphoton"], h_minphotonID["qcd"],
 			 h_maxphotonID["data"], h_maxphotonID["otherMC"], h_maxphotonID["diphoton"], h_maxphotonID["qcd"]);
   TF2 *f = new TF2("chi2",chisquareobj,0.1,2.,0.1,2.,0);
-  
+
   double SFdiphoton,SFdatadrivenQCD;
   double chi2 = f->GetMinimumXY(SFdiphoton,SFdatadrivenQCD);
   cout<<"observed: "<<SFdiphoton<<" "<<SFdatadrivenQCD<<" chi2="<<chi2<<endl;
-  
+
   TCanvas* c2 = new TCanvas();
   h_minphotonID["diphoton"]->Scale(SFdiphoton);
   h_minphotonID["qcd"]->Scale(SFdatadrivenQCD);
@@ -162,6 +166,8 @@ void deriveSF()
   h_minphotonID["scaledMCtot"]->Draw("hist");
   h_minphotonID["data"]->Draw("E1 same");
   h_minphotonID["scaledMCtot"]->GetYaxis()->SetRangeUser(0., 1.3*TMath::Max(h_minphotonID["scaledMCtot"]->GetMaximum(),h_minphotonID["data"]->GetMaximum()) );
+  c2->SaveAs("h_minphotonID_MCtot1_scaled.pdf");
+  c2->SaveAs("h_minphotonID_MCtot1_scaled.png");
 
   TCanvas* c22 = new TCanvas();
   h_maxphotonID["diphoton"]->Scale(SFdiphoton);
@@ -172,6 +178,8 @@ void deriveSF()
   h_maxphotonID["scaledMCtot"]->Draw("hist");
   h_maxphotonID["data"]->Draw("E1 same");
   h_maxphotonID["scaledMCtot"]->GetYaxis()->SetRangeUser(0., 1.3*TMath::Max(h_maxphotonID["scaledMCtot"]->GetMaximum(),h_maxphotonID["data"]->GetMaximum()) );
+  c22->SaveAs("h_maxphotonID_MCtot2_scaled.pdf");
+  c22->SaveAs("h_maxphotonID_MCtot2_scaled.png");
 }
 
 
@@ -191,9 +199,9 @@ void deriveSF_toyvalidation()
   TH1F* MCtot2 = new TH1F("MCtot2","MCtot2",20,-1,1);
   TH1F* MCtot2_scaled = new TH1F("MCtot2_scaled","MCtot2_scaled",20,-1,1);
 
-  TF1 *fexpo = new TF1("fexpo","exp(-x)",-1.,1.); 
-  TF1 *fexpoinv = new TF1("fexpoinv","exp(x)",-1.,1.); 
-  TF1 *fconst = new TF1("fconst","1.+x-x",-1.,1.); 
+  TF1 *fexpo = new TF1("fexpo","exp(-x)",-1.,1.);
+  TF1 *fexpoinv = new TF1("fexpoinv","exp(x)",-1.,1.);
+  TF1 *fconst = new TF1("fconst","1.+x-x",-1.,1.);
 
   double exp_SFdiphoton = 1.3;
   double exp_SFdatadrivenQCD = 0.9;
@@ -232,12 +240,12 @@ void deriveSF_toyvalidation()
 
   chisquare chisquareobj(data1, constMC1, diphotonMC1, datadrivenQCD1, data2, constMC2, diphotonMC2, datadrivenQCD2);
   TF2 *f = new TF2("chi2",chisquareobj,0.1,2.,0.1,2.,0);
-  
+
   double SFdiphoton,SFdatadrivenQCD;
   double chi2 = f->GetMinimumXY(SFdiphoton,SFdatadrivenQCD);
   cout<<"observed: "<<SFdiphoton<<" "<<SFdatadrivenQCD<<" chi2="<<chi2<<endl;
   cout<<"expected: "<<exp_SFdiphoton<<" "<<exp_SFdatadrivenQCD<<endl;
-  
+
   TCanvas* c2 = new TCanvas();
   diphotonMC1->Scale(SFdiphoton);
   datadrivenQCD1->Scale(SFdatadrivenQCD);

@@ -4,6 +4,7 @@ date
 echo ""
 echo "==============================================================="
 root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Signal/FH_NLO_2017_Hadded/GluGluToHHTo2G4Q_node_cHHH1_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Signal/\"\)
+root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_NLO_2017_Hadded/GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Signal/\"\)
 echo "==============================================================="
 root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Data/allData.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Data/\"\)
 echo "==============================================================="
