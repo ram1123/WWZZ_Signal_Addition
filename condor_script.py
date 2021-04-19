@@ -7,8 +7,11 @@ import subprocess
 import os
 import sys
 
+Year = 2016
 
-OutputPath_2016 = "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst_2016/"
+OutputPath_2016 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2016"
+OutputPath_2017 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2017"
+OutputPath_2018 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2018"
 
 # Get CMSSW directory path and name
 cmsswDirPath = os.environ['CMSSW_BASE']
@@ -41,10 +44,27 @@ paths_2017= [
         "/eos/user/l/lipe/ntuple/2017/Single_H/Single_H_2017_Hadded_3_23/",
         "/eos/user/l/lipe/ntuple/2017/Data/Data_2017_Hadded_Combined/"
 ]
+
+CurrentInputPath = paths_2016
+CurrentOutputPath = OutputPath_2016
+
+if Year==2016:
+    CurrentInputPath = paths_2016
+    CurrentOutputPath = OutputPath_2016
+elif Year==2017:
+    CurrentInputPath = paths_2017
+    CurrentOutputPath = OutputPath_2017
+elif Year==2018:
+    CurrentInputPath = paths_2018
+    CurrentOutputPath = OutputPath_2018
+else:
+    print("Invalid year...")
+    exit()
+
 from os import walk
 
 AllFiles = []
-for paths in paths_2016:
+for paths in CurrentInputPath:
     print "===> ",paths
     for (dirpath, dirnames, filenames) in walk(paths):
         # print "dirpath: ",dirpath
@@ -59,7 +79,7 @@ os.system('rm -f CMSSW*.tgz')
 import makeTarFile
 makeTarFile.make_tarfile(cmsswDirPath, CMSSWRel+".tgz")
 print "copying the "+CMSSWRel+".tgz  file to eos path: \n"
-os.system('cp ' + CMSSWRel+".tgz" + '  '+OutputPath_2016)
+os.system('cp ' + CMSSWRel+".tgz" + '  '+CurrentOutputPath)
 
 condorSHFile="""#!/bin/bash
 echo "Starting job on " `date`
@@ -79,8 +99,8 @@ echo "Output path: $2"
 root -l -b -q ReRunFHJetSelection.C\\(\\"$1\\",\\"$2\\"\\)
 """
 
-with open("condor_sh_file.sh","w") as args:
-    args.write(condorSHFile%(OutputPath_2016))
+with open("condor_sh_file_%i.sh"%Year,"w") as args:
+    args.write(condorSHFile%(CurrentOutputPath))
 
 condorJDLFile_header="""+JobFlavour   = "longlunch"
 Executable = condor_sh_file.sh
@@ -97,10 +117,10 @@ Log  = outputLog_$(ClusterId)_$(Process).log
 Arguments = %s %s
 Queue
 """
-with open("condor_jdl_file.jdl","w") as args:
+with open("condor_jdl_file_%i.jdl"%Year,"w") as args:
     args.write(condorJDLFile_header)
     for files in AllFiles:
-        args.write(condorJDLFile_loop%(files,OutputPath_2016))
+        args.write(condorJDLFile_loop%(files,CurrentOutputPath))
 
 print('For running condor jobs do following:')
 print('1. set up proxy:')
@@ -108,4 +128,4 @@ print('\tvoms-proxy-init --voms cms --valid 168:00')
 print('\tcp /tmp/x509up_<PROXY> ~/')
 print('\texport X509_USER_PROXY=~/x509up_<PROXY>')
 print('2. Submit the condor jobs:')
-print('\tcondor_submit condor_jdl_file.jdl')
+print('\tcondor_submit condor_jdl_file_%i.jdl'%Year)
