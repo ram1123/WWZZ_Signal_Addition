@@ -13,6 +13,26 @@ root -l -b -q ReRunFHJetSelection.C
 root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Data_Trees/Data_2017.root\"\)
 ```
 
+One can provide following information while running:
+
+```c++
+void ReRunFHJetSelection(
+    TString inputFile1 = "./GluGluToHHTo2G4Q_node_cHHH1_2017.root",
+    TString OutPutPath = "./",
+    TString PrefixOutPutRootFileName = "",
+    bool WithSyst = true,
+    bool ifDNN = false
+    )
+```
+
+## Remove duplicate trees using hadd
+
+Update the path of the directory inside the script `RemoveDuplicateTreesUsingHadd.sh` then run:
+
+```bash
+bash RemoveDuplicateTreesUsingHadd.sh
+```
+
 ## Get Scaled ZZ root file
 
 ```bash

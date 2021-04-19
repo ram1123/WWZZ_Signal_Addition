@@ -31,10 +31,9 @@
 
 void ReRunFHJetSelection( /* bool isMC = true, */
                           TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Signal/FH_NLO_2017_hadded/GluGluToHHTo2G4Q_node_cHHH1_2017.root",
-                          TString OutPutPath = "./",
-                                                // Signal, Backgrounds, Data
+                          TString OutPutPath = "./", // Signal, Backgrounds, Data
                           TString PrefixOutPutRootFileName = "",
-                          bool WithSyst = false,
+                          bool WithSyst = true,
                           bool ifDNN = false
                         )
 {

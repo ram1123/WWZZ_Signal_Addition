@@ -25,6 +25,8 @@ public:
   //       METADATA AND EVENT WEIGHTS   //
   //------------------------------------//
 
+  Float_t   weight_NLO_SM = 1.0;
+
   Float_t   PhotonID_min = -999.0;
   Float_t   PhotonID_max = -999.0;
 
@@ -190,6 +192,8 @@ public:
 void output::init(TTree* tree) {
 
   fTree = tree;
+
+  fTree->Branch("weight_NLO_SM", &weight_NLO_SM,  "weight_NLO_SM/F");
 
   fTree->Branch("PhotonID_min", &PhotonID_min,  "PhotonID_min/F");
   fTree->Branch("PhotonID_max", &PhotonID_max,  "PhotonID_max/F");

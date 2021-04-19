@@ -3,11 +3,64 @@ echo ""
 date
 echo ""
 echo "==============================================================="
-root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Signal/FH_NLO_2017_Hadded/GluGluToHHTo2G4Q_node_cHHH1_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Signal/\"\)
-root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_NLO_2017_Hadded/GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Signal/\"\)
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Signal/FH_NLO_2017_Hadded/GluGluToHHTo2G4Q_node_cHHH1_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\) &
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_NLO_2017_Hadded/GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\)
+# echo "==============================================================="
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/GluGluToHHTo2G4Q_node_1_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\)&
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/GluGluToHHTo2G4Q_node_2_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\)
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/GluGluToHHTo2G4Q_node_3_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\)&
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/GluGluToHHTo2G4Q_node_4_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\)
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/GluGluToHHTo2G4Q_node_5_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\)&
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/GluGluToHHTo2G4Q_node_6_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\)
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/GluGluToHHTo2G4Q_node_7_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\)&
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/GluGluToHHTo2G4Q_node_8_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\)
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/GluGluToHHTo2G4Q_node_9_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\)&
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/GluGluToHHTo2G4Q_node_10_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\)
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/GluGluToHHTo2G4Q_node_11_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\)&
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/GluGluToHHTo2G4Q_node_12_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\)
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/GluGluToHHTo2G4Q_node_SM_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\)
 echo "==============================================================="
-root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Data/allData.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Data/\"\)
-root -l -b -q ReRunFHJetSelection.C\(\"/afs/cern.ch/user/f/fmonti/public/4ram/makedatadriveQCD/datadrivenQCD_v2.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
+root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Data/Data_2017_Hadded_Combined/Data_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Data/\"\)&
+# root -l -b -q ReRunFHJetSelection.C\(\"/afs/cern.ch/user/f/fmonti/public/4ram/makedatadriveQCD/datadrivenQCD_v2.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Backgrounds/\"\)
+echo "==============================================================="
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/DiPhotonJetsBox_MGG-80toInf_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Backgrounds/\"\)
+echo "==============================================================="
+root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Single_H/Single_H_2017_Hadded/M125/VBFHToGG_M125.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Backgrounds/\"\)&
+echo "==============================================================="
+root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Single_H/Single_H_2017_Hadded/M125/VHToGG_M125.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Backgrounds/\"\)
+echo "==============================================================="
+root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Single_H/Single_H_2017_Hadded/M125/GluGluHToGG_M125.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Backgrounds/\"\)&
+echo "==============================================================="
+root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Single_H/Single_H_2017_Hadded/M125/ttHJetToGG_M125.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Backgrounds/\"\)
+echo "==============================================================="
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/TTGG_0Jets_TuneCP5_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Backgrounds/\"\)&
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/TTGJets_TuneCP5_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Backgrounds/\"\)
+echo "==============================================================="
+
+
+# OLD
+echo "==============================================================="
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Data/allData.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Data/\"\)&
+# root -l -b -q ReRunFHJetSelection.C\(\"/afs/cern.ch/user/f/fmonti/public/4ram/makedatadriveQCD/datadrivenQCD_v2.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
+# echo "==============================================================="
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/DiPhotonJetsBox_M40_80.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)&
+# echo "==============================================================="
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/DiPhotonJetsBox_MGG-80toInf_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
+# echo "==============================================================="
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/VBFHToGG_M125_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)&
+# echo "==============================================================="
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/VHToGG_M125_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
+# echo "==============================================================="
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/GluGluHToGG_M125_TuneCP5_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)&
+# echo "==============================================================="
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/ttHJetToGG_M125_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
+# echo "==============================================================="
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/TTGG_0Jets_TuneCP5_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
+# root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/TTGJets_TuneCP5_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
+# echo "==============================================================="
+
+
+
 echo "==============================================================="
 # root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/DYJetsToLL_M-50_TuneCP5_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
 echo "==============================================================="
@@ -16,10 +69,6 @@ echo "==============================================================="
 # root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/Data_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
 echo "==============================================================="
 # root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/TTJets_HT-800to1200_TuneCP5_13TeV-madgraphMLM-pythia8.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
-echo "==============================================================="
-root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/DiPhotonJetsBox_M40_80.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
-echo "==============================================================="
-root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/DiPhotonJetsBox_MGG-80toInf_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
 echo "==============================================================="
 # root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/TTJets_TuneCP5_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
 echo "==============================================================="
@@ -30,14 +79,6 @@ echo "==============================================================="
 echo "==============================================================="
 echo "==============================================================="
 # root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/GJet_Pt-20toInf_DoubleEMEnriched_MGG-40to80_TuneCP5_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
-echo "==============================================================="
-root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/VBFHToGG_M125_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
-echo "==============================================================="
-root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/VHToGG_M125_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
-echo "==============================================================="
-root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/GluGluHToGG_M125_TuneCP5_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
-echo "==============================================================="
-root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/ttHJetToGG_M125_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
 echo "==============================================================="
 # root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/GJet_Pt-40toInf_DoubleEMEnriched_MGG-80toInf.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
 echo "==============================================================="
@@ -57,9 +98,6 @@ echo "==============================================================="
 # root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/QCD_Pt-40toInf_DoubleEMEnriched_MGG-80toInf.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
 echo "==============================================================="
 # root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/WW_TuneCP5_13TeV-pythia8.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
-echo "==============================================================="
-root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/TTGG_0Jets_TuneCP5_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
-root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/TTGJets_TuneCP5_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
 echo "==============================================================="
 # root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/allData_QCD_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v2/Backgrounds/\"\)
 echo "==============================================================="
