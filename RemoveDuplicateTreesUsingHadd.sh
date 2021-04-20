@@ -7,7 +7,9 @@
 # path1="/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst_2017/Backgrounds/*.root"
 # path1="/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst_2017/Data/*.root"
 
-path1="/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2016/*cHHH1_2016.root"
+#path1="/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2016/ttHJetToGG_M125.root"
+path1="/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2018/ttHJetToGG_M125_2018.root"
+#path1="/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2018/*.root"
 
 doHadd=${1}
 DirName="tagsDumper/trees"

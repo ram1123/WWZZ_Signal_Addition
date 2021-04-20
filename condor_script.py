@@ -2,13 +2,23 @@
 # @Author: Ram Krishna Sharma
 # @Date:   2021-04-19
 # @Last Modified by:   Ram Krishna Sharma
-# @Last Modified time: 2021-04-19
+# @Last Modified time: 2021-04-20
 import subprocess
 import os
 import sys
 
-Year = 2016
-ExtraStringCondorJobFileName = ""
+# Year = 2016
+# ExtraStringCondorJobFileName = "PetrEFTNode_"
+
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('-y', '--Year', dest='Year', help='Year to run', default="2016", type=int)
+parser.add_argument('-s', '--ExtraString', dest='ExtraString', help='Extra string to be added in the condor file name', default="", type=str)
+
+args = parser.parse_args()
+
+Year = args.Year
+ExtraStringCondorJobFileName = args.ExtraString
 
 OutputPath_2016 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2016"
 OutputPath_2017 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2017"
@@ -20,30 +30,36 @@ CMSSWRel = cmsswDirPath.split("/")[-1]
 
 
 paths_2016= [
-        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHWW_LO_2016_noPdfWeight_Hadded/", # LO_WW_Signal_2016
-        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHZZ_LO_2016_noPdfWeight_Hadded/", # LO_ZZ_Signal_2016
-        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHWW_NLO_2016_HaddedNew/", # NLO_WW_Signal_2016
-        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHZZ_NLO_2016_HaddedNew/", # NLO_ZZ_Signal_2016
-        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Single_H_2016_Hadded/", # SingleHiggs_2016
-        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Data_Trees_2016_Hadded_Combined/", # Data_2016
+        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHWW_LO_2016_noPdfWeight_Hadded/", # LO_WW_Signal_2016
+        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHZZ_LO_2016_noPdfWeight_Hadded/", # LO_ZZ_Signal_2016
+        "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2016/Signal/FHWW_LO_2016_noPdfWeight_Hadded/",
+        "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2016/Signal/FHZZ_LO_2016_noPdfWeight_Hadded/",
+        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHWW_NLO_2016_HaddedNew/", # NLO_WW_Signal_2016
+        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHZZ_NLO_2016_HaddedNew/", # NLO_ZZ_Signal_2016
+        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Single_H_2016_Hadded/", # SingleHiggs_2016
+        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Data_Trees_2016_Hadded_Combined/", # Data_2016
             ]
 
 paths_2018= [
-        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHWW_LO_2018_Hadded/", # LO_WW_Signal_2018
-        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHZZ_LO_2018_Hadded/", # LO_ZZ_Signal_2018
-        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHWW_NLO_2018_Hadded/", # NLO_WW_Signal_2018
-        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHZZ_NLO_2018_Hadded/", # NLO_ZZ_Signal_2018
+        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHWW_LO_2018_Hadded/", # LO_WW_Signal_2018
+        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHZZ_LO_2018_Hadded/", # LO_ZZ_Signal_2018
+        # "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2018/Signal/FHWW_LO_2018_Hadded/",
+        # "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2018/Signal/FHZZ_LO_2018_Hadded/",
+        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHWW_NLO_2018_Hadded/", # NLO_WW_Signal_2018
+        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHZZ_NLO_2018_Hadded/", # NLO_ZZ_Signal_2018
         "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Single_H_2018Fixed_Hadded/", # SingleHiggs_2018
-        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Data_Trees_2018_Hadded_Combined/", # Data_2018
+        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Data_Trees_2018_Hadded_Combined/", # Data_2018
             ]
 
 paths_2017= [
-        "/eos/user/l/lipe/ntuple/2017/Signal/FH_LO_2017_Hadded/",
-        "/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_LO_2017_Hadded_April/",
-        "/eos/user/l/lipe/ntuple/2017/Signal/FH_NLO_2017_Hadded_March/",
-        "/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_NLO_2017_Hadded_March/",
-        "/eos/user/l/lipe/ntuple/2017/Single_H/Single_H_2017_Hadded_3_23/",
-        "/eos/user/l/lipe/ntuple/2017/Data/Data_2017_Hadded_Combined/"
+        # "/eos/user/l/lipe/ntuple/2017/Signal/FH_LO_2017_Hadded/",
+        # "/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_LO_2017_Hadded_April/",
+        "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/",
+        "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FHZZ_LO_2017_Hadded/",
+        # "/eos/user/l/lipe/ntuple/2017/Signal/FH_NLO_2017_Hadded_March/",
+        # "/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_NLO_2017_Hadded_March/",
+        # "/eos/user/l/lipe/ntuple/2017/Single_H/Single_H_2017_Hadded_3_23/",
+        # "/eos/user/l/lipe/ntuple/2017/Data/Data_2017_Hadded_Combined/"
 ]
 
 CurrentInputPath = paths_2016
@@ -68,6 +84,7 @@ def check_dir(dir):
         os.makedirs(dir)
 
 check_dir(CurrentOutputPath)
+check_dir("output_log")
 
 from os import walk
 
@@ -104,7 +121,18 @@ scramv1 b ProjectRename
 eval `scram runtime -sh`
 echo "Input ROOT file name with path: $1"
 echo "Output path: $2"
-root -l -b -q ReRunFHJetSelection.C\\(\\"$1\\",\\"$2\\"\\)
+# root -l -b -q ReRunFHJetSelection.C\\(\\"${1}\\",\\"${2}\\"\\)
+root -l -b -q ReRunFHJetSelection.C\\(\\"${1}\\"\\)
+RootFileName=$(basename "${1}" .root)
+echo "Size of root file: ${RootFileName}.root"
+ls -ltrh ${RootFileName}.root
+hadd ${RootFileName}_hadd.root ${RootFileName}.root
+echo "Size of root file: ${RootFileName}_hadd.root"
+ls -ltrh ${RootFileName}_hadd.root
+hadd ${RootFileName}_hadd2.root ${RootFileName}_hadd.root
+echo "Size of root file: ${RootFileName}_hadd2.root"
+ls -ltrh ${RootFileName}_hadd2.root
+mv ${RootFileName}_hadd2.root ${2}/
 """
 
 with open("%s.sh"%CondorJobFileName,"w") as args:
@@ -119,7 +147,7 @@ WhenToTransferOutput = ON_EXIT
 x509userproxy = $ENV(X509_USER_PROXY)
 """
 
-condorJDLFile_loop="""Output = outputLog_$(ClusterId)_$(Process).stdout
+condorJDLFile_loop="""Output = output_log/outputLog_$(ClusterId)_$(Process).stdout
 Error  = output_log/outputLog_$(ClusterId)_$(Process).stdout
 Log  = output_log/outputLog_$(ClusterId)_$(Process).log
 Arguments = %s %s
