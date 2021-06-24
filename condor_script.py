@@ -2,7 +2,7 @@
 # @Author: Ram Krishna Sharma
 # @Date:   2021-04-19
 # @Last Modified by:   Ram Krishna Sharma
-# @Last Modified time: 2021-04-20
+# @Last Modified time: 2021-04-26
 import subprocess
 import os
 import sys
@@ -45,19 +45,19 @@ paths_2018= [
         # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHZZ_LO_2018_Hadded/", # LO_ZZ_Signal_2018
         # "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2018/Signal/FHWW_LO_2018_Hadded/",
         # "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2018/Signal/FHZZ_LO_2018_Hadded/",
-        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHWW_NLO_2018_Hadded/", # NLO_WW_Signal_2018
+        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHWW_NLO_2018_Hadded/", # NLO_WW_Signal_2018
         # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHZZ_NLO_2018_Hadded/", # NLO_ZZ_Signal_2018
-        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Single_H_2018Fixed_Hadded/", # SingleHiggs_2018
+        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Single_H_2018Fixed_Hadded/", # SingleHiggs_2018
         # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Data_Trees_2018_Hadded_Combined/", # Data_2018
             ]
 
 paths_2017= [
         # "/eos/user/l/lipe/ntuple/2017/Signal/FH_LO_2017_Hadded/",
         # "/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_LO_2017_Hadded_April/",
-        "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/",
-        "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FHZZ_LO_2017_Hadded/",
+        # "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/",
+        # "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FHZZ_LO_2017_Hadded/",
         # "/eos/user/l/lipe/ntuple/2017/Signal/FH_NLO_2017_Hadded_March/",
-        # "/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_NLO_2017_Hadded_March/",
+        "/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_NLO_2017_Hadded_March/",
         # "/eos/user/l/lipe/ntuple/2017/Single_H/Single_H_2017_Hadded_3_23/",
         # "/eos/user/l/lipe/ntuple/2017/Data/Data_2017_Hadded_Combined/"
 ]

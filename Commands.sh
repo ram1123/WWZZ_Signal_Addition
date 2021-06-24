@@ -21,6 +21,12 @@ echo "==============================================================="
 # root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/GluGluToHHTo2G4Q_node_SM_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\)
 echo "==============================================================="
 root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Data/Data_2017_Hadded_Combined/Data_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Data/\"\)&
+
+
+root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2017/Signal/FHWW_bbgg_NLO_2017/GluGluToHHTo2B2G_node_cHHH1_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst_2017/Signal/\"\)&
+
+
+
 # root -l -b -q ReRunFHJetSelection.C\(\"/afs/cern.ch/user/f/fmonti/public/4ram/makedatadriveQCD/datadrivenQCD_v2.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Backgrounds/\"\)
 echo "==============================================================="
 # root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN/Backgrounds/DiPhotonJetsBox_MGG-80toInf_13TeV.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Backgrounds/\"\)

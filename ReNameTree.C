@@ -25,14 +25,14 @@ void Tokenize(const std::string& str,
           const std::string& delimiters = " ",
           bool include_delimiters=false);
 
-void ReNameTree( 
+void ReNameTree(
                           TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Signal/FH_NLO_2017_hadded/GluGluToHHTo2G4Q_node_cHHH1_2017.root",
+                          TString OutPutPath = "./",
                           TString OutPutRootFileName = "",
-                          TString OutPutPath = "/tmp/rasharma/",
                           TString PrefixOutPutRootFileName = "",
-                          bool WithSyst = false,
-                          TString ToReplace = "_ext1",
-                          TString ReplaceWith = ""
+                          bool WithSyst = true,
+                          TString ToReplace = "_FH_",
+                          TString ReplaceWith = "_FHDNN_"
                         )
 {
     clock_t tStart = clock();
@@ -46,18 +46,18 @@ void ReNameTree(
     std::cout << "Reading file ==> " << inputFile1 << std::endl;
 
     std::vector<TString> Vec_ListOfAllTrees;
-    getallTrees(OldRootFile,"/",Vec_ListOfAllTrees,"HHWWggTag_1");
+    getallTrees(OldRootFile,"/",Vec_ListOfAllTrees,"HHWWggTag_FH_");
     int Size_Vec_ListOfAllTrees = Vec_ListOfAllTrees.size();
     std::cout << "Number of Trees: " << Size_Vec_ListOfAllTrees << std::endl;
 
-    vector<string> fields;
-    Tokenize(std::string(Vec_ListOfAllTrees[0]),fields, "/");
-    TString DirectoryName = "";
-    for (std::vector<string>::iterator DirName = fields.begin(); DirName != (fields.end()-1); ++DirName)
-    {
-        DirectoryName += *DirName + "/";
-    }
-    std::cout << "DirectoryName: " << DirectoryName << std::endl;
+    // vector<string> fields;
+    // Tokenize(std::string(Vec_ListOfAllTrees[0]),fields, "/");
+    // TString DirectoryName = "";
+    // for (std::vector<string>::iterator DirName = fields.begin(); DirName != (fields.end()-1); ++DirName)
+    // {
+    //     DirectoryName += *DirName + "/";
+    // }
+    // std::cout << "DirectoryName: " << DirectoryName << std::endl;
 
     TString NewRootFileName = GetLastString(string(inputFile1), "/");
     if (OutPutRootFileName == "") {
@@ -67,8 +67,8 @@ void ReNameTree(
     }
     std::cout << "Output root file name: " << OutPutRootFileName << std::endl;
     TFile *newfile = new TFile(OutPutRootFileName, "RECREATE","",207);
-    newfile->mkdir(DirectoryName);
-    newfile->cd(DirectoryName);
+    // newfile->mkdir(DirectoryName);
+    // newfile->cd(DirectoryName);
 
     int TreesCount = 0;
     for (std::vector<TString>::iterator OldTreeName = Vec_ListOfAllTrees.begin(); OldTreeName != Vec_ListOfAllTrees.end(); ++OldTreeName)
@@ -79,7 +79,7 @@ void ReNameTree(
         }
         std::cout << "Reading Tree: " << TreesCount << "/" << Size_Vec_ListOfAllTrees << ": " << *OldTreeName << std::endl;
 
-        TTree *OldTree = (TTree*)OldRootFile->Get(TString(*OldTreeName));
+        TTree *OldTree = (TTree*)OldRootFile->Get(TString(*OldTreeName).ReplaceAll("/",""));
         std::cout << "\tTree name: " << OldTree->GetName() << std::endl;
 
         // Clone the old tree
