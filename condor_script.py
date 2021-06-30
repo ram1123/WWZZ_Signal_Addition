@@ -2,7 +2,7 @@
 # @Author: Ram Krishna Sharma
 # @Date:   2021-04-19
 # @Last Modified by:   Ram Krishna Sharma
-# @Last Modified time: 2021-04-26
+# @Last Modified time: 2021-06-27
 import subprocess
 import os
 import sys
@@ -21,7 +21,8 @@ Year = args.Year
 ExtraStringCondorJobFileName = args.ExtraString
 
 OutputPath_2016 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2016"
-OutputPath_2017 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2017"
+# OutputPath_2017 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2017"
+OutputPath_2017 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2017_Newbbgg_v2/"
 OutputPath_2018 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2018"
 
 # Get CMSSW directory path and name
@@ -54,12 +55,14 @@ paths_2018= [
 paths_2017= [
         # "/eos/user/l/lipe/ntuple/2017/Signal/FH_LO_2017_Hadded/",
         # "/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_LO_2017_Hadded_April/",
-        # "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/",
+        "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/",
         # "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FHZZ_LO_2017_Hadded/",
         # "/eos/user/l/lipe/ntuple/2017/Signal/FH_NLO_2017_Hadded_March/",
-        "/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_NLO_2017_Hadded_March/",
+        # "/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_NLO_2017_Hadded_March/",
         # "/eos/user/l/lipe/ntuple/2017/Single_H/Single_H_2017_Hadded_3_23/",
-        # "/eos/user/l/lipe/ntuple/2017/Data/Data_2017_Hadded_Combined/"
+        "/eos/user/l/lipe/ntuple/2017/Data/Data_2017_Hadded_Combined/", # Data
+        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2017/UsedBkgFH", # Backgrounds
+        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2017/Signal/FHWW_bbgg_NLO_2017"
 ]
 
 CurrentInputPath = paths_2016

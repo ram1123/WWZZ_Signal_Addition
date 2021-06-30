@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  ReRunFHJetSelection.C
+ *       Filename:  ReRunFHJetSelection_postDNN.C
  *
  *    Description:
  *
@@ -20,8 +20,8 @@
 #include "interface/ReRunFHJetSelection.h"
 #include "interface/AngularVariables.cpp"
 
-#include "interface/flashgg_Data.h"
-#include "interface/flashgg_MC.h"
+// #include "interface/flashgg_Data.h"
+#include "interface/flashgg_MC_PostDNN.h"
 
 #include "interface/output.h"
 
@@ -29,7 +29,7 @@
 #include "progressbar.hpp"
 #include <time.h>
 
-void ReRunFHJetSelection( /* bool isMC = true, */
+void ReRunFHJetSelection_postDNN( /* bool isMC = true, */
                           TString inputFile1 = "/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/January_2021_Production/2017/Signal/FH_NLO_2017_hadded/GluGluToHHTo2G4Q_node_cHHH1_2017.root",
                           TString OutPutPath = "./", // Signal, Backgrounds, Data
                           TString PrefixOutPutRootFileName = "",
@@ -49,8 +49,9 @@ void ReRunFHJetSelection( /* bool isMC = true, */
 
     std::vector<TString> Vec_RootFileDirStructure;
     std::vector<TString> Vec_ListOfAllTrees;
-    TString DirectoryName = GetTreeName(OldRootFile, Vec_RootFileDirStructure, Vec_ListOfAllTrees, 0);
-    std::cout << "DirectoryName: " << DirectoryName << std::endl;
+    GetTreeName(OldRootFile, Vec_ListOfAllTrees, 1);
+    // TString DirectoryName;
+    // std::cout << "DirectoryName: " << DirectoryName << std::endl;
     int Size_Vec_ListOfAllTrees = Vec_ListOfAllTrees.size();
     std::cout << "Number of Trees: " << Size_Vec_ListOfAllTrees << std::endl;
 
@@ -58,7 +59,7 @@ void ReRunFHJetSelection( /* bool isMC = true, */
     TString OutPutRootFileName = OutPutPath+"/"+PrefixOutPutRootFileName+NewRootFileName;
     std::cout << "Output root file name: " << OutPutRootFileName << std::endl;
     TFile *newfile = new TFile(OutPutRootFileName, "RECREATE","",207);
-    newfile->mkdir(DirectoryName);
+    // newfile->mkdir(DirectoryName);
 
     int TreesCount = 0;
     for (std::vector<TString>::iterator OldTreeName = Vec_ListOfAllTrees.begin(); OldTreeName != Vec_ListOfAllTrees.end(); ++OldTreeName)
@@ -69,15 +70,15 @@ void ReRunFHJetSelection( /* bool isMC = true, */
           if (TreesCount>=2) break;
         }
 
-        TTree *OldTree = (TTree*)OldRootFile->Get(DirectoryName+"/"+TString(*OldTreeName));
+        TTree *OldTree = (TTree*)OldRootFile->Get(TString(*OldTreeName));
 
         // if (isMC) {
-        flashgg_MC flashggReader(OldTree);
+        flashgg_MC_PostDNN flashggReader(OldTree);
         // } else {
         // flashgg_Data flashggReader(OldTree);
         // }
 
-        newfile->cd(DirectoryName);
+        // newfile->cd(DirectoryName);
 
         // Clone the old tree
         auto newtree = OldTree->CloneTree(0);
@@ -96,9 +97,8 @@ void ReRunFHJetSelection( /* bool isMC = true, */
         for (Long64_t jentry=0; jentry<nentries;jentry++) {
             flashggReader.GetEntry(jentry);
             // if (jentry%1000 == 1) newtree->AutoSave("SaveSelf");
-            // std::cout << "=======================" << std::endl;
-            // if(jentry>10) break;  // For debug purpose
-
+            // if(jentry>1000) break;  // For debug purpose
+            //
             //
             // if (flashggReader.HGGCandidate_pt < 160 && (!ifDNN)) continue;
 
@@ -116,19 +116,19 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             if (flashggReader.N_goodJets>=4){
                 b_dis.push_back(flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                                 flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                                flashggReader.goodJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
+                                flashggReader.allJets_0_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
                 b_dis.push_back(flashggReader.goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                                 flashggReader.goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                                flashggReader.goodJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
+                                flashggReader.allJets_1_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
                 b_dis.push_back(flashggReader.goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                                 flashggReader.goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                                flashggReader.goodJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
+                                flashggReader.allJets_2_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
                 b_dis.push_back(flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                                 flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                                flashggReader.goodJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
+                                flashggReader.allJets_3_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
                 // if (b_dis[0]>0.7221) continue;
                 // if (b_dis[1]>0.7221) continue;
@@ -166,7 +166,7 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             if (flashggReader.N_goodJets>=5){
                 b_dis.push_back(flashggReader.goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                                 flashggReader.goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                                flashggReader.goodJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
+                                flashggReader.allJets_4_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
                 // if (b_dis[4]>0.7221) continue;
                 Jets.push_back(TLorentzVector(0,0,0,0));
@@ -180,7 +180,7 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             if (flashggReader.N_goodJets>=6){
                 b_dis.push_back(flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                                 flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                                flashggReader.goodJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
+                                flashggReader.allJets_5_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
                 // if (b_dis[5]>0.7221) continue;
                 Jets.push_back(TLorentzVector(0,0,0,0));
@@ -194,7 +194,7 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             if (flashggReader.N_goodJets>=7){
                 b_dis.push_back(flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                                 flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                                flashggReader.goodJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
+                                flashggReader.allJets_6_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
                 // if (b_dis[6]>0.7221) continue;
                 Jets.push_back(TLorentzVector(0,0,0,0));
@@ -208,7 +208,7 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             if (flashggReader.N_goodJets>=8){
                 b_dis.push_back(flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                                 flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                                flashggReader.goodJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
+                                flashggReader.allJets_7_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
                 // if (b_dis[7]>0.7221) continue;
                 Jets.push_back(TLorentzVector(0,0,0,0));
@@ -222,7 +222,7 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             if (flashggReader.N_goodJets>=9) {
                 b_dis.push_back(flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                                 flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                                flashggReader.goodJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
+                                flashggReader.allJets_8_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
                 // if (b_dis[8]>0.7221) continue;
                 Jets.push_back(TLorentzVector(0,0,0,0));
@@ -236,7 +236,7 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             if (flashggReader.N_goodJets>=10){
                 b_dis.push_back(flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probb +
                                 flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_probbb +
-                                flashggReader.goodJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
+                                flashggReader.allJets_9_bDiscriminator_mini_pfDeepFlavourJetTags_problepb
                                 );
                 // if (b_dis[9]>0.7221) continue;
                 Jets.push_back(TLorentzVector(0,0,0,0));
@@ -248,11 +248,6 @@ void ReRunFHJetSelection( /* bool isMC = true, */
                                        );
             }
 
-            TLorentzVector LV_LeadingPho, LV_SubLeadPho, LV_Hgg;
-            LV_LeadingPho.SetPtEtaPhiE(flashggReader.Leading_Photon_pt,flashggReader.Leading_Photon_eta,flashggReader.Leading_Photon_phi,flashggReader.Leading_Photon_E);
-            LV_SubLeadPho.SetPtEtaPhiE(flashggReader.Subleading_Photon_pt,flashggReader.Subleading_Photon_eta,flashggReader.Subleading_Photon_phi,flashggReader.Subleading_Photon_E);
-            LV_Hgg = LV_LeadingPho + LV_SubLeadPho;
-
             /**
              * Get two leading Jets and save its topology
              */
@@ -261,78 +256,6 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             outputVars.New_TwoLeadJets_phi = (Jets[0]+Jets[1]).Phi();
             outputVars.New_TwoLeadJets_mass = (Jets[0]+Jets[1]).M();
             outputVars.New_TwoLeadJets_SumBScore = (b_dis[0]+b_dis[1]);
-
-            TLorentzVector LV_pTBasedSel_W1 = Jets[0]+Jets[1];
-            TLorentzVector LV_pTBasedSel_W2 = Jets[2]+Jets[3];
-
-            outputVars.New_pTBasedSel_W1_pT = (LV_pTBasedSel_W1).Pt();
-            outputVars.New_pTBasedSel_W1_eta = (LV_pTBasedSel_W1).Eta();
-            outputVars.New_pTBasedSel_W1_phi = (LV_pTBasedSel_W1).Phi();
-            outputVars.New_pTBasedSel_W1_mass = (LV_pTBasedSel_W1).M();
-            outputVars.New_pTBasedSel_W1_SumBScore = (b_dis[0]+b_dis[1]);
-
-            outputVars.New_pTBasedSel_W2_pT = (LV_pTBasedSel_W2).Pt();
-            outputVars.New_pTBasedSel_W2_eta = (LV_pTBasedSel_W2).Eta();
-            outputVars.New_pTBasedSel_W2_phi = (LV_pTBasedSel_W2).Phi();
-            outputVars.New_pTBasedSel_W2_mass = (LV_pTBasedSel_W2).M();
-            outputVars.New_pTBasedSel_W2_SumBScore = (b_dis[2]+b_dis[3]);
-
-            outputVars.New_pTBasedSel_WW_pT = (LV_pTBasedSel_W1+LV_pTBasedSel_W2).Pt();
-            outputVars.New_pTBasedSel_WW_eta = (LV_pTBasedSel_W1+LV_pTBasedSel_W2).Eta();
-            outputVars.New_pTBasedSel_WW_phi = (LV_pTBasedSel_W1+LV_pTBasedSel_W2).Phi();
-            outputVars.New_pTBasedSel_WW_mass = (LV_pTBasedSel_W1+LV_pTBasedSel_W2).M();
-            outputVars.New_pTBasedSel_WW_SumBScore = (b_dis[0]+b_dis[1]+b_dis[2]+b_dis[3]);
-
-            outputVars.New_pTBasedSel_dR_Hgg_Jet1    = DeltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), Jets[0].Eta(), Jets[0].Phi());
-            outputVars.New_pTBasedSel_dR_Hgg_Jet2    = DeltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), Jets[1].Eta(), Jets[1].Phi());
-            outputVars.New_pTBasedSel_dR_Hgg_Jet3    = DeltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), Jets[2].Eta(), Jets[2].Phi());
-            outputVars.New_pTBasedSel_dR_Hgg_Jet4    = DeltaR(LV_Hgg.Eta(), LV_Hgg.Phi(), Jets[3].Eta(), Jets[3].Phi());
-
-            outputVars.New_pTBasedSel_dPhi_Hgg_Jet1    = DeltaPhi(LV_Hgg.Phi(), Jets[0].Phi());
-            outputVars.New_pTBasedSel_dPhi_Hgg_Jet2    = DeltaPhi(LV_Hgg.Phi(), Jets[1].Phi());
-            outputVars.New_pTBasedSel_dPhi_Hgg_Jet3    = DeltaPhi(LV_Hgg.Phi(), Jets[2].Phi());
-            outputVars.New_pTBasedSel_dPhi_Hgg_Jet4    = DeltaPhi(LV_Hgg.Phi(), Jets[3].Phi());
-            outputVars.New_pTBasedSel_minDeltaR_gg4j  = DeltaRmin(flashggReader.Leading_Photon_eta, flashggReader.Leading_Photon_phi,
-                                                  flashggReader.Subleading_Photon_eta, flashggReader.Subleading_Photon_phi,
-                                                  Jets[0].Eta(), Jets[0].Phi(),
-                                                  Jets[1].Eta(), Jets[1].Phi(),
-                                                  Jets[2].Eta(), Jets[2].Phi(),
-                                                  Jets[3].Eta(), Jets[3].Phi());
-            outputVars.New_pTBasedSel_maxDeltaR_gg4j  = DeltaRmax(flashggReader.Leading_Photon_eta, flashggReader.Leading_Photon_phi,
-                                                  flashggReader.Subleading_Photon_eta, flashggReader.Subleading_Photon_phi,
-                                                  Jets[0].Eta(), Jets[0].Phi(),
-                                                  Jets[1].Eta(), Jets[1].Phi(),
-                                                  Jets[2].Eta(), Jets[2].Phi(),
-                                                  Jets[3].Eta(), Jets[3].Phi());
-            outputVars.New_pTBasedSel_minDeltaR_4j  = DeltaRmin4Particle(
-                                                  Jets[0].Eta(), Jets[0].Phi(),
-                                                  Jets[1].Eta(), Jets[1].Phi(),
-                                                  Jets[2].Eta(), Jets[2].Phi(),
-                                                  Jets[3].Eta(), Jets[3].Phi());
-            outputVars.New_pTBasedSel_maxDeltaR_4j  = DeltaRmax4Particle(
-                                                  Jets[0].Eta(), Jets[0].Phi(),
-                                                  Jets[1].Eta(), Jets[1].Phi(),
-                                                  Jets[2].Eta(), Jets[2].Phi(),
-                                                  Jets[3].Eta(), Jets[3].Phi());
-
-
-
-            outputVars.New_pTBasedSel_DPhi_HH = DeltaPhi((LV_pTBasedSel_W1+LV_pTBasedSel_W2).Phi(), flashggReader.HGGCandidate_phi);
-            outputVars.New_pTBasedSel_DR_HH = DeltaR((LV_pTBasedSel_W1+LV_pTBasedSel_W2).Eta(), (LV_pTBasedSel_W1+LV_pTBasedSel_W2).Phi(), flashggReader.HGGCandidate_eta, flashggReader.HGGCandidate_phi);
-
-            double New_pTBasedSel_a_costheta1, New_pTBasedSel_a_costheta2, New_pTBasedSel_a_costhetastar, New_pTBasedSel_a_Phi, New_pTBasedSel_a_Phi1;
-            AngularVariables New_pTBasedSel_Angles1(LV_Hgg + (LV_pTBasedSel_W1+LV_pTBasedSel_W2), LV_Hgg, LV_LeadingPho, LV_SubLeadPho, (LV_pTBasedSel_W1+LV_pTBasedSel_W2), LV_pTBasedSel_W1, LV_pTBasedSel_W2);
-            New_pTBasedSel_Angles1.computeAngles(New_pTBasedSel_a_costheta1, New_pTBasedSel_a_costheta2, New_pTBasedSel_a_Phi, New_pTBasedSel_a_costhetastar, New_pTBasedSel_a_Phi1);
-
-            outputVars.New_pTBasedSel_a_costheta1    = New_pTBasedSel_a_costheta1;
-            outputVars.New_pTBasedSel_a_costheta2    = New_pTBasedSel_a_costheta2;
-            outputVars.New_pTBasedSel_a_costhetastar = New_pTBasedSel_a_costhetastar;
-            outputVars.New_pTBasedSel_a_Phi          = New_pTBasedSel_a_Phi;
-            outputVars.New_pTBasedSel_a_Phi1         = New_pTBasedSel_a_Phi1;
-            outputVars.New_pTBasedSel_CosThetaStar_CS = New_pTBasedSel_Angles1.getCosThetaStar_CS();
-            outputVars.New_pTBasedSel_CosThetaStar_CS_old = New_pTBasedSel_Angles1.getCosThetaStar_CS_old(7500);
-            outputVars.New_pTBasedSel_HelicityCostheta1 =  New_pTBasedSel_Angles1.CosThetaAngles()[0];
-            outputVars.New_pTBasedSel_HelicityCostheta2 =  New_pTBasedSel_Angles1.CosThetaAngles()[1];
 
 
             // std::cout << "===========================================" << std::endl;
@@ -346,39 +269,16 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             std::vector<Float_t> Selectedb_dis; // Fill the b-discriminator value for FH selected jets
             GetFHminWHJets(Jets, b_dis, SelectedGoodJets, Selectedb_dis, 0);
             TLorentzVector JetWithMaxBScore; // Fill the FH selected jets
-            Float_t JetWithMaxBScore_BScore = 0.0; // Fill the FH selected jets
+            Float_t JetWithMaxBScore_BScore; // Fill the FH selected jets
             GetBScoreMaxJets(Jets, b_dis, JetWithMaxBScore, JetWithMaxBScore_BScore, 0);
-            Float_t Sum_of_Two_Highest_BScores = 0.0;
-            // std::cout << "=========================== L#275" << std::endl;
-            SumOfHighestTwoBScores(b_dis, Sum_of_Two_Highest_BScores, 0);
-            // std::cout << "=========================== L#277" << std::endl;
-            TLorentzVector SumofTwoJetWithMaxBScore; // Fill the FH selected jets
-            Float_t SumofTwoJetWithMaxBScore_BScore = 0.0; // Fill the FH selected jets
-            GetBScoreMaxTwoJets(Jets, b_dis, SumofTwoJetWithMaxBScore, SumofTwoJetWithMaxBScore_BScore, 0);
-            TLorentzVector MaxBScore_MaxPt; // Fill the FH selected jets
-            Float_t MaxBScore_MaxPt_BScore = 0.0; // Fill the FH selected jets
-            HighBScore_ThenLeadJet(Jets, b_dis, MaxBScore_MaxPt, MaxBScore_MaxPt_BScore, 0);
-            // std::cout << "=========================== L#279" << std::endl;
-
-            outputVars.New_SumTwoMaxBScore = Sum_of_Two_Highest_BScores;
 
             outputVars.New_MaxBScore = JetWithMaxBScore_BScore;
             outputVars.New_MaxBScore_Jet_pt = JetWithMaxBScore.Pt();
-            outputVars.New_MaxBScore_Jet_eta = JetWithMaxBScore.Eta();
+            outputVars.New_MaxBScore_Jet_Eta = JetWithMaxBScore.Eta();
             outputVars.New_MaxBScore_Jet_phi = JetWithMaxBScore.Phi();
+            outputVars.New_MaxBScore_Jet_eta = JetWithMaxBScore.Eta();
             outputVars.New_MaxBScore_Jet_mass = JetWithMaxBScore.M();
 
-            outputVars.SumTwoMaxBjets = SumofTwoJetWithMaxBScore_BScore;
-            outputVars.SumTwoMaxBjets_Jet_pt = SumofTwoJetWithMaxBScore.Pt();
-            outputVars.SumTwoMaxBjets_Jet_eta = SumofTwoJetWithMaxBScore.Eta();
-            outputVars.SumTwoMaxBjets_Jet_phi = SumofTwoJetWithMaxBScore.Phi();
-            outputVars.SumTwoMaxBjets_Jet_mass = SumofTwoJetWithMaxBScore.M();
-
-            outputVars.MaxBScore_MaxPt_BScore = MaxBScore_MaxPt_BScore;
-            outputVars.MaxBScore_MaxPt_Jet_pt = MaxBScore_MaxPt.Pt();
-            outputVars.MaxBScore_MaxPt_Jet_eta = MaxBScore_MaxPt.Eta();
-            outputVars.MaxBScore_MaxPt_Jet_phi = MaxBScore_MaxPt.Phi();
-            outputVars.MaxBScore_MaxPt_Jet_mass = MaxBScore_MaxPt.M();
             // std::cout << "Jets size = " << Jets.size() << std::endl;
 
             outputVars.New_Leading_Jet_E  = SelectedGoodJets[0].E();
@@ -425,10 +325,10 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             outputVars.PhotonID_max = (flashggReader.Leading_Photon_MVA > flashggReader.Subleading_Photon_MVA) ? flashggReader.Leading_Photon_MVA : flashggReader.Subleading_Photon_MVA;
 
             double a_costheta1, a_costheta2, a_costhetastar, a_Phi, a_Phi1;
-            // TLorentzVector LV_LeadingPho, LV_SubLeadPho, LV_Hgg;
-            // LV_LeadingPho.SetPtEtaPhiE(flashggReader.Leading_Photon_pt,flashggReader.Leading_Photon_eta,flashggReader.Leading_Photon_phi,flashggReader.Leading_Photon_E);
-            // LV_SubLeadPho.SetPtEtaPhiE(flashggReader.Subleading_Photon_pt,flashggReader.Subleading_Photon_eta,flashggReader.Subleading_Photon_phi,flashggReader.Subleading_Photon_E);
-            // LV_Hgg = LV_LeadingPho + LV_SubLeadPho;
+            TLorentzVector LV_LeadingPho, LV_SubLeadPho, LV_Hgg;
+            LV_LeadingPho.SetPtEtaPhiE(flashggReader.Leading_Photon_pt,flashggReader.Leading_Photon_eta,flashggReader.Leading_Photon_phi,flashggReader.Leading_Photon_E);
+            LV_SubLeadPho.SetPtEtaPhiE(flashggReader.Subleading_Photon_pt,flashggReader.Subleading_Photon_eta,flashggReader.Subleading_Photon_phi,flashggReader.Subleading_Photon_E);
+            LV_Hgg = LV_LeadingPho + LV_SubLeadPho;
             AngularVariables Angles1(LV_Hgg + LV_HiggsFromJets, LV_Hgg, LV_LeadingPho, LV_SubLeadPho, LV_HiggsFromJets, SelectedGoodJets[0]+ SelectedGoodJets[1], SelectedGoodJets[2]+ SelectedGoodJets[3]);
             Angles1.computeAngles(a_costheta1, a_costheta2, a_Phi, a_costhetastar, a_Phi1);
 

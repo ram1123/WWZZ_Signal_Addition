@@ -185,6 +185,73 @@ public:
   Float_t   DRBased_a_costhetastar = -999.0;
   Float_t   DRBased_a_Phi = -999.0;
   Float_t   DRBased_a_Phi1 = -999.0;
+
+  Float_t   New_SumTwoMaxBScore = -999.0;
+  Float_t   New_MaxBScore = -999.0;
+  Float_t   New_MaxBScore_Jet_pt = -999.0;
+  Float_t   New_MaxBScore_Jet_phi = -999.0;
+  Float_t   New_MaxBScore_Jet_eta = -999.0;
+  Float_t   New_MaxBScore_Jet_mass = -999.0;
+
+  Float_t   New_TwoLeadJets_pT = -999.0;
+  Float_t   New_TwoLeadJets_eta = -999.0;
+  Float_t   New_TwoLeadJets_phi = -999.0;
+  Float_t   New_TwoLeadJets_mass = -999.0;
+  Float_t   New_TwoLeadJets_SumBScore   = -999.0;
+
+
+  Float_t   SumTwoMaxBjets = -999.0;
+  Float_t   SumTwoMaxBjets_Jet_pt = -999.0;
+  Float_t   SumTwoMaxBjets_Jet_eta = -999.0;
+  Float_t   SumTwoMaxBjets_Jet_phi = -999.0;
+  Float_t   SumTwoMaxBjets_Jet_mass = -999.0;
+
+  Float_t   MaxBScore_MaxPt_BScore = -999.0;
+  Float_t   MaxBScore_MaxPt_Jet_pt = -999.0;
+  Float_t   MaxBScore_MaxPt_Jet_eta = -999.0;
+  Float_t   MaxBScore_MaxPt_Jet_phi = -999.0;
+  Float_t   MaxBScore_MaxPt_Jet_mass = -999.0;
+
+
+  Float_t   New_pTBasedSel_W1_pT = -999.0;
+  Float_t   New_pTBasedSel_W1_eta = -999.0;
+  Float_t   New_pTBasedSel_W1_phi = -999.0;
+  Float_t   New_pTBasedSel_W1_mass = -999.0;
+  Float_t   New_pTBasedSel_W1_SumBScore = -999.0;
+  Float_t   New_pTBasedSel_W2_pT = -999.0;
+  Float_t   New_pTBasedSel_W2_eta = -999.0;
+  Float_t   New_pTBasedSel_W2_phi = -999.0;
+  Float_t   New_pTBasedSel_W2_mass = -999.0;
+  Float_t   New_pTBasedSel_W2_SumBScore = -999.0;
+  Float_t   New_pTBasedSel_WW_pT = -999.0;
+  Float_t   New_pTBasedSel_WW_eta = -999.0;
+  Float_t   New_pTBasedSel_WW_phi = -999.0;
+  Float_t   New_pTBasedSel_WW_mass = -999.0;
+  Float_t   New_pTBasedSel_WW_SumBScore = -999.0;
+  Float_t   New_pTBasedSel_dR_Hgg_Jet1 = -999.0;
+  Float_t   New_pTBasedSel_dR_Hgg_Jet2 = -999.0;
+  Float_t   New_pTBasedSel_dR_Hgg_Jet3 = -999.0;
+  Float_t   New_pTBasedSel_dR_Hgg_Jet4 = -999.0;
+  Float_t   New_pTBasedSel_dPhi_Hgg_Jet1 = -999.0;
+  Float_t   New_pTBasedSel_dPhi_Hgg_Jet2 = -999.0;
+  Float_t   New_pTBasedSel_dPhi_Hgg_Jet3 = -999.0;
+  Float_t   New_pTBasedSel_dPhi_Hgg_Jet4 = -999.0;
+  Float_t   New_pTBasedSel_minDeltaR_gg4j = -999.0;
+  Float_t   New_pTBasedSel_maxDeltaR_gg4j = -999.0;
+  Float_t   New_pTBasedSel_minDeltaR_4j = -999.0;
+  Float_t   New_pTBasedSel_maxDeltaR_4j = -999.0;
+  Float_t   New_pTBasedSel_DPhi_HH = -999.0;
+  Float_t   New_pTBasedSel_DR_HH = -999.0;
+  Float_t   New_pTBasedSel_a_costheta1 = -999.0;
+  Float_t   New_pTBasedSel_a_costheta2 = -999.0;
+  Float_t   New_pTBasedSel_a_costhetastar = -999.0;
+  Float_t   New_pTBasedSel_a_Phi = -999.0;
+  Float_t   New_pTBasedSel_a_Phi1 = -999.0;
+  Float_t   New_pTBasedSel_CosThetaStar_CS = -999.0;
+  Float_t   New_pTBasedSel_CosThetaStar_CS_old = -999.0;
+  Float_t   New_pTBasedSel_HelicityCostheta1 = -999.0;
+  Float_t   New_pTBasedSel_HelicityCostheta2 = -999.0;
+
 };
 
 #endif
@@ -353,4 +420,67 @@ void output::init(TTree* tree) {
   fTree->Branch("DRBased_a_Phi",          &DRBased_a_Phi,         "DRBased_a_Phi/F");
   fTree->Branch("DRBased_a_Phi1",         &DRBased_a_Phi1,        "DRBased_a_Phi1/F");
 
+  fTree->Branch("New_SumTwoMaxBScore",  &New_SumTwoMaxBScore, "New_SumTwoMaxBScore/F");
+  fTree->Branch("New_MaxBScore",  &New_MaxBScore, "New_MaxBScore/F");
+  fTree->Branch("New_MaxBScore_Jet_pt", &New_MaxBScore_Jet_pt, "New_MaxBScore_Jet_pt/F");
+  fTree->Branch("New_MaxBScore_Jet_phi",  &New_MaxBScore_Jet_phi, "New_MaxBScore_Jet_phi/F");
+  fTree->Branch("New_MaxBScore_Jet_eta",  &New_MaxBScore_Jet_eta, "New_MaxBScore_Jet_eta/F");
+  fTree->Branch("New_MaxBScore_Jet_mass", &New_MaxBScore_Jet_mass, "New_MaxBScore_Jet_mass/F");
+
+  fTree->Branch("New_TwoLeadJets_pT", &New_TwoLeadJets_pT, "New_TwoLeadJets_pT/F");
+  fTree->Branch("New_TwoLeadJets_eta", &New_TwoLeadJets_eta, "New_TwoLeadJets_eta/F");
+  fTree->Branch("New_TwoLeadJets_phi", &New_TwoLeadJets_phi, "New_TwoLeadJets_phi/F");
+  fTree->Branch("New_TwoLeadJets_mass", &New_TwoLeadJets_mass, "New_TwoLeadJets_mass/F");
+  fTree->Branch("New_TwoLeadJets_SumBScore", &New_TwoLeadJets_SumBScore, "New_TwoLeadJets_SumBScore/F");
+
+  fTree->Branch("SumTwoMaxBjets", &SumTwoMaxBjets, "SumTwoMaxBjets/F");
+  fTree->Branch("SumTwoMaxBjets_Jet_pt", &SumTwoMaxBjets_Jet_pt, "SumTwoMaxBjets_Jet_pt/F");
+  fTree->Branch("SumTwoMaxBjets_Jet_eta", &SumTwoMaxBjets_Jet_eta, "SumTwoMaxBjets_Jet_eta/F");
+  fTree->Branch("SumTwoMaxBjets_Jet_phi", &SumTwoMaxBjets_Jet_phi, "SumTwoMaxBjets_Jet_phi/F");
+  fTree->Branch("SumTwoMaxBjets_Jet_mass", &SumTwoMaxBjets_Jet_mass, "SumTwoMaxBjets_Jet_mass/F");
+
+  fTree->Branch("MaxBScore_MaxPt_BScore", &MaxBScore_MaxPt_BScore, "MaxBScore_MaxPt_BScore/F");
+  fTree->Branch("MaxBScore_MaxPt_Jet_pt", &MaxBScore_MaxPt_Jet_pt, "MaxBScore_MaxPt_Jet_pt/F");
+  fTree->Branch("MaxBScore_MaxPt_Jet_eta", &MaxBScore_MaxPt_Jet_eta, "MaxBScore_MaxPt_Jet_eta/F");
+  fTree->Branch("MaxBScore_MaxPt_Jet_phi", &MaxBScore_MaxPt_Jet_phi, "MaxBScore_MaxPt_Jet_phi/F");
+  fTree->Branch("MaxBScore_MaxPt_Jet_mass", &MaxBScore_MaxPt_Jet_mass, "MaxBScore_MaxPt_Jet_mass/F");
+
+  fTree->Branch("New_pTBasedSel_W1_pT", &New_pTBasedSel_W1_pT, "New_pTBasedSel_W1_pT/F");
+  fTree->Branch("New_pTBasedSel_W1_eta", &New_pTBasedSel_W1_eta, "New_pTBasedSel_W1_eta/F");
+  fTree->Branch("New_pTBasedSel_W1_phi", &New_pTBasedSel_W1_phi, "New_pTBasedSel_W1_phi/F");
+  fTree->Branch("New_pTBasedSel_W1_mass", &New_pTBasedSel_W1_mass, "New_pTBasedSel_W1_mass/F");
+  fTree->Branch("New_pTBasedSel_W1_SumBScore", &New_pTBasedSel_W1_SumBScore, "New_pTBasedSel_W1_SumBScore/F");
+  fTree->Branch("New_pTBasedSel_W2_pT", &New_pTBasedSel_W2_pT, "New_pTBasedSel_W2_pT/F");
+  fTree->Branch("New_pTBasedSel_W2_eta", &New_pTBasedSel_W2_eta, "New_pTBasedSel_W2_eta/F");
+  fTree->Branch("New_pTBasedSel_W2_phi", &New_pTBasedSel_W2_phi, "New_pTBasedSel_W2_phi/F");
+  fTree->Branch("New_pTBasedSel_W2_mass", &New_pTBasedSel_W2_mass, "New_pTBasedSel_W2_mass/F");
+  fTree->Branch("New_pTBasedSel_W2_SumBScore", &New_pTBasedSel_W2_SumBScore, "New_pTBasedSel_W2_SumBScore/F");
+  fTree->Branch("New_pTBasedSel_WW_pT", &New_pTBasedSel_WW_pT, "New_pTBasedSel_WW_pT/F");
+  fTree->Branch("New_pTBasedSel_WW_eta", &New_pTBasedSel_WW_eta, "New_pTBasedSel_WW_eta/F");
+  fTree->Branch("New_pTBasedSel_WW_phi", &New_pTBasedSel_WW_phi, "New_pTBasedSel_WW_phi/F");
+  fTree->Branch("New_pTBasedSel_WW_mass", &New_pTBasedSel_WW_mass, "New_pTBasedSel_WW_mass/F");
+  fTree->Branch("New_pTBasedSel_WW_SumBScore", &New_pTBasedSel_WW_SumBScore, "New_pTBasedSel_WW_SumBScore/F");
+  fTree->Branch("New_pTBasedSel_dR_Hgg_Jet1", &New_pTBasedSel_dR_Hgg_Jet1, "New_pTBasedSel_dR_Hgg_Jet1/F");
+  fTree->Branch("New_pTBasedSel_dR_Hgg_Jet2", &New_pTBasedSel_dR_Hgg_Jet2, "New_pTBasedSel_dR_Hgg_Jet2/F");
+  fTree->Branch("New_pTBasedSel_dR_Hgg_Jet3", &New_pTBasedSel_dR_Hgg_Jet3, "New_pTBasedSel_dR_Hgg_Jet3/F");
+  fTree->Branch("New_pTBasedSel_dR_Hgg_Jet4", &New_pTBasedSel_dR_Hgg_Jet4, "New_pTBasedSel_dR_Hgg_Jet4/F");
+  fTree->Branch("New_pTBasedSel_dPhi_Hgg_Jet1", &New_pTBasedSel_dPhi_Hgg_Jet1, "New_pTBasedSel_dPhi_Hgg_Jet1/F");
+  fTree->Branch("New_pTBasedSel_dPhi_Hgg_Jet2", &New_pTBasedSel_dPhi_Hgg_Jet2, "New_pTBasedSel_dPhi_Hgg_Jet2/F");
+  fTree->Branch("New_pTBasedSel_dPhi_Hgg_Jet3", &New_pTBasedSel_dPhi_Hgg_Jet3, "New_pTBasedSel_dPhi_Hgg_Jet3/F");
+  fTree->Branch("New_pTBasedSel_dPhi_Hgg_Jet4", &New_pTBasedSel_dPhi_Hgg_Jet4, "New_pTBasedSel_dPhi_Hgg_Jet4/F");
+  fTree->Branch("New_pTBasedSel_minDeltaR_gg4j", &New_pTBasedSel_minDeltaR_gg4j, "New_pTBasedSel_minDeltaR_gg4j/F");
+  fTree->Branch("New_pTBasedSel_maxDeltaR_gg4j", &New_pTBasedSel_maxDeltaR_gg4j, "New_pTBasedSel_maxDeltaR_gg4j/F");
+  fTree->Branch("New_pTBasedSel_minDeltaR_4j", &New_pTBasedSel_minDeltaR_4j, "New_pTBasedSel_minDeltaR_4j/F");
+  fTree->Branch("New_pTBasedSel_maxDeltaR_4j", &New_pTBasedSel_maxDeltaR_4j, "New_pTBasedSel_maxDeltaR_4j/F");
+  fTree->Branch("New_pTBasedSel_DPhi_HH", &New_pTBasedSel_DPhi_HH, "New_pTBasedSel_DPhi_HH/F");
+  fTree->Branch("New_pTBasedSel_DR_HH", &New_pTBasedSel_DR_HH, "New_pTBasedSel_DR_HH/F");
+  fTree->Branch("New_pTBasedSel_a_costheta1", &New_pTBasedSel_a_costheta1, "New_pTBasedSel_a_costheta1/F");
+  fTree->Branch("New_pTBasedSel_a_costheta2", &New_pTBasedSel_a_costheta2, "New_pTBasedSel_a_costheta2/F");
+  fTree->Branch("New_pTBasedSel_a_costhetastar", &New_pTBasedSel_a_costhetastar, "New_pTBasedSel_a_costhetastar/F");
+  fTree->Branch("New_pTBasedSel_a_Phi", &New_pTBasedSel_a_Phi, "New_pTBasedSel_a_Phi/F");
+  fTree->Branch("New_pTBasedSel_a_Phi1", &New_pTBasedSel_a_Phi1, "New_pTBasedSel_a_Phi1/F");
+  fTree->Branch("New_pTBasedSel_CosThetaStar_CS", &New_pTBasedSel_CosThetaStar_CS, "New_pTBasedSel_CosThetaStar_CS/F");
+  fTree->Branch("New_pTBasedSel_CosThetaStar_CS_old", &New_pTBasedSel_CosThetaStar_CS_old, "New_pTBasedSel_CosThetaStar_CS_old/F");
+  fTree->Branch("New_pTBasedSel_HelicityCostheta1", &New_pTBasedSel_HelicityCostheta1, "New_pTBasedSel_HelicityCostheta1/F");
+  fTree->Branch("New_pTBasedSel_HelicityCostheta2", &New_pTBasedSel_HelicityCostheta2, "New_pTBasedSel_HelicityCostheta2/F");
 }

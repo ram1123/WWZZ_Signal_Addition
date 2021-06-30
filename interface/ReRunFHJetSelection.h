@@ -22,6 +22,10 @@ TString GetTreeName(TFile *f, std::vector<TString> &RootFileDirStructure, std::v
 void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb_dis, bool DEBUG );
 void GetFHJetUsingDR(TLorentzVector &Hgg, std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb_dis, bool DEBUG );
 TString GetLastString(string s, string delimiter, bool DEBUG=0);
+void GetBScoreMaxJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, TLorentzVector &SelectedJets, Float_t &Selectedb_dis, bool DEBUG );
+void GetBScoreMaxTwoJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, TLorentzVector &SelectedJets, Float_t &Selectedb_dis, bool DEBUG );
+void HighBScore_ThenLeadJet(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, TLorentzVector &SelectedJets, Float_t &Selectedb_dis, bool DEBUG );
+void SumOfHighestTwoBScores(std::vector<Float_t> &b_dis, Float_t &SumBScore, bool DEBUG );
 
 
 /**
@@ -142,6 +146,44 @@ TString GetTreeName(TFile *f, std::vector<TString> &RootFileDirStructure, std::v
         }
     }
     return DirName;
+}
+
+void GetTreeName(TFile *f, std::vector<TString> &ListOfAllTrees, bool DEBUG)
+{
+    TString DirName = "";
+
+    TIter next(f->GetListOfKeys());
+    TKey *key;
+    while ( (key = (TKey*)next())) {
+        if (DEBUG) std::cout << "key name: " << key->GetName() << "\tClass: " << key->GetClassName() << std::endl;
+        ListOfAllTrees.push_back(TString(key->GetName()));
+
+        // if (key->IsFolder()) {
+        //     f->cd(key->GetName());
+        //     DirName += key->GetName();
+        //     TDirectory *subdir = gDirectory;
+        //     TIter next(subdir->GetListOfKeys());
+        //     TKey *key2;
+        //     while ( (key2 = (TKey*)next())) {
+        //         if (DEBUG) std::cout << "key2 name: " << key2->GetName() << "\tClass: " << key2->GetClassName() << std::endl;
+        //         if (key->IsFolder()){
+        //             DirName += "/";
+        //             DirName += key2->GetName();
+        //             subdir->cd(key2->GetName());
+        //             TDirectory *subdir = gDirectory;
+        //             TIter next(subdir->GetListOfKeys());
+        //             TKey *key3;
+        //             while ( (key3 = (TKey*)next())) {
+        //                 if (string(key3->GetName()).find("Tag_1") != std::string::npos)
+        //                 {
+        //                     if (DEBUG) std::cout << "key3 name: " << key3->GetName() << "\tClass: " << key3->GetClassName() << std::endl;
+        //                     ListOfAllTrees.push_back(TString(key3->GetName()));
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+    }
 }
 
 /**
@@ -365,6 +407,135 @@ void GetFHJetUsingDR(TLorentzVector &Hgg, std::vector<TLorentzVector> &AllGoodJe
     Selectedb_dis.push_back(jet2b);
     Selectedb_dis.push_back(jet3b);
     Selectedb_dis.push_back(jet4b);
+}
+
+
+void GetBScoreMaxJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, TLorentzVector &SelectedJets, Float_t &Selectedb_dis, bool DEBUG )
+{
+    // get 4 jets for FH final state with minWH vals
+    double tempBScore = -999.0;
+
+    int nTagJets = AllGoodJets.size();
+
+    // Select 2 jets whose mass closest to W-boson mass
+    for (int CountJet1 = 0; CountJet1 < nTagJets; CountJet1++)
+    {
+        if (b_dis[CountJet1] > tempBScore)
+        {
+            Selectedb_dis = b_dis[CountJet1];
+            SelectedJets = AllGoodJets[CountJet1];
+            tempBScore = b_dis[CountJet1];
+        }
+    }
+}
+
+void GetBScoreMaxTwoJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, TLorentzVector &SelectedJets, Float_t &Selectedb_dis, bool DEBUG )
+{
+    // get 4 jets for FH final state with minWH vals
+    double tempBScore1 = -999.0;
+    double tempBScore2 = -999.0;
+    double index1 = -999.0;
+    double index2 = -999.0;
+
+    TLorentzVector Jet1;
+    TLorentzVector Jet2;
+
+    int nTagJets = AllGoodJets.size();
+
+    // Select 2 jets whose mass closest to W-boson mass
+    for (int CountJet1 = 0; CountJet1 < nTagJets; CountJet1++)
+    {
+        if (DEBUG) std::cout << CountJet1 << ": " << b_dis[CountJet1]<< std::endl;
+        if (b_dis[CountJet1] > tempBScore1)
+        {
+            tempBScore2 = tempBScore1;
+            tempBScore1 = b_dis[CountJet1];
+            Jet2 = Jet1;
+            Jet1 = AllGoodJets[CountJet1];
+            index2 = index1;
+            index1 = CountJet1;
+        } else {
+            if (b_dis[CountJet1] > tempBScore2)
+            {
+                tempBScore2 = b_dis[CountJet1];
+                Jet2 = AllGoodJets[CountJet1];
+                index2 = CountJet1;
+            }
+        }
+    }
+    if (DEBUG) std::cout << "Two selected b-scores: " << tempBScore1 << "("<< index1 << "),\t" << tempBScore2 <<"(" << index2 << ")"  << std::endl;
+    SelectedJets = Jet1 + Jet2;
+    Selectedb_dis = tempBScore1 + tempBScore2;
+}
+
+void HighBScore_ThenLeadJet(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, TLorentzVector &SelectedJets, Float_t &Selectedb_dis, bool DEBUG )
+{
+    // get 4 jets for FH final state with minWH vals
+    double tempBScore1 = -999.0;
+    double tempBScore2 = -999.0;
+    double tempPt = -999.0;
+    double index1 = -999.0;
+    double index2 = -999.0;
+
+    TLorentzVector Jet1;
+    TLorentzVector Jet2;
+
+    int nTagJets = AllGoodJets.size();
+
+    // Select 2 jets whose mass closest to W-boson mass
+    for (int CountJet1 = 0; CountJet1 < nTagJets; CountJet1++)
+    {
+        if (DEBUG) std::cout << CountJet1 << ": " << b_dis[CountJet1] << ",\t" << AllGoodJets[CountJet1].Pt() << std::endl;
+        if (b_dis[CountJet1] > tempBScore1)
+        {
+            tempBScore1 = b_dis[CountJet1];
+            index1 = CountJet1;
+        }
+    }
+    Jet1 = AllGoodJets[index1];
+    if (DEBUG) std::cout << "\n\n" << std::endl;
+
+    for (int CountJet1 = 0; CountJet1 < nTagJets; CountJet1++)
+    {
+        if (CountJet1 == index1) continue;
+        if (DEBUG) std::cout << CountJet1 << ": " << tempPt << "\t" << AllGoodJets[CountJet1].Pt() << std::endl;
+        if (AllGoodJets[CountJet1].Pt() > tempPt)
+        {
+            Jet2 = AllGoodJets[CountJet1];
+            tempBScore2 = b_dis[CountJet1];
+            index2 = CountJet1;
+            tempPt = AllGoodJets[CountJet1].Pt();
+        }
+    }
+    if (DEBUG) std::cout << "Two selected b-scores: " << tempBScore1 << "("<< index1 << "),\t" << tempBScore2 <<"(" << index2 << ")"  << std::endl;
+    if (DEBUG) std::cout << "Two selected b-scores: " << Jet1.Pt() << "("<< index1 << "),\t" << Jet2.Pt() <<"(" << index2 << ")"  << std::endl;
+    SelectedJets = Jet1 + Jet2;
+    Selectedb_dis = tempBScore1 + tempBScore2;
+}
+
+void SumOfHighestTwoBScores(std::vector<Float_t> &b_dis, Float_t &SumBScore, bool DEBUG )
+{
+    // get 4 jets for FH final state with minWH vals
+    double tempBScore1 = -999.0;
+    double tempBScore2 = -999.0;
+
+    // Select 2 highest b-score jets
+    for (int CountJet1 = 0; CountJet1 < b_dis.size(); CountJet1++)
+    {
+        if (DEBUG) std::cout << CountJet1 << ": " << b_dis[CountJet1]<< std::endl;
+        if (b_dis[CountJet1] > tempBScore1)
+        {
+            tempBScore2 = tempBScore1;
+            tempBScore1 = b_dis[CountJet1];
+        } else {
+            if (b_dis[CountJet1] > tempBScore2)
+            {
+                tempBScore2 = b_dis[CountJet1];
+            }
+        }
+    }
+    if (DEBUG) std::cout << "Two selected b-scores: " << tempBScore1 << ",\t" << tempBScore2 << std::endl;
+    SumBScore = tempBScore1 + tempBScore2;
 }
 
 

@@ -12,7 +12,8 @@
 #path1="/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2018/*cHHH1_2018.root"
 #path1="/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2017/*.root"
 #path1="/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2018/GluGluToHHTo2G4Q_node_cHHH2p45_2018.root"
-path1="/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2018/*cHHH0*.root"
+#path1="/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2018/*cHHH0*.root"
+path1="/afs/cern.ch/user/r/rasharma/work/doubleHiggs/flashgg/ScaleWWZZ/CMSSW_10_6_8/src/WWZZ_Signal_Addition/*.root"
 
 doHadd=${1}
 DirName="tagsDumper/trees"
