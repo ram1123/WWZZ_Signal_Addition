@@ -1,6 +1,10 @@
 echo "==============================================================="
 echo ""
 date
+root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Signal/FH_NLO_2017_Hadded_March/GluGluToHHTo2G4Q_node_cHHH1_2017.root\"\)
+root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_NLO_2017_Hadded_March/GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_2017.root\"\)
+root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2017/Signal/FHWW_bbgg_NLO_2017/GluGluToHHTo2B2G_node_cHHH1_2017.root\"\)
+root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Data/Data_2017_Hadded_Combined/Data_2017.root\"\)
 echo ""
 echo "==============================================================="
 # root -l -b -q ReRunFHJetSelection.C\(\"/eos/user/l/lipe/ntuple/2017/Signal/FH_NLO_2017_Hadded/GluGluToHHTo2G4Q_node_cHHH1_2017.root\",\"/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst/Signal/\"\) &

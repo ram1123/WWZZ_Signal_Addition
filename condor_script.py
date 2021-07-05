@@ -2,7 +2,7 @@
 # @Author: Ram Krishna Sharma
 # @Date:   2021-04-19
 # @Last Modified by:   Ram Krishna Sharma
-# @Last Modified time: 2021-06-27
+# @Last Modified time: 2021-07-05
 import subprocess
 import os
 import sys
@@ -21,8 +21,8 @@ Year = args.Year
 ExtraStringCondorJobFileName = args.ExtraString
 
 OutputPath_2016 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2016"
-# OutputPath_2017 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2017"
-OutputPath_2017 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2017_Newbbgg_v2/"
+OutputPath_2017 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2017"
+# OutputPath_2017 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2017_BScoreBugFix/"
 OutputPath_2018 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2018"
 
 # Get CMSSW directory path and name
@@ -33,12 +33,12 @@ CMSSWRel = cmsswDirPath.split("/")[-1]
 paths_2016= [
         # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHWW_LO_2016_noPdfWeight_Hadded/", # LO_WW_Signal_2016
         # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHZZ_LO_2016_noPdfWeight_Hadded/", # LO_ZZ_Signal_2016
-        "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2016/Signal/FHWW_LO_2016_noPdfWeight_Hadded/",
-        "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2016/Signal/FHZZ_LO_2016_noPdfWeight_Hadded/",
-        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHWW_NLO_2016_HaddedNew/", # NLO_WW_Signal_2016
-        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHZZ_NLO_2016_HaddedNew/", # NLO_ZZ_Signal_2016
-        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Single_H_2016_Hadded/", # SingleHiggs_2016
-        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Data_Trees_2016_Hadded_Combined/", # Data_2016
+        # "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2016/Signal/FHWW_LO_2016_noPdfWeight_Hadded/",
+        # "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2016/Signal/FHZZ_LO_2016_noPdfWeight_Hadded/",
+        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHWW_NLO_2016_HaddedNew/", # NLO_WW_Signal_2016
+        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHZZ_NLO_2016_HaddedNew/", # NLO_ZZ_Signal_2016
+        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Single_H_2016_Hadded/", # SingleHiggs_2016
+        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Data_Trees_2016_Hadded_Combined/", # Data_2016
             ]
 
 paths_2018= [
@@ -47,21 +47,21 @@ paths_2018= [
         # "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2018/Signal/FHWW_LO_2018_Hadded/",
         # "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2018/Signal/FHZZ_LO_2018_Hadded/",
         "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHWW_NLO_2018_Hadded/", # NLO_WW_Signal_2018
-        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHZZ_NLO_2018_Hadded/", # NLO_ZZ_Signal_2018
-        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Single_H_2018Fixed_Hadded/", # SingleHiggs_2018
-        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Data_Trees_2018_Hadded_Combined/", # Data_2018
+        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHZZ_NLO_2018_Hadded/", # NLO_ZZ_Signal_2018
+        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Single_H_2018Fixed_Hadded/", # SingleHiggs_2018
+        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Data_Trees_2018_Hadded_Combined/", # Data_2018
             ]
 
 paths_2017= [
         # "/eos/user/l/lipe/ntuple/2017/Signal/FH_LO_2017_Hadded/",
         # "/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_LO_2017_Hadded_April/",
-        "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/",
+        # "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FH_LO_2017_Hadded/",
         # "/eos/user/p/pmandrik/HHWWgg_central/January_2021_Production_v2/2017/Signal/FHZZ_LO_2017_Hadded/",
-        # "/eos/user/l/lipe/ntuple/2017/Signal/FH_NLO_2017_Hadded_March/",
-        # "/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_NLO_2017_Hadded_March/",
-        # "/eos/user/l/lipe/ntuple/2017/Single_H/Single_H_2017_Hadded_3_23/",
+        "/eos/user/l/lipe/ntuple/2017/Signal/FH_NLO_2017_Hadded_March/",
+        "/eos/user/l/lipe/ntuple/2017/Signal/FHZZ_NLO_2017_Hadded_March/",
+        "/eos/user/l/lipe/ntuple/2017/Single_H/Single_H_2017_Hadded_3_23/",
         "/eos/user/l/lipe/ntuple/2017/Data/Data_2017_Hadded_Combined/", # Data
-        "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2017/UsedBkgFH", # Backgrounds
+        # "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2017/UsedBkgFH", # Backgrounds
         "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2017/Signal/FHWW_bbgg_NLO_2017"
 ]
 
@@ -141,6 +141,8 @@ mv ${RootFileName}_hadd2.root ${2}/
 with open("%s.sh"%CondorJobFileName,"w") as args:
     args.write(condorSHFile%(CurrentOutputPath))
 
+# longlunch
+# espresso
 condorJDLFile_header="""+JobFlavour   = "longlunch"
 Executable = %s.sh
 Universe = vanilla
