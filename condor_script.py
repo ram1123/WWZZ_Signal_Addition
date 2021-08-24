@@ -24,6 +24,7 @@ OutputPath_2016 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVar
 OutputPath_2017 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2017"
 # OutputPath_2017 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2017_BScoreBugFix/"
 OutputPath_2018 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2018"
+OutputPath_2019 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/SignalValidation"
 
 # Get CMSSW directory path and name
 cmsswDirPath = os.environ['CMSSW_BASE']
@@ -65,6 +66,13 @@ paths_2017= [
         "/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2017/Signal/FHWW_bbgg_NLO_2017"
 ]
 
+AbeSignalValidation = [
+'/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/WWZ_SignalTopology_Checks/2017/SingleElectron_Data_2017_hadded/SingleElectron_Data_2017.root',
+'/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/WWZ_SignalTopology_Checks/2017/Zee_hadded/Zee_v14-v1_hadded_MoreVars.root',
+'/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/WWZ_SignalTopology_Checks/2017/WWZ_2017_hadded/WWZ.root',
+'/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/WWZ_SignalTopology_Checks/2017/All_Backgrounds/',
+]
+
 CurrentInputPath = paths_2016
 CurrentOutputPath = OutputPath_2016
 CondorJobFileName = "CondorJobs_"+str(ExtraStringCondorJobFileName)+str(Year)
@@ -77,6 +85,9 @@ elif Year==2017:
 elif Year==2018:
     CurrentInputPath = paths_2018
     CurrentOutputPath = OutputPath_2018
+elif Year==2019:
+    CurrentInputPath = AbeSignalValidation
+    CurrentOutputPath = OutputPath_2019
 else:
     print("Invalid year...")
     exit()
@@ -94,14 +105,19 @@ from os import walk
 AllFiles = []
 for paths in CurrentInputPath:
     print "===> ",paths
-    for (dirpath, dirnames, filenames) in walk(paths):
-        # print "dirpath: ",dirpath
-        # print "dirnames: ",dirnames
-        # print "filenames: ",filenames
-        for files in filenames:
-            # print os.path.join(dirpath,files)
-            AllFiles.append(os.path.join(dirpath,files))
+    if paths.endswith('.root'):
+        print("paths: {}".format(paths))
+        AllFiles.append(paths)
+    else:
+        for (dirpath, dirnames, filenames) in walk(paths):
+            print "dirpath: ",dirpath
+            # print "dirnames: ",dirnames
+            # print "filenames: ",filenames
+            for files in filenames:
+                # print os.path.join(dirpath,files)
+                AllFiles.append(os.path.join(dirpath,files))
 
+print("AllFiles: {}".format(AllFiles))
 # create tarball of present working CMSSW base directory
 os.system('rm -f CMSSW*.tgz')
 import makeTarFile
@@ -143,7 +159,8 @@ with open("%s.sh"%CondorJobFileName,"w") as args:
 
 # longlunch
 # espresso
-condorJDLFile_header="""+JobFlavour   = "longlunch"
+# workday
+condorJDLFile_header="""+JobFlavour   = "workday"
 Executable = %s.sh
 Universe = vanilla
 Notification = ERROR
