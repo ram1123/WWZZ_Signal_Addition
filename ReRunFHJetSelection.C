@@ -34,7 +34,8 @@ void ReRunFHJetSelection( /* bool isMC = true, */
                           TString OutPutPath = "./", // Signal, Backgrounds, Data
                           TString PrefixOutPutRootFileName = "",
                           bool WithSyst = true,
-                          bool ifDNN = false
+                          bool ifDNN = false,
+                          bool ifDirExists = true
                         )
 {
     clock_t tStart = clock();
@@ -49,16 +50,21 @@ void ReRunFHJetSelection( /* bool isMC = true, */
 
     std::vector<TString> Vec_RootFileDirStructure;
     std::vector<TString> Vec_ListOfAllTrees;
-    TString DirectoryName = GetTreeName(OldRootFile, Vec_RootFileDirStructure, Vec_ListOfAllTrees, 0);
+    TString DirectoryName = "";
+    if (ifDirExists)
+        DirectoryName = GetTreeName(OldRootFile, Vec_RootFileDirStructure, Vec_ListOfAllTrees, 1);
+    else
+        DirectoryName = GetTreeName(OldRootFile, Vec_ListOfAllTrees, 1);
     std::cout << "DirectoryName: " << DirectoryName << std::endl;
     int Size_Vec_ListOfAllTrees = Vec_ListOfAllTrees.size();
     std::cout << "Number of Trees: " << Size_Vec_ListOfAllTrees << std::endl;
+    std::cout << "Name of first Trees: " << Vec_ListOfAllTrees[0] << std::endl;
 
     TString NewRootFileName = GetLastString(string(inputFile1), "/");
     TString OutPutRootFileName = OutPutPath+"/"+PrefixOutPutRootFileName+NewRootFileName;
     std::cout << "Output root file name: " << OutPutRootFileName << std::endl;
     TFile *newfile = new TFile(OutPutRootFileName, "RECREATE","",207);
-    newfile->mkdir(DirectoryName);
+    if (ifDirExists) newfile->mkdir(DirectoryName);
 
     int TreesCount = 0;
     for (std::vector<TString>::iterator OldTreeName = Vec_ListOfAllTrees.begin(); OldTreeName != Vec_ListOfAllTrees.end(); ++OldTreeName)
@@ -69,7 +75,10 @@ void ReRunFHJetSelection( /* bool isMC = true, */
           if (TreesCount>=2) break;
         }
 
-        TTree *OldTree = (TTree*)OldRootFile->Get(DirectoryName+"/"+TString(*OldTreeName));
+        TTree *OldTree = NULL;
+
+        if (ifDirExists) OldTree = (TTree*)OldRootFile->Get(DirectoryName+"/"+TString(*OldTreeName));
+        else OldTree = (TTree*)OldRootFile->Get(TString(*OldTreeName));
 
         // if (isMC) {
         flashgg_MC flashggReader(OldTree);
@@ -77,7 +86,7 @@ void ReRunFHJetSelection( /* bool isMC = true, */
         // flashgg_Data flashggReader(OldTree);
         // }
 
-        newfile->cd(DirectoryName);
+        if (ifDirExists) newfile->cd(DirectoryName);
 
         // Clone the old tree
         auto newtree = OldTree->CloneTree(0);

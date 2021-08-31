@@ -19,6 +19,7 @@
 
 TString GetTreeName(TFile *f, TString (&RootFileDirStructure)[3], bool DEBUG=0);
 TString GetTreeName(TFile *f, std::vector<TString> &RootFileDirStructure, std::vector<TString> &ListOfAllTrees, bool DEBUG=0);
+TString GetTreeName(TFile *f, std::vector<TString> &ListOfAllTrees, bool DEBUG=0);
 void GetFHminWHJets(std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb_dis, bool DEBUG );
 void GetFHJetUsingDR(TLorentzVector &Hgg, std::vector<TLorentzVector> &AllGoodJets, std::vector<Float_t> &b_dis, std::vector<TLorentzVector> &SelectedJets, std::vector<Float_t> &Selectedb_dis, bool DEBUG );
 TString GetLastString(string s, string delimiter, bool DEBUG=0);
@@ -148,7 +149,7 @@ TString GetTreeName(TFile *f, std::vector<TString> &RootFileDirStructure, std::v
     return DirName;
 }
 
-void GetTreeName(TFile *f, std::vector<TString> &ListOfAllTrees, bool DEBUG)
+TString GetTreeName(TFile *f, std::vector<TString> &ListOfAllTrees, bool DEBUG)
 {
     TString DirName = "";
 
@@ -156,7 +157,8 @@ void GetTreeName(TFile *f, std::vector<TString> &ListOfAllTrees, bool DEBUG)
     TKey *key;
     while ( (key = (TKey*)next())) {
         if (DEBUG) std::cout << "key name: " << key->GetName() << "\tClass: " << key->GetClassName() << std::endl;
-        ListOfAllTrees.push_back(TString(key->GetName()));
+        if (string(key->GetName()).find("Tag_1") != std::string::npos)
+            ListOfAllTrees.push_back(TString(key->GetName()));
 
         // if (key->IsFolder()) {
         //     f->cd(key->GetName());
@@ -184,6 +186,7 @@ void GetTreeName(TFile *f, std::vector<TString> &ListOfAllTrees, bool DEBUG)
         //     }
         // }
     }
+    return "TEST";
 }
 
 /**
