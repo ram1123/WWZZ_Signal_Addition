@@ -2,7 +2,7 @@ import tarfile
 import os, sys
 
 
-exclude_files = [".tmp", ".log", ".stdout", ".stderr",".out"]
+exclude_files = [".tmp", ".log", ".stdout", ".stderr",".out", ".root"]
 
 def filterFunction(tarinfo):
   """Helper function for the tarball creating.

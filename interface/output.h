@@ -29,6 +29,7 @@ public:
 
   Float_t   PhotonID_min = -999.0;
   Float_t   PhotonID_max = -999.0;
+  Float_t   weightnew = -999.0;
 
   Float_t   New_Leading_Jet_E = -999.0;
   Float_t   New_Leading_Jet_pt = -999.0;
@@ -264,6 +265,7 @@ void output::init(TTree* tree) {
 
   fTree->Branch("PhotonID_min", &PhotonID_min,  "PhotonID_min/F");
   fTree->Branch("PhotonID_max", &PhotonID_max,  "PhotonID_max/F");
+  fTree->Branch("weightnew", &weightnew,  "weightnew/F");
 
   fTree->Branch("New_Leading_Jet_E", &New_Leading_Jet_E, "New_Leading_Jet_E/F");
   fTree->Branch("New_Leading_Jet_pt", &New_Leading_Jet_pt, "New_Leading_Jet_pt/F");

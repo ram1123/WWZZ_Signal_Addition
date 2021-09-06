@@ -25,7 +25,7 @@ OutputPath_2017 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVar
 # OutputPath_2017 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2017_BScoreBugFix/"
 OutputPath_2018 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2018"
 OutputPath_2019 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/SignalValidation"
-
+OutputPath_2020 = "/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/bbgg"
 # Get CMSSW directory path and name
 cmsswDirPath = os.environ['CMSSW_BASE']
 CMSSWRel = cmsswDirPath.split("/")[-1]
@@ -73,6 +73,18 @@ AbeSignalValidation = [
 '/eos/user/a/atishelm/ntuples/HHWWgg_flashgg/WWZ_SignalTopology_Checks/2017/All_Backgrounds/',
 ]
 
+# bbggSignal = [
+#     '/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHWW_bbgg_NLO_2016/GluGluToHHTo2B2G_node_cHHH1_TuneCUETP8M1_PSWeights_13TeV_2016.root',
+#     '/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2017/Signal/FHWW_bbgg_NLO_2017/GluGluToHHTo2B2G_node_cHHH1_TuneCP5_PSWeights_13TeV_2017.root',
+#     '/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHWW_bbgg_NLO_2018/GluGluToHHTo2B2G_node_cHHH1_TuneCP5_PSWeights_13TeV_2018.root'
+# ]
+
+bbggSignal = [
+    '/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2016/Signal/FHWW_bbgg_NLO_2016/',
+    '/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2017/Signal/FHWW_bbgg_NLO_2017/',
+    '/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/2018/Signal/FHWW_bbgg_NLO_2018/'
+]
+
 CurrentInputPath = paths_2016
 CurrentOutputPath = OutputPath_2016
 CondorJobFileName = "CondorJobs_"+str(ExtraStringCondorJobFileName)+str(Year)
@@ -88,6 +100,9 @@ elif Year==2018:
 elif Year==2019:
     CurrentInputPath = AbeSignalValidation
     CurrentOutputPath = OutputPath_2019
+elif Year==2020:
+    CurrentInputPath = bbggSignal
+    CurrentOutputPath = OutputPath_2020
 else:
     print("Invalid year...")
     exit()

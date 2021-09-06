@@ -104,6 +104,9 @@ void ReRunFHJetSelection( /* bool isMC = true, */
         progressbar bar(20);
         for (Long64_t jentry=0; jentry<nentries;jentry++) {
             flashggReader.GetEntry(jentry);
+
+            // outputVars.weightnew = flashggReader.weight*(1.027);
+
             // if (jentry%1000 == 1) newtree->AutoSave("SaveSelf");
             // std::cout << "=======================" << std::endl;
             // if(jentry>10) break;  // For debug purpose
@@ -606,6 +609,7 @@ void ReRunFHJetSelection( /* bool isMC = true, */
             outputVars.New_DRBased_dPhi_Hgg_Jet4    = DeltaPhi(LV_Hgg_DRBased.Phi(), SelectedGoodJets_dRBased[3].Phi());
             newtree->Fill();
         }
+        newtree->AutoSave();
         std::cout << "\n" << std::endl;
 
         newtree->Write("",TObject::kOverwrite);
