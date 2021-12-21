@@ -25,6 +25,15 @@ void ReRunFHJetSelection(
     )
 ```
 
+## Batch jobs
+
+### Condor jobs
+
+```bash
+python condor_script.py
+```
+This script will generate the `.sh` and `.jdl` files. Using which one can submit the jobs.
+
 ## Remove duplicate trees using hadd
 
 Update the path of the directory inside the script `RemoveDuplicateTreesUsingHadd.sh` then run:

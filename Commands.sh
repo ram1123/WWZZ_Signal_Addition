@@ -1,3 +1,38 @@
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2016/FHWW_NLO_2016_HaddedNew/Data_2016.root\"\) >& Data_2016.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2016/FHWW_NLO_2016_HaddedNew/GluGluToHHTo2G4Q_node_cHHH0_2016.root\"\) >& GluGluToHHTo2G4Q_node_cHHH0_2016.log &
+# root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2016/FHWW_NLO_2016_HaddedNew/GluGluToHHTo2G4Q_node_cHHH1_2016.root\"\)
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2016/FHWW_NLO_2016_HaddedNew/GluGluToHHTo2G4Q_node_cHHH2p45_2016.root\"\) >& GluGluToHHTo2G4Q_node_cHHH2p45_2016.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2016/FHWW_NLO_2016_HaddedNew/GluGluToHHTo2G4Q_node_cHHH5_2016.root\"\) >& GluGluToHHTo2G4Q_node_cHHH5_2016.log &
+
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2018/FHWW_NLO_2018_HaddedNew/Data_2018.root\"\) >& Data_2018.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2018/FHWW_NLO_2018_HaddedNew/GluGluToHHTo2G4Q_node_cHHH1_2018.root\"\) >& GluGluToHHTo2G4Q_node_cHHH1_2018.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2018/FHWW_NLO_2018_HaddedNew/GluGluToHHTo2G4Q_node_cHHH0_2018.root\"\) >& GluGluToHHTo2G4Q_node_cHHH0_2018.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2018/FHWW_NLO_2018_HaddedNew/GluGluToHHTo2G4Q_node_cHHH2p45_2018.root\"\) >& GluGluToHHTo2G4Q_node_cHHH2p45_2018.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2018/FHWW_NLO_2018_HaddedNew/GluGluToHHTo2G4Q_node_cHHH5_2018.root\"\) >& GluGluToHHTo2G4Q_node_cHHH5_2018.log &
+
+
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2018/FHZZ_NLO_2018_HaddedNew/GluGluToHHTo2G2ZTo2G4Q_node_cHHH0_2018.root\"\) >& GluGluToHHTo2G2ZTo2G4Q_node_cHHH0_2018.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2018/FHZZ_NLO_2018_HaddedNew/GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_2018.root\"\) >& GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_2018.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2018/FHZZ_NLO_2018_HaddedNew/GluGluToHHTo2G2ZTo2G4Q_node_cHHH2p45_2018.root\"\) >& GluGluToHHTo2G2ZTo2G4Q_node_cHHH2p45_2018.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2018/FHZZ_NLO_2018_HaddedNew/GluGluToHHTo2G2ZTo2G4Q_node_cHHH5_2018.root\"\) >& GluGluToHHTo2G2ZTo2G4Q_node_cHHH5_2018.log &
+
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2016/FHZZ_NLO_2016_HaddedNew/GluGluToHHTo2G2ZTo2G4Q_node_cHHH0_2016.root\"\) >& GluGluToHHTo2G2ZTo2G4Q_node_cHHH0_2016.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2016/FHZZ_NLO_2016_HaddedNew/GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_2016.root\"\) >& GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_2016.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2016/FHZZ_NLO_2016_HaddedNew/GluGluToHHTo2G2ZTo2G4Q_node_cHHH2p45_2016.root\"\) >& GluGluToHHTo2G2ZTo2G4Q_node_cHHH2p45_2016.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2016/FHZZ_NLO_2016_HaddedNew/GluGluToHHTo2G2ZTo2G4Q_node_cHHH5_2016.root\"\) >& GluGluToHHTo2G2ZTo2G4Q_node_cHHH5_2016.log &
+
+
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2018/BBgg_NLO_2018_HaddedNew/GluGluToHHTo2B2G_node_cHHH0_TuneCP5_PSWeights_13TeV_2018.root\"\) >& GluGluToHHTo2B2G_node_cHHH0_TuneCP5_PSWeights_13TeV_2018.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2018/BBgg_NLO_2018_HaddedNew/GluGluToHHTo2B2G_node_cHHH1_TuneCP5_PSWeights_13TeV_2018.root\"\) >& GluGluToHHTo2B2G_node_cHHH1_TuneCP5_PSWeights_13TeV_2018.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2018/BBgg_NLO_2018_HaddedNew/GluGluToHHTo2B2G_node_cHHH2p45_TuneCP5_PSWeights_13TeV_2018.root\"\) >& GluGluToHHTo2B2G_node_cHHH2p45_TuneCP5_PSWeights_13TeV_2018.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2018/BBgg_NLO_2018_HaddedNew/GluGluToHHTo2B2G_node_cHHH5_TuneCP5_PSWeights_13TeV_2018.root\"\) >& GluGluToHHTo2B2G_node_cHHH5_TuneCP5_PSWeights_13TeV_2018.log &
+
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2016/BBgg_NLO_2016_HaddedNew/GluGluToHHTo2B2G_node_cHHH0_TuneCUETP8M1_PSWeights_13TeV_2016.root\"\) >& GluGluToHHTo2B2G_node_cHHH0_TuneCUETP8M1_PSWeights_13TeV_2016.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2016/BBgg_NLO_2016_HaddedNew/GluGluToHHTo2B2G_node_cHHH1_TuneCUETP8M1_PSWeights_13TeV_2016.root\"\) >& GluGluToHHTo2B2G_node_cHHH1_TuneCUETP8M1_PSWeights_13TeV_2016.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2016/BBgg_NLO_2016_HaddedNew/GluGluToHHTo2B2G_node_cHHH2p45_TuneCUETP8M1_PSWeights_13TeV_2016.root\"\) >& GluGluToHHTo2B2G_node_cHHH2p45_TuneCUETP8M1_PSWeights_13TeV_2016.log &
+# nohup root -l -b -q ReRunFHJetSelection.C\(\"/hpcfs/bes/mlgpu/sharma/ML_GPU/Samples/FlashggNtuples_WithMoreVars/Petr_Nov2021/2016/BBgg_NLO_2016_HaddedNew/GluGluToHHTo2B2G_node_cHHH5_TuneCUETP8M1_PSWeights_13TeV_2016.root\"\) >& GluGluToHHTo2B2G_node_cHHH5_TuneCUETP8M1_PSWeights_13TeV_2016.log &
+
+
 echo "==============================================================="
 echo ""
 date
