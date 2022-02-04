@@ -24,6 +24,68 @@ public :
    // Declaration of leaf types
    Int_t           candidate_id;
    Float_t         weight;
+
+   Float_t         weight_NLO_cttHH0;
+   Float_t         weight_LO_cttHH0;
+   Float_t         weight_NLO_cttHH3;
+   Float_t         weight_LO_cttHH3;
+   Float_t         weight_NLO_cttHH0p35;
+   Float_t         weight_LO_cttHH0p35;
+   Float_t         weight_NLO_3D1;
+   Float_t         weight_LO_3D1;
+   Float_t         weight_NLO_3D2;
+   Float_t         weight_LO_3D2;
+   Float_t         weight_NLO_3D3;
+   Float_t         weight_LO_3D3;
+   Float_t         weight_NLO_SM;
+   Float_t         weight_LO_SM;
+   Float_t         weight_NLO_1;
+   Float_t         weight_LO_1;
+   Float_t         weight_NLO_2;
+   Float_t         weight_LO_2;
+   Float_t         weight_NLO_3;
+   Float_t         weight_LO_3;
+   Float_t         weight_NLO_4;
+   Float_t         weight_LO_4;
+   Float_t         weight_NLO_5;
+   Float_t         weight_LO_5;
+   Float_t         weight_NLO_6;
+   Float_t         weight_LO_6;
+   Float_t         weight_NLO_7;
+   Float_t         weight_LO_7;
+   Float_t         weight_NLO_8;
+   Float_t         weight_LO_8;
+   Float_t         weight_NLO_9;
+   Float_t         weight_LO_9;
+   Float_t         weight_NLO_10;
+   Float_t         weight_LO_10;
+   Float_t         weight_NLO_11;
+   Float_t         weight_LO_11;
+   Float_t         weight_NLO_12;
+   Float_t         weight_LO_12;
+   Float_t         weight_NLO_cHHH0;
+   Float_t         weight_LO_cHHH0;
+   Float_t         weight_NLO_cHHH2;
+   Float_t         weight_LO_cHHH2;
+   Float_t         weight_NLO_cHHH5;
+   Float_t         weight_LO_cHHH5;
+   Float_t         weight_NLO_8a;
+   Float_t         weight_LO_8a;
+   Float_t         weight_NLO_1b;
+   Float_t         weight_LO_1b;
+   Float_t         weight_NLO_2b;
+   Float_t         weight_LO_2b;
+   Float_t         weight_NLO_3b;
+   Float_t         weight_LO_3b;
+   Float_t         weight_NLO_4b;
+   Float_t         weight_LO_4b;
+   Float_t         weight_NLO_5b;
+   Float_t         weight_LO_5b;
+   Float_t         weight_NLO_6b;
+   Float_t         weight_LO_6b;
+   Float_t         weight_NLO_7b;
+   Float_t         weight_LO_7b;
+
    Float_t         CMS_hgg_mass;
    Float_t         sigmaRV;
    Float_t         sigmaMoM_decorr;
@@ -924,6 +986,69 @@ public :
    // List of branches
    TBranch        *b_candidate_id;   //!
    TBranch        *b_weight;   //!
+
+   TBranch        *b_weight_NLO_cttHH0;   //!
+   TBranch        *b_weight_LO_cttHH0;   //!
+   TBranch        *b_weight_NLO_cttHH3;   //!
+   TBranch        *b_weight_LO_cttHH3;   //!
+   TBranch        *b_weight_NLO_cttHH0p35;   //!
+   TBranch        *b_weight_LO_cttHH0p35;   //!
+   TBranch        *b_weight_NLO_3D1;   //!
+   TBranch        *b_weight_LO_3D1;   //!
+   TBranch        *b_weight_NLO_3D2;   //!
+   TBranch        *b_weight_LO_3D2;   //!
+   TBranch        *b_weight_NLO_3D3;   //!
+   TBranch        *b_weight_LO_3D3;   //!
+   TBranch        *b_weight_NLO_SM;   //!
+   TBranch        *b_weight_LO_SM;   //!
+   TBranch        *b_weight_NLO_1;   //!
+   TBranch        *b_weight_LO_1;   //!
+   TBranch        *b_weight_NLO_2;   //!
+   TBranch        *b_weight_LO_2;   //!
+   TBranch        *b_weight_NLO_3;   //!
+   TBranch        *b_weight_LO_3;   //!
+   TBranch        *b_weight_NLO_4;   //!
+   TBranch        *b_weight_LO_4;   //!
+   TBranch        *b_weight_NLO_5;   //!
+   TBranch        *b_weight_LO_5;   //!
+   TBranch        *b_weight_NLO_6;   //!
+   TBranch        *b_weight_LO_6;   //!
+   TBranch        *b_weight_NLO_7;   //!
+   TBranch        *b_weight_LO_7;   //!
+   TBranch        *b_weight_NLO_8;   //!
+   TBranch        *b_weight_LO_8;   //!
+   TBranch        *b_weight_NLO_9;   //!
+   TBranch        *b_weight_LO_9;   //!
+   TBranch        *b_weight_NLO_10;   //!
+   TBranch        *b_weight_LO_10;   //!
+   TBranch        *b_weight_NLO_11;   //!
+   TBranch        *b_weight_LO_11;   //!
+   TBranch        *b_weight_NLO_12;   //!
+   TBranch        *b_weight_LO_12;   //!
+   TBranch        *b_weight_NLO_cHHH0;   //!
+   TBranch        *b_weight_LO_cHHH0;   //!
+   TBranch        *b_weight_NLO_cHHH2;   //!
+   TBranch        *b_weight_LO_cHHH2;   //!
+   TBranch        *b_weight_NLO_cHHH5;   //!
+   TBranch        *b_weight_LO_cHHH5;   //!
+   TBranch        *b_weight_NLO_8a;   //!
+   TBranch        *b_weight_LO_8a;   //!
+   TBranch        *b_weight_NLO_1b;   //!
+   TBranch        *b_weight_LO_1b;   //!
+   TBranch        *b_weight_NLO_2b;   //!
+   TBranch        *b_weight_LO_2b;   //!
+   TBranch        *b_weight_NLO_3b;   //!
+   TBranch        *b_weight_LO_3b;   //!
+   TBranch        *b_weight_NLO_4b;   //!
+   TBranch        *b_weight_LO_4b;   //!
+   TBranch        *b_weight_NLO_5b;   //!
+   TBranch        *b_weight_LO_5b;   //!
+   TBranch        *b_weight_NLO_6b;   //!
+   TBranch        *b_weight_LO_6b;   //!
+   TBranch        *b_weight_NLO_7b;   //!
+   TBranch        *b_weight_LO_7b;   //!
+
+
    TBranch        *b_CMS_hgg_mass;   //!
    TBranch        *b_sigmaRV;   //!
    TBranch        *b_sigmaMoM_decorr;   //!
@@ -1880,6 +2005,68 @@ void flashgg_MC::Init(TTree *tree)
 
    fChain->SetBranchAddress("candidate_id", &candidate_id, &b_candidate_id);
    fChain->SetBranchAddress("weight", &weight, &b_weight);
+
+   fChain->SetBranchAddress("weight_NLO_cttHH0", &weight_NLO_cttHH0, &b_weight_NLO_cttHH0);
+   fChain->SetBranchAddress("weight_LO_cttHH0", &weight_LO_cttHH0, &b_weight_LO_cttHH0);
+   fChain->SetBranchAddress("weight_NLO_cttHH3", &weight_NLO_cttHH3, &b_weight_NLO_cttHH3);
+   fChain->SetBranchAddress("weight_LO_cttHH3", &weight_LO_cttHH3, &b_weight_LO_cttHH3);
+   fChain->SetBranchAddress("weight_NLO_cttHH0p35", &weight_NLO_cttHH0p35, &b_weight_NLO_cttHH0p35);
+   fChain->SetBranchAddress("weight_LO_cttHH0p35", &weight_LO_cttHH0p35, &b_weight_LO_cttHH0p35);
+   fChain->SetBranchAddress("weight_NLO_3D1", &weight_NLO_3D1, &b_weight_NLO_3D1);
+   fChain->SetBranchAddress("weight_LO_3D1", &weight_LO_3D1, &b_weight_LO_3D1);
+   fChain->SetBranchAddress("weight_NLO_3D2", &weight_NLO_3D2, &b_weight_NLO_3D2);
+   fChain->SetBranchAddress("weight_LO_3D2", &weight_LO_3D2, &b_weight_LO_3D2);
+   fChain->SetBranchAddress("weight_NLO_3D3", &weight_NLO_3D3, &b_weight_NLO_3D3);
+   fChain->SetBranchAddress("weight_LO_3D3", &weight_LO_3D3, &b_weight_LO_3D3);
+//    fChain->SetBranchAddress("weight_NLO_SM", &weight_NLO_SM, &b_weight_NLO_SM);
+   fChain->SetBranchAddress("weight_LO_SM", &weight_LO_SM, &b_weight_LO_SM);
+   fChain->SetBranchAddress("weight_NLO_1", &weight_NLO_1, &b_weight_NLO_1);
+   fChain->SetBranchAddress("weight_LO_1", &weight_LO_1, &b_weight_LO_1);
+   fChain->SetBranchAddress("weight_NLO_2", &weight_NLO_2, &b_weight_NLO_2);
+   fChain->SetBranchAddress("weight_LO_2", &weight_LO_2, &b_weight_LO_2);
+   fChain->SetBranchAddress("weight_NLO_3", &weight_NLO_3, &b_weight_NLO_3);
+   fChain->SetBranchAddress("weight_LO_3", &weight_LO_3, &b_weight_LO_3);
+   fChain->SetBranchAddress("weight_NLO_4", &weight_NLO_4, &b_weight_NLO_4);
+   fChain->SetBranchAddress("weight_LO_4", &weight_LO_4, &b_weight_LO_4);
+   fChain->SetBranchAddress("weight_NLO_5", &weight_NLO_5, &b_weight_NLO_5);
+   fChain->SetBranchAddress("weight_LO_5", &weight_LO_5, &b_weight_LO_5);
+   fChain->SetBranchAddress("weight_NLO_6", &weight_NLO_6, &b_weight_NLO_6);
+   fChain->SetBranchAddress("weight_LO_6", &weight_LO_6, &b_weight_LO_6);
+   fChain->SetBranchAddress("weight_NLO_7", &weight_NLO_7, &b_weight_NLO_7);
+   fChain->SetBranchAddress("weight_LO_7", &weight_LO_7, &b_weight_LO_7);
+   fChain->SetBranchAddress("weight_NLO_8", &weight_NLO_8, &b_weight_NLO_8);
+   fChain->SetBranchAddress("weight_LO_8", &weight_LO_8, &b_weight_LO_8);
+   fChain->SetBranchAddress("weight_NLO_9", &weight_NLO_9, &b_weight_NLO_9);
+   fChain->SetBranchAddress("weight_LO_9", &weight_LO_9, &b_weight_LO_9);
+   fChain->SetBranchAddress("weight_NLO_10", &weight_NLO_10, &b_weight_NLO_10);
+   fChain->SetBranchAddress("weight_LO_10", &weight_LO_10, &b_weight_LO_10);
+   fChain->SetBranchAddress("weight_NLO_11", &weight_NLO_11, &b_weight_NLO_11);
+   fChain->SetBranchAddress("weight_LO_11", &weight_LO_11, &b_weight_LO_11);
+   fChain->SetBranchAddress("weight_NLO_12", &weight_NLO_12, &b_weight_NLO_12);
+   fChain->SetBranchAddress("weight_LO_12", &weight_LO_12, &b_weight_LO_12);
+   fChain->SetBranchAddress("weight_NLO_cHHH0", &weight_NLO_cHHH0, &b_weight_NLO_cHHH0);
+   fChain->SetBranchAddress("weight_LO_cHHH0", &weight_LO_cHHH0, &b_weight_LO_cHHH0);
+   fChain->SetBranchAddress("weight_NLO_cHHH2", &weight_NLO_cHHH2, &b_weight_NLO_cHHH2);
+   fChain->SetBranchAddress("weight_LO_cHHH2", &weight_LO_cHHH2, &b_weight_LO_cHHH2);
+   fChain->SetBranchAddress("weight_NLO_cHHH5", &weight_NLO_cHHH5, &b_weight_NLO_cHHH5);
+   fChain->SetBranchAddress("weight_LO_cHHH5", &weight_LO_cHHH5, &b_weight_LO_cHHH5);
+   fChain->SetBranchAddress("weight_NLO_8a", &weight_NLO_8a, &b_weight_NLO_8a);
+   fChain->SetBranchAddress("weight_LO_8a", &weight_LO_8a, &b_weight_LO_8a);
+   fChain->SetBranchAddress("weight_NLO_1b", &weight_NLO_1b, &b_weight_NLO_1b);
+   fChain->SetBranchAddress("weight_LO_1b", &weight_LO_1b, &b_weight_LO_1b);
+   fChain->SetBranchAddress("weight_NLO_2b", &weight_NLO_2b, &b_weight_NLO_2b);
+   fChain->SetBranchAddress("weight_LO_2b", &weight_LO_2b, &b_weight_LO_2b);
+   fChain->SetBranchAddress("weight_NLO_3b", &weight_NLO_3b, &b_weight_NLO_3b);
+   fChain->SetBranchAddress("weight_LO_3b", &weight_LO_3b, &b_weight_LO_3b);
+   fChain->SetBranchAddress("weight_NLO_4b", &weight_NLO_4b, &b_weight_NLO_4b);
+   fChain->SetBranchAddress("weight_LO_4b", &weight_LO_4b, &b_weight_LO_4b);
+   fChain->SetBranchAddress("weight_NLO_5b", &weight_NLO_5b, &b_weight_NLO_5b);
+   fChain->SetBranchAddress("weight_LO_5b", &weight_LO_5b, &b_weight_LO_5b);
+   fChain->SetBranchAddress("weight_NLO_6b", &weight_NLO_6b, &b_weight_NLO_6b);
+   fChain->SetBranchAddress("weight_LO_6b", &weight_LO_6b, &b_weight_LO_6b);
+   fChain->SetBranchAddress("weight_NLO_7b", &weight_NLO_7b, &b_weight_NLO_7b);
+   fChain->SetBranchAddress("weight_LO_7b", &weight_LO_7b, &b_weight_LO_7b);
+
    fChain->SetBranchAddress("CMS_hgg_mass", &CMS_hgg_mass, &b_CMS_hgg_mass);
    fChain->SetBranchAddress("sigmaRV", &sigmaRV, &b_sigmaRV);
    fChain->SetBranchAddress("sigmaMoM_decorr", &sigmaMoM_decorr, &b_sigmaMoM_decorr);
