@@ -36,11 +36,15 @@ This script will generate the `.sh` and `.jdl` files. Using which one can submit
 
 ## Remove duplicate trees using hadd
 
-Update the path of the directory inside the script `RemoveDuplicateTreesUsingHadd.sh` then run:
+- There is a script, named `RemoveDuplicateTreesUsingHadd.sh`, to scan over all root files using the wild card and run the hadd command.
+- This script takes one argument 1 or any other number.
+    - If the number is equal to 1, only then it will run the hadd command else it will just run the `rootls` command, to show the content of root file.
+- Update the path of the directory inside the script `RemoveDuplicateTreesUsingHadd.sh` then run:
 
 ```bash
-bash RemoveDuplicateTreesUsingHadd.sh
+bash RemoveDuplicateTreesUsingHadd.sh 0/1
 ```
+
 
 ## Get Scaled ZZ root file
 

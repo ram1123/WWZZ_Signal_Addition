@@ -35,7 +35,7 @@ void AppendEFTNodeNumber( /* bool isMC = true, */
                           int NodeNumber = 1,
                           TString PrefixOutPutRootFileName = "",
                           TString OutPutPath = "./", // Signal, Backgrounds, Data
-                          bool WithSyst = false,
+                          bool WithSyst = true,
                           bool ifDNN = false,
                           bool ifDirExists = true
                         )
@@ -94,6 +94,17 @@ void AppendEFTNodeNumber( /* bool isMC = true, */
 
         // Clone the old tree
         auto newtree = OldTree->CloneTree(0);
+        // std::cout << "TreeName: Ram: " << newtree->GetName() << std::endl;
+
+        std::stringstream oss;
+        oss << std::setw(2) << std::setfill('0') << NodeNumber;
+        TString s = oss.str();
+        // std::cout << "node number: RAM: " << s << '\n';
+
+        TString newtreeName = TString(newtree->GetName()).ReplaceAll("node_cHHH1",TString("node_NLO_")+s);
+        newtree->SetName(newtreeName);
+        // std::cout << "TreeName: RamNEW: " << newtree->GetName() << std::endl;
+
         output outputVars = output(newtree);
 
         Long64_t nentries = OldTree->GetEntries();
@@ -106,7 +117,8 @@ void AppendEFTNodeNumber( /* bool isMC = true, */
         int temp_percentage_done = 0;
 
         progressbar bar(20);
-        for (Long64_t jentry=0; jentry<nentries;jentry++) {
+        for (Long64_t jentry=0; jentry<nentries; jentry++) {
+        // for (Long64_t jentry=0; jentry<25; jentry++) {
             flashggReader.GetEntry(jentry);
 
             // outputVars.weightnew = flashggReader.weight*(1.027);
@@ -131,108 +143,110 @@ void AppendEFTNodeNumber( /* bool isMC = true, */
 
             if (NodeNumber == 1)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_1;
+                // std::cout << "weight: " << flashggReader.weight << ", weight_NLO_1: " << flashggReader.weight_NLO_1 << ", product: " << flashggReader.weight * flashggReader.weight_NLO_1 << std::endl;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_1;
                 outputVars.Node_Number  = 1.0;
             }
             if (NodeNumber == 2)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_2;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_2;
                 outputVars.Node_Number  = 2.0;
             }
             if (NodeNumber == 3)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_3;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_3;
                 outputVars.Node_Number  = 3.0;
             }
             if (NodeNumber == 4)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_4;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_4;
                 outputVars.Node_Number  = 4.0;
             }
             if (NodeNumber == 5)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_5;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_5;
                 outputVars.Node_Number  = 5.0;
             }
             if (NodeNumber == 6)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_6;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_6;
                 outputVars.Node_Number  = 6.0;
             }
             if (NodeNumber == 7)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_7;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_7;
                 outputVars.Node_Number  = 7.0;
             }
             if (NodeNumber == 8)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_8;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_8;
                 outputVars.Node_Number  = 8.0;
             }
             if (NodeNumber == 9)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_9;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_9;
                 outputVars.Node_Number  = 9.0;
             }
             if (NodeNumber == 10)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_10;
+                // std::cout << "weight: " << flashggReader.weight << ", weight_NLO_1: " << flashggReader.weight_NLO_1 << ", product: " << flashggReader.weight * flashggReader.weight_NLO_1 << std::endl;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_10;
                 outputVars.Node_Number  = 10.0;
             }
             if (NodeNumber == 11)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_11;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_11;
                 outputVars.Node_Number  = 11.0;
             }
             if (NodeNumber == 12)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_12;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_12;
                 outputVars.Node_Number  = 12.0;
             }
             if (NodeNumber == 13)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_8a;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_8a;
                 outputVars.Node_Number  = 13.0;
             }
             if (NodeNumber == 14)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_1b;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_1b;
                 outputVars.Node_Number  = 14.0;
             }
             if (NodeNumber == 15)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_2b;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_2b;
                 outputVars.Node_Number  = 15.0;
             }
             if (NodeNumber == 16)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_3b;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_3b;
                 outputVars.Node_Number  = 16.0;
             }
             if (NodeNumber == 17)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_4b;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_4b;
                 outputVars.Node_Number  = 17.0;
             }
             if (NodeNumber == 18)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_5b;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_5b;
                 outputVars.Node_Number  = 18.0;
             }
             if (NodeNumber == 19)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_6b;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_6b;
                 outputVars.Node_Number  = 19.0;
             }
             if (NodeNumber == 20)
             {
-                outputVars.NewWeight    = flashggReader.weight * flashggReader.weight_NLO_7b;
+                flashggReader.weight    = flashggReader.weight * flashggReader.weight_NLO_7b;
                 outputVars.Node_Number  = 20.0;
             }
 
             if (NodeNumber == 51)   // For backgrounds
             {
-                outputVars.NewWeight    = flashggReader.weight;
+                // flashggReader.weight    = flashggReader.weight;
                 outputVars.Node_Number  = 1 + ( std::rand() % ( 20 ) );
             }
 
@@ -241,8 +255,8 @@ void AppendEFTNodeNumber( /* bool isMC = true, */
         newtree->AutoSave();
         std::cout << "\n" << std::endl;
 
-        newtree->Write("",TObject::kOverwrite);
-        newfile->Write();
+        // newtree->Write("",TObject::kOverwrite);
+        // newfile->Write();
         delete OldTree;
     }
     printf("Time taken: %.2fs\n", (double)(clock() - tStart)/CLOCKS_PER_SEC);

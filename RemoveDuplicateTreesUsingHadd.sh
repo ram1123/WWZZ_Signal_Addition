@@ -2,18 +2,12 @@
 # @Date:   2021-04-12 17:40:46
 # @Last Modified by:   Ram Krishna Sharma
 # @Last Modified time: 2021-04-19
-#path1="/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst_2017/Signal/GluGluToHHTo2G4Q_node_cHHH1_2017.root"
-# path1="/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst_2017/Signal/*cHHH1_2017.root"
-# path1="/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst_2017/Backgrounds/*.root"
-# path1="/eos/user/r/rasharma/post_doc_ihep/double-higgs/ntuples/January_2021_Production/DNN_MoreVar_v3_WithSyst_2017/Data/*.root"
 
-#path1="/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2016/ttHJetToGG_M125.root"
-#path1="/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2018/VHToGG_M125_2018.root"
-#path1="/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2018/*cHHH1_2018.root"
-#path1="/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2017/*.root"
-#path1="/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2018/GluGluToHHTo2G4Q_node_cHHH2p45_2018.root"
-#path1="/eos/user/l/lipe/ntuple/DNN_sample/FlashggNtuples_WithMoreVars/2018/*cHHH0*.root"
-path1="/afs/cern.ch/user/r/rasharma/work/doubleHiggs/flashgg/ScaleWWZZ/CMSSW_10_6_8/src/WWZZ_Signal_Addition/*BeforeBScoreFix.root"
+path1="/publicfs/cms/user/sharma/DNNVarAppend/CMSSW_10_6_8/src/WWZZ_Signal_Addition/*2017.root"
+# path1="/publicfs/cms/user/sharma/DNNVarAppend/CMSSW_10_6_8/src/WWZZ_Signal_Addition/*GluGluToHHTo2B2G*.root"
+# path1="/publicfs/cms/user/sharma/DNNVarAppend/CMSSW_10_6_8/src/WWZZ_Signal_Addition/*GluGluToHHTo2G4Q*.root"
+# path1="/publicfs/cms/user/sharma/DNNVarAppend/CMSSW_10_6_8/src/WWZZ_Signal_Addition/*GluGluToHHTo2G2ZTo2G4Q*.root"
+# path1="/publicfs/cms/user/sharma/DNNVarAppend/CMSSW_10_6_8/src/WWZZ_Signal_Addition/*GluGluHToGG_M125*.root"
 
 doHadd=${1}
 DirName="tagsDumper/trees"
@@ -32,6 +26,7 @@ if [[ doHadd -eq 1 ]]; then
         NewFileName="${NewFileName}_hadd.root"
         echo "Before hadd keep original file to /tmp/rasharma"
         echo "In case something happens we can grab them from /tmp/rasharma"
+        mkdir /tmp/rasharma/
         cp $filename /tmp/rasharma/
         echo "hadd $NewFileName $filename"
         hadd $NewFileName $filename

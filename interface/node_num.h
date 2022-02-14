@@ -35,6 +35,6 @@ void output::init(TTree* tree) {
 
   fTree = tree;
 
-  fTree->Branch("NewWeight", &NewWeight,  "NewWeight/F");
+  // fTree->Branch("NewWeight", &NewWeight,  "NewWeight/F");
   fTree->Branch("Node_Number", &Node_Number,  "Node_Number/F");
 }
